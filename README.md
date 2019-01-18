@@ -1,7 +1,8 @@
 
 # gform-stubs
 
-This is a placeholder README.md for a new repository
+This is a microservice that stubs external dependencies of gform (& perhaps gform-frontend) for running in test
+environments where those dependencies are not available.
 
 ### License
 
