@@ -17,18 +17,29 @@
 package uk.gov.hmrc.gformstubs.controllers
 
 import javax.inject.Singleton
-
+import play.api.Logger
+import play.api.libs.json.{ Json, OFormat }
 import uk.gov.hmrc.play.bootstrap.controller.BaseController
 import uk.gov.hmrc.play.http.logging.MdcLoggingExecutionContext._
 import play.api.mvc._
 
 import scala.concurrent.Future
 
-@Singleton()
-class MicroserviceHelloWorld extends BaseController {
+case class AddressDes(postalCode: String)
 
-	def hello() = Action.async { implicit request =>
-		Future.successful(Ok("Hello world"))
-	}
+object AddressDes {
+  implicit val format: OFormat[AddressDes] = Json.format[AddressDes]
+}
+
+@Singleton()
+class Registration extends BaseController {
+
+  def validator(utr: String) = Action.async { implicit request =>
+    Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
+    if (utr.startsWith("1")) {
+      Future.successful(Ok(Json.toJson(AddressDes("BN12 4XL"))))
+    } else
+      Future.successful(Ok(Json.toJson(AddressDes("ANYTHING"))))
+  }
 
 }

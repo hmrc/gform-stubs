@@ -4,7 +4,7 @@ import org.scalatest.{Matchers, WordSpec}
 import play.api.libs.ws.WSClient
 import uk.gov.hmrc.integration.ServiceSpec
 
-class ExampleIntegrationTest extends WordSpec with Matchers with ServiceSpec  {
+class RegistrationTest extends WordSpec with Matchers with ServiceSpec  {
 
   def externalServices: Seq[String] = Seq("datastream", "auth")
 
@@ -16,7 +16,7 @@ class ExampleIntegrationTest extends WordSpec with Matchers with ServiceSpec  {
 
       val wsClient = app.injector.instanceOf[WSClient]
 
-      val response = wsClient.url(resource("/gform-stubs/hello-world")).get.futureValue
+      val response = wsClient.url(resource("/gform-stubs/registration/organisation/utr/1A")).get.futureValue
       response.status shouldBe 200
 
     }

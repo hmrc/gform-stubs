@@ -1,3 +1,5 @@
 # microservice specific routes
 
-GET        /hello-world             uk.gov.hmrc.gformstubs.controllers.MicroserviceHelloWorld.hello
+POST       /registration/organisation/utr/:utr                      uk.gov.hmrc.gformstubs.controllers.Registration.validator(utr: String)
+
+GET        /obligation/tax-period/:idType/:idNumber/:regimeType     uk.gov.hmrc.gformstubs.controllers.Obligation.getTaxPeriods(idType: String, idNumber: String, regimeType: String)
