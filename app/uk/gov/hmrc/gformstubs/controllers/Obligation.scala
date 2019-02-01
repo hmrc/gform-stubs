@@ -33,23 +33,28 @@ class Obligation extends BaseController {
       Future.successful(
         Ok("""
              |{
-             |"obligations" :
-             |{
-             |"taxPeriods" :
-             |[
-             |{
-             |"inboundCorrespondenceFromDate" : "2019-05-23",
-             |"inboundCorrespondenceToDate" : "b",
-             |"periodKey" : "c"
-             |},
-             |{
-             |"inboundCorrespondenceFromDate" : "2019-06-24",
-             |"inboundCorrespondenceToDate" : "2019-09-24",
-             |"periodKey" : "#001"
+             |    "obligations": [
+             |        {
+             |            "obligationDetails": [
+             |                {
+             |                    "status": "O",
+             |                    "inboundCorrespondenceFromDate": "2017-06-01",
+             |                    "inboundCorrespondenceToDate": "2017-08-31",
+             |                    "inboundCorrespondenceDueDate": "2017-09-30",
+             |                    "periodKey": "17B2"
+             |                },
+             |                {
+             |                    "status": "O",
+             |                    "inboundCorrespondenceFromDate": "2016-08-01",
+             |                    "inboundCorrespondenceToDate": "2016-08-31",
+             |                    "inboundCorrespondenceDueDate": "2016-09-30",
+             |                    "periodKey": "16AH"
+             |                }
+             |            ]
+             |        }
+             |    ]
              |}
-             |]
-             |}
-             |}""".stripMargin)
+""".stripMargin)
           .as("application/json"))
     } else {
       Future.successful(BadRequest("idType wasn't nino"))

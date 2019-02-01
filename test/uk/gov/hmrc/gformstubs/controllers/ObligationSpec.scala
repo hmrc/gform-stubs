@@ -34,20 +34,29 @@ class ObligationSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
       contentAsJson(result) should be(
-        JsObject(Map("obligations" -> JsObject(Map("taxPeriods" -> JsArray(Seq(
-          JsObject(Map(
-            "inboundCorrespondenceFromDate" -> JsString("2019-05-23"),
-            "inboundCorrespondenceToDate"   -> JsString("b"),
-            "periodKey"                     -> JsString("c")
-          )),
-          JsObject(Map(
-            "inboundCorrespondenceFromDate" -> JsString("2019-06-24"),
-            "inboundCorrespondenceToDate"   -> JsString("2019-09-24"),
-            "periodKey"                     -> JsString("#001")
-          ))
-        )))))))
+        JsObject(Map("obligations" -> JsArray(Seq(
+          JsObject(Map("obligationDetails" -> JsArray(Seq(
+            JsObject(Map(
+              "status" -> JsString("O"),
+              "inboundCorrespondenceFromDate" -> JsString("2017-06-01"),
+              "inboundCorrespondenceToDate"   -> JsString("2017-08-31"),
+              "inboundCorrespondenceDueDate" -> JsString("2017-09-30"),
+              "periodKey"                     -> JsString("17B2")
+            )),
+            JsObject(Map(
+              "status" -> JsString("O"),
+              "inboundCorrespondenceFromDate" -> JsString("2016-08-01"),
+              "inboundCorrespondenceToDate"   -> JsString("2016-08-31"),
+              "inboundCorrespondenceDueDate" -> JsString("2016-09-30"),
+              "periodKey"                     -> JsString("16AH")
+            ))
+          ))))
+        ))))
+        )
     }
   }
+
+
 
   "registration validation for other than nino" should {
     "return 400" in {
