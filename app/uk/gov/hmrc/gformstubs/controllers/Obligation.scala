@@ -29,35 +29,55 @@ class Obligation extends BaseController {
 
   def getTaxPeriods(idType: String, idNumber: String, regimeType: String) = Action.async { implicit request =>
     Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
-    if (idType == "nino") {
-      Future.successful(
-        Ok("""
-             |{
-             |    "obligations": [
-             |        {
-             |            "obligationDetails": [
-             |                {
-             |                    "status": "O",
-             |                    "inboundCorrespondenceFromDate": "2017-06-01",
-             |                    "inboundCorrespondenceToDate": "2017-08-31",
-             |                    "inboundCorrespondenceDueDate": "2017-09-30",
-             |                    "periodKey": "17B2"
-             |                },
-             |                {
-             |                    "status": "O",
-             |                    "inboundCorrespondenceFromDate": "2016-08-01",
-             |                    "inboundCorrespondenceToDate": "2016-08-31",
-             |                    "inboundCorrespondenceDueDate": "2016-09-30",
-             |                    "periodKey": "16AH"
-             |                }
-             |            ]
-             |        }
-             |    ]
-             |}
-""".stripMargin)
-          .as("application/json"))
+    if (List("nino", "vrn", "mtdbis", "ni", "utr", "safeId", "eeits") contains idType) {
+      if (List(
+            "VATC",
+            "ITSA",
+            "NI",
+            "PARC",
+            "AGL",
+            "LFT",
+            "APD",
+            "IPT",
+            "BD",
+            "GD",
+            "LD",
+            "BFP",
+            "GRF",
+            "FD",
+            "VTR",
+            "AIR") contains regimeType) {
+        Future.successful(
+          Ok("""
+               |{
+               |    "obligations": [
+               |        {
+               |            "obligationDetails": [
+               |                {
+               |                    "status": "O",
+               |                    "inboundCorrespondenceFromDate": "2017-06-01",
+               |                    "inboundCorrespondenceToDate": "2017-08-31",
+               |                    "inboundCorrespondenceDueDate": "2017-09-30",
+               |                    "periodKey": "17B2"
+               |                },
+               |                {
+               |                    "status": "O",
+               |                    "inboundCorrespondenceFromDate": "2016-08-01",
+               |                    "inboundCorrespondenceToDate": "2016-08-31",
+               |                    "inboundCorrespondenceDueDate": "2016-09-30",
+               |                    "periodKey": "16AH"
+               |                }
+               |            ]
+               |        }
+               |    ]
+               |}
+            """.stripMargin)
+            .as("application/json"))
+      } else {
+        Future.successful(BadRequest("regimeType invalid"))
+      }
     } else {
-      Future.successful(BadRequest("idType wasn't nino"))
+      Future.successful(BadRequest("idType invalid"))
     }
   }
 
