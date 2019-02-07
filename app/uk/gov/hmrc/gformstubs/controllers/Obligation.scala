@@ -82,7 +82,7 @@ class Obligation extends BaseController {
       }
     } else {
       Future.successful(
-        Ok("""
+        BadRequest("""
              |{
              |   "code": "NOT_FOUND",
              |   "reason": "The remote endpoint has indicated that no associated data found"
