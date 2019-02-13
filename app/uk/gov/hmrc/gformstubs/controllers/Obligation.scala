@@ -29,7 +29,7 @@ class Obligation extends BaseController {
 
   def getTaxPeriods(idType: String, idNumber: String, regimeType: String) = Action.async { implicit request =>
     Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
-    if (idNumber != "AB123456C") {
+    if (idNumber != "1234567891") {
       if (List("nino", "vrn", "mtdbis", "ni", "utr", "safeId", "eeits") contains idType) {
         if (List(
               "VATC",
