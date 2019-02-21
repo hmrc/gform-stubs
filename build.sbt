@@ -14,6 +14,7 @@ lazy val microservice = Project(appName, file("."))
     SbtArtifactory,
     ScalafmtCorePlugin)
   .settings(
+    scalaVersion := "2.11.12",
     scalafmtOnCompile := true,
     majorVersion := 0,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test

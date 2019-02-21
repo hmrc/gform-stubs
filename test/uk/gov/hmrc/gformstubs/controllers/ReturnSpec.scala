@@ -37,7 +37,7 @@ class ReturnSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
 
   "return validation for any other user id" should {
     "return 200" in {
-      val controller = new Registration()
+      val controller = new Return()
       val result = controller.validator("Fubar")(fakeRequest)
       status(result) shouldBe Status.OK
     }

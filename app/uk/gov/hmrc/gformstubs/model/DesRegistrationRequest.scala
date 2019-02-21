@@ -14,26 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.gformstubs.controllers
+package uk.gov.hmrc.gformstubs.model
 
-import play.api.Logger
-import play.api.mvc._
-import uk.gov.hmrc.play.bootstrap.controller.BaseController
+import play.api.libs.json.Json
 
-import scala.concurrent.Future
+case class DesRegistrationRequest(regime: String, requiresNameMatch: Boolean, isAnAgent: Boolean)
 
-class Return extends BaseController {
-
-  def validator(userId: String) = Action.async { implicit request =>
-    Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
-    if (userId == Return.notFoundUserId) {
-      Future.successful(NotFound)
-    } else
-      Future.successful(Ok)
-  }
-
-}
-
-object Return {
-  val notFoundUserId: String = "XTAL00000108765"
+object DesRegistrationRequest {
+  implicit val format = Json.format[DesRegistrationRequest]
 }

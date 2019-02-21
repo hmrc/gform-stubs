@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
-import javax.inject.Singleton
 import play.api.Logger
 import play.api.libs.json._
 import play.api.mvc._
@@ -24,7 +23,6 @@ import uk.gov.hmrc.play.bootstrap.controller.BaseController
 
 import scala.concurrent.Future
 
-@Singleton()
 class Obligation extends BaseController {
 
   def getTaxPeriods(idType: String, idNumber: String, regimeType: String) = Action.async { implicit request =>
