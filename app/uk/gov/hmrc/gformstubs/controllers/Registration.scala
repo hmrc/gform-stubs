@@ -16,27 +16,74 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
-import javax.inject.Singleton
 import play.api.Logger
-import play.api.libs.json.{ Json, OFormat }
+import play.api.libs.json._
+import play.api.mvc._
+import uk.gov.hmrc.gformstubs.model.DesRegistrationRequest
+import uk.gov.hmrc.gformstubs.model._
+import uk.gov.hmrc.gformstubs.generators.DesRegistrationResponseGen
 import uk.gov.hmrc.play.bootstrap.controller.BaseController
 import uk.gov.hmrc.play.http.logging.MdcLoggingExecutionContext._
-import play.api.mvc._
 
-import scala.concurrent.Future
-
-case class AddressDes(postalCode: String)
-
-object AddressDes {
-  implicit val format: OFormat[AddressDes] = Json.format[AddressDes]
-}
-
-@Singleton()
 class Registration extends BaseController {
 
-  def validator(utr: String) = Action { implicit request =>
-    Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
-    if (utr.startsWith("1")) Ok(Json.toJson(AddressDes("BN12 4XL")))
-    else Ok(Json.toJson(AddressDes("ANYTHING")))
+  private val desOrganisation = {
+    val organisation = Organisation("CLICKEYCLOUSE", false, "Not Specified")
+    val address =
+      UkAddress("75, LOWER STREET,", Some("FULHAM-UNDER-WATER"), Some("MUCH PETRIFYING"), None, Some("BN12 4XL"))
+    val contactDetails = ContactDetails(Some("0123 456789"), None, None, None)
+
+    DesRegistrationResponse(
+      "XE0000100007638",
+      Some("AARN1234567"),
+      "0100007638",
+      false,
+      false,
+      false,
+      false,
+      organisation,
+      address,
+      Some(contactDetails))
   }
+
+  private val desIndividual = {
+    val individual = Individual("DAVID", Some("BOWEN"), None)
+    val address =
+      InternationalAddress("1 OnLoan Parade", Some("Nowhere"), Some("England"), Some("UK"), "IT", Some("BN12 4XL"))
+    val contactDetails = ContactDetails(Some("199 206 3434"), Some("01474252553"), None, None)
+    DesRegistrationResponse(
+      "XR0000100028912",
+      None,
+      "0100028912",
+      false,
+      false,
+      false,
+      true,
+      individual,
+      address,
+      Some(contactDetails)
+    )
+  }
+
+  def validator(utr: String) = Action(parse.json[DesRegistrationRequest]) { request =>
+    Logger.info(s"Registration, utr: $utr, payload: ${request.body}")
+
+    Ok(Json.toJson(utr match {
+      case "random" =>
+        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+        addPostCode(random, Some("random"))
+      case "nopostcode" =>
+        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+        addPostCode(random, None)
+      case otherwise =>
+        if (otherwise.startsWith("1")) desIndividual
+        else desOrganisation
+    }))
+  }
+
+  private def addPostCode(drr: DesRegistrationResponse, postcode: Option[String]): DesRegistrationResponse =
+    drr.copy(address = drr.address match {
+      case s: UkAddress            => s.copy(postalCode = postcode)
+      case s: InternationalAddress => s.copy(postalCode = postcode)
+    })
 }
