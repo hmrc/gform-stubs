@@ -34,12 +34,9 @@ object AddressDes {
 @Singleton()
 class Registration extends BaseController {
 
-  def validator(utr: String) = Action.async { implicit request =>
+  def validator(utr: String) = Action { implicit request =>
     Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
-    if (utr.startsWith("1")) {
-      Future.successful(Ok(Json.toJson(AddressDes("BN12 4XL"))))
-    } else
-      Future.successful(Ok(Json.toJson(AddressDes("ANYTHING"))))
+    if (utr.startsWith("1")) Ok(Json.toJson(AddressDes("BN12 4XL")))
+    else Ok(Json.toJson(AddressDes("ANYTHING")))
   }
-
 }
