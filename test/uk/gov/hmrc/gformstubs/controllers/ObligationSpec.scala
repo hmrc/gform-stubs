@@ -34,29 +34,29 @@ class ObligationSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
       contentAsJson(result) should be(
-        JsObject(Map("obligations" -> JsArray(Seq(
-          JsObject(Map("obligationDetails" -> JsArray(Seq(
-            JsObject(Map(
-              "status" -> JsString("O"),
-              "inboundCorrespondenceFromDate" -> JsString("2017-06-01"),
-              "inboundCorrespondenceToDate"   -> JsString("2017-08-31"),
-              "inboundCorrespondenceDueDate" -> JsString("2017-09-30"),
-              "periodKey"                     -> JsString("17B2")
-            )),
-            JsObject(Map(
-              "status" -> JsString("O"),
-              "inboundCorrespondenceFromDate" -> JsString("2016-08-01"),
-              "inboundCorrespondenceToDate"   -> JsString("2016-08-31"),
-              "inboundCorrespondenceDueDate" -> JsString("2016-09-30"),
-              "periodKey"                     -> JsString("16AH")
-            ))
-          ))))
-        ))))
-        )
+        JsObject(
+          Map(
+            "obligations" -> JsArray(Seq(
+              JsObject(Map("obligationDetails" -> JsArray(Seq(
+                JsObject(Map(
+                  "status"                        -> JsString("O"),
+                  "inboundCorrespondenceFromDate" -> JsString("2017-06-01"),
+                  "inboundCorrespondenceToDate"   -> JsString("2017-08-31"),
+                  "inboundCorrespondenceDueDate"  -> JsString("2017-09-30"),
+                  "periodKey"                     -> JsString("17B2")
+                )),
+                JsObject(Map(
+                  "status"                        -> JsString("O"),
+                  "inboundCorrespondenceFromDate" -> JsString("2016-08-01"),
+                  "inboundCorrespondenceToDate"   -> JsString("2016-08-31"),
+                  "inboundCorrespondenceDueDate"  -> JsString("2016-09-30"),
+                  "periodKey"                     -> JsString("16AH")
+                ))
+              ))))
+            ))))
+      )
     }
   }
-
-
 
   "registration validation for other than nino" should {
     "return 400" in {
