@@ -5,3 +5,7 @@ POST       /registration/organisation/utr/:utr                      uk.gov.hmrc.
 GET        /enterprise/obligation-data/:idType/:idNumber/:regimeType     uk.gov.hmrc.gformstubs.controllers.Obligation.getTaxPeriods(idType: String, idNumber: String, regimeType: String)
 
 POST       /cross-regime/return/AGL/eeits/:userId                   uk.gov.hmrc.gformstubs.controllers.Return.validator(userId: String)
+
+POST       /cross-regime/return/AGL/eeits/:userId                   uk.gov.hmrc.gformstubs.controllers.Return.validator(userId: String)
+
+PUT        /cross-regime/subscription/IPT/utr/:userId               uk.gov.hmrc.gformstubs.controllers.Subscription.validator(userId: String)

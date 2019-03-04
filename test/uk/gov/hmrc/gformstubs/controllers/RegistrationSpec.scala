@@ -185,49 +185,21 @@ class RegistrationSpec
 
   "registration validation for 1.* " should {
     "return 200 our office" in {
-
-      val expectedRes = DesRegistrationResponse(
-        "XE0000100007638",
-        Some("AARN1234567"),
-        "0100007638",
-        false,
-        false,
-        false,
-        false,
-        Organisation("CLICKEYCLOUSE", false, "Not Specified"),
-        UkAddress("75, LOWER STREET,", Some("FULHAM-UNDER-WATER"), Some("MUCH PETRIFYING"), None, Some("BQ7 0LL")),
-        Some(ContactDetails(Some("0123 456789"), None, None, None))
-      )
-
       val controller = new Registration()
       val result = controller.validator("1A")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
-      contentAsJson(result).as[DesRegistrationResponse] should be(expectedRes)
+      contentAsJson(result).as[DesRegistrationResponse] should be(Registration.desIndividual)
     }
   }
 
   "registration validation for [^1].*" should {
     "return 200 not our office" in {
-
-      val expectedRes = DesRegistrationResponse(
-        "XR0000100028912",
-        None,
-        "0100028912",
-        false,
-        false,
-        false,
-        true,
-        Individual("DAVID", Some("BOWEN"), None),
-        InternationalAddress("1 OnLoan Parade", Some("Nowhere"), Some("England"), Some("UK"), "IT", Some("M46 0PT")),
-        Some(ContactDetails(Some("199 206 3434"), Some("01474252553"), None, None))
-      )
-
       val controller = new Registration()
       val result = controller.validator("A1")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
-      contentAsJson(result).as[DesRegistrationResponse] should be(expectedRes)
+      contentAsJson(result).as[DesRegistrationResponse] should be(Registration.desOrganisation)
     }
   }
 }

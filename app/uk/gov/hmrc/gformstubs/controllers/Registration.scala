@@ -27,7 +27,31 @@ import uk.gov.hmrc.play.http.logging.MdcLoggingExecutionContext._
 
 class Registration extends BaseController {
 
-  private val desOrganisation = {
+  def validator(utr: String) = Action(parse.json[DesRegistrationRequest]) { request =>
+    Logger.info(s"Registration, utr: $utr, payload: ${request.body}")
+
+    Ok(Json.toJson(utr match {
+      case "random" =>
+        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+        addPostCode(random, Some("random"))
+      case "nopostcode" =>
+        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+        addPostCode(random, None)
+      case otherwise =>
+        if (otherwise.startsWith("1")) Registration.desIndividual
+        else Registration.desOrganisation
+    }))
+  }
+
+  private def addPostCode(drr: DesRegistrationResponse, postcode: Option[String]): DesRegistrationResponse =
+    drr.copy(address = drr.address match {
+      case s: UkAddress            => s.copy(postalCode = postcode)
+      case s: InternationalAddress => s.copy(postalCode = postcode)
+    })
+}
+
+object Registration {
+  val desOrganisation = {
     val organisation = Organisation("CLICKEYCLOUSE", false, "Not Specified")
     val address =
       UkAddress("75, LOWER STREET,", Some("FULHAM-UNDER-WATER"), Some("MUCH PETRIFYING"), None, Some("BN12 4XL"))
@@ -46,7 +70,7 @@ class Registration extends BaseController {
       Some(contactDetails))
   }
 
-  private val desIndividual = {
+  val desIndividual = {
     val individual = Individual("DAVID", Some("BOWEN"), None)
     val address =
       InternationalAddress("1 OnLoan Parade", Some("Nowhere"), Some("England"), Some("UK"), "IT", Some("BN12 4XL"))
@@ -64,26 +88,4 @@ class Registration extends BaseController {
       Some(contactDetails)
     )
   }
-
-  def validator(utr: String) = Action(parse.json[DesRegistrationRequest]) { request =>
-    Logger.info(s"Registration, utr: $utr, payload: ${request.body}")
-
-    Ok(Json.toJson(utr match {
-      case "random" =>
-        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
-        addPostCode(random, Some("random"))
-      case "nopostcode" =>
-        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
-        addPostCode(random, None)
-      case otherwise =>
-        if (otherwise.startsWith("1")) desIndividual
-        else desOrganisation
-    }))
-  }
-
-  private def addPostCode(drr: DesRegistrationResponse, postcode: Option[String]): DesRegistrationResponse =
-    drr.copy(address = drr.address match {
-      case s: UkAddress            => s.copy(postalCode = postcode)
-      case s: InternationalAddress => s.copy(postalCode = postcode)
-    })
 }
