@@ -183,20 +183,20 @@ class RegistrationSpec
     }
   }
 
-  "registration validation for 1.* " should {
+  "registration validation for ind.* " should {
     "return 200 our office" in {
       val controller = new Registration()
-      val result = controller.validator("1A")(fakeRequest)
+      val result = controller.validator("ind")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
       contentAsJson(result).as[DesRegistrationResponse] should be(Registration.desIndividual)
     }
   }
 
-  "registration validation for [^1].*" should {
+  "registration validation for org.*" should {
     "return 200 not our office" in {
       val controller = new Registration()
-      val result = controller.validator("A1")(fakeRequest)
+      val result = controller.validator("org")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
       contentAsJson(result).as[DesRegistrationResponse] should be(Registration.desOrganisation)
