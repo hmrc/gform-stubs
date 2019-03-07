@@ -183,23 +183,55 @@ class RegistrationSpec
     }
   }
 
-  "registration validation for 1.* " should {
+  "registration validation for ind.* " should {
     "return 200 our office" in {
       val controller = new Registration()
-      val result = controller.validator("1A")(fakeRequest)
+      val result = controller.validator("ind")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
       contentAsJson(result).as[DesRegistrationResponse] should be(Registration.desIndividual)
     }
   }
 
-  "registration validation for [^1].*" should {
+  "registration validation for org.*" should {
     "return 200 not our office" in {
       val controller = new Registration()
-      val result = controller.validator("A1")(fakeRequest)
+      val result = controller.validator("org")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
       contentAsJson(result).as[DesRegistrationResponse] should be(Registration.desOrganisation)
+    }
+  }
+
+  "registration validation should simulate" should {
+    "other response than 200 and 400" in {
+      val controller = new Registration()
+      val result = controller.validator("unauthorized")(fakeRequest)
+      status(result) shouldBe Status.UNAUTHORIZED
+      contentType(result) shouldBe None
+    }
+  }
+
+  "registration validation should simulate" should {
+    "bad request" in {
+      val controller = new Registration()
+      val result = controller.validator("fail")(fakeRequest)
+      status(result) shouldBe Status.BAD_REQUEST
+      contentType(result) shouldBe Some("application/json")
+      contentAsJson(result).as[DesRegistrationResponseError] should be(
+        DesRegistrationResponseError("INVALID_PAYLOAD", "Submission has not passed validation. Invalid payload."))
+    }
+  }
+
+  "registration validation should simulate" should {
+    "bad request with invalid utr" in {
+      val controller = new Registration()
+      val result = controller.validator("abc")(fakeRequest)
+      status(result) shouldBe Status.BAD_REQUEST
+      contentType(result) shouldBe Some("application/json")
+      contentAsJson(result).as[DesRegistrationResponseError] should be(
+        DesRegistrationResponseError("INVALID_UTR", "Submission has not passed validation. Invalid parameter UTR.")
+      )
     }
   }
 }

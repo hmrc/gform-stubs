@@ -30,17 +30,27 @@ class Registration extends BaseController {
   def validator(utr: String) = Action(parse.json[DesRegistrationRequest]) { request =>
     Logger.info(s"Registration, utr: $utr, payload: ${request.body}")
 
-    Ok(Json.toJson(utr match {
+    utr match {
       case "random" =>
         val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
-        addPostCode(random, Some("random"))
+        Ok(Json.toJson(addPostCode(random, Some("random"))))
       case "nopostcode" =>
         val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
-        addPostCode(random, None)
+        Ok(Json.toJson(addPostCode(random, None)))
+      case a if a.startsWith("ind") =>
+        Ok(Json.toJson(Registration.desIndividual))
+      case a if a.startsWith("org") =>
+        Ok(Json.toJson(Registration.desOrganisation))
+      case "unauthorized" => Unauthorized
+      case "fail" =>
+        BadRequest(
+          Json.toJson(
+            DesRegistrationResponseError("INVALID_PAYLOAD", "Submission has not passed validation. Invalid payload.")))
       case otherwise =>
-        if (otherwise.startsWith("1")) Registration.desIndividual
-        else Registration.desOrganisation
-    }))
+        BadRequest(Json.toJson(
+          DesRegistrationResponseError("INVALID_UTR", "Submission has not passed validation. Invalid parameter UTR.")))
+
+    }
   }
 
   private def addPostCode(drr: DesRegistrationResponse, postcode: Option[String]): DesRegistrationResponse =
