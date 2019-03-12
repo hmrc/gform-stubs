@@ -46,6 +46,10 @@ class Registration extends BaseController {
         BadRequest(
           Json.toJson(
             DesRegistrationResponseError("INVALID_PAYLOAD", "Submission has not passed validation. Invalid payload.")))
+      case otherwise if otherwise.size == 10 =>
+        BadRequest(
+          Json.toJson(
+            DesRegistrationResponseError("NOT_FOUND", "The remote endpoint has indicated that no data can be found")))
       case otherwise =>
         BadRequest(Json.toJson(
           DesRegistrationResponseError("INVALID_UTR", "Submission has not passed validation. Invalid parameter UTR.")))
