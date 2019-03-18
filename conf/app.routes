@@ -6,6 +6,4 @@ GET        /enterprise/obligation-data/:idType/:idNumber/:regimeType     uk.gov.
 
 POST       /cross-regime/return/AGL/eeits/:userId                   uk.gov.hmrc.gformstubs.controllers.Return.validator(userId: String)
 
-POST       /cross-regime/return/AGL/eeits/:userId                   uk.gov.hmrc.gformstubs.controllers.Return.validator(userId: String)
-
 PUT        /cross-regime/subscription/IPT/utr/:userId               uk.gov.hmrc.gformstubs.controllers.Subscription.validator(userId: String)
