@@ -156,7 +156,7 @@ class RegistrationResponseSpec
   ).map { utr =>
     "Successfully parse payload from" should {
 
-      s"des/registration/individual/utr/$utr (expect flakiness since we run on QA)" in {
+      s"des/registration/individual/utr/$utr (expect flakiness since we run on QA)" ignore {
 
         Gigahorse.withHttp(Gigahorse.config) { http =>
           val request =
