@@ -38,6 +38,8 @@ class Obligation extends BaseController {
               "LFT",
               "APD",
               "IPT",
+              "BF",
+              "GR",
               "BD",
               "GD",
               "LD",
