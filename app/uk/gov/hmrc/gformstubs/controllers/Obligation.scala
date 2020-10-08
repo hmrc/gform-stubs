@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,15 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
+import javax.inject.{ Inject, Singleton }
 import play.api.Logger
-import play.api.libs.json._
 import play.api.mvc._
-import uk.gov.hmrc.play.bootstrap.controller.BaseController
 
 import scala.concurrent.Future
 
-class Obligation extends BaseController {
+@Singleton
+class Obligation @Inject()(controllerComponents: ControllerComponents)
+    extends AbstractController(controllerComponents) {
 
   def getTaxPeriods(idType: String, idNumber: String, regimeType: String) = Action.async { implicit request =>
     Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")

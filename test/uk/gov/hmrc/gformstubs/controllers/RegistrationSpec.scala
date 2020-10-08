@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ package uk.gov.hmrc.gformstubs.controllers
 import org.scalatest.{ Matchers, WordSpec }
 import org.scalatest.prop.PropertyChecks
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.http.Status
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import play.api.libs.json._
 import uk.gov.hmrc.gformstubs.generators.DesRegistrationResponseGen
 import uk.gov.hmrc.gformstubs.JsResultMatcher
 import uk.gov.hmrc.gformstubs.model._
+import play.api.http.Status
 
 class RegistrationSpec
     extends WordSpec with Matchers with GuiceOneAppPerSuite with JsResultMatcher with PropertyChecks {
@@ -185,7 +185,7 @@ class RegistrationSpec
 
   "registration validation for ind.* " should {
     "return 200 our office" in {
-      val controller = new Registration()
+      val controller = new Registration(stubControllerComponents())
       val result = controller.validator("ind")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
@@ -195,7 +195,7 @@ class RegistrationSpec
 
   "registration validation for org.*" should {
     "return 200 not our office" in {
-      val controller = new Registration()
+      val controller = new Registration(stubControllerComponents())
       val result = controller.validator("org")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
@@ -205,7 +205,7 @@ class RegistrationSpec
 
   "registration validation should simulate" should {
     "other response than 200 and 400" in {
-      val controller = new Registration()
+      val controller = new Registration(stubControllerComponents())
       val result = controller.validator("unauthorized")(fakeRequest)
       status(result) shouldBe Status.UNAUTHORIZED
       contentType(result) shouldBe None
@@ -214,7 +214,7 @@ class RegistrationSpec
 
   "registration validation should simulate" should {
     "bad request" in {
-      val controller = new Registration()
+      val controller = new Registration(stubControllerComponents())
       val result = controller.validator("fail")(fakeRequest)
       status(result) shouldBe Status.BAD_REQUEST
       contentType(result) shouldBe Some("application/json")
@@ -225,7 +225,7 @@ class RegistrationSpec
 
   "registration validation should simulate" should {
     "bad request with invalid utr" in {
-      val controller = new Registration()
+      val controller = new Registration(stubControllerComponents())
       val result = controller.validator("abc")(fakeRequest)
       status(result) shouldBe Status.BAD_REQUEST
       contentType(result) shouldBe Some("application/json")

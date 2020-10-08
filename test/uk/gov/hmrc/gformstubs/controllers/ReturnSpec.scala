@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package uk.gov.hmrc.gformstubs.controllers
 import org.scalatest.{ Matchers, WordSpec }
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.http.Status
-import play.api.libs.json.{ JsObject, JsString }
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
@@ -29,7 +28,7 @@ class ReturnSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
 
   s"return validation for failing userId '(${Return.notFoundUserId}')" should {
     "return NotFound" in {
-      val controller = new Return()
+      val controller = new Return(stubControllerComponents())
       val result = controller.validator(Return.notFoundUserId)(fakeRequest)
       status(result) shouldBe Status.NOT_FOUND
     }
@@ -37,7 +36,7 @@ class ReturnSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
 
   "return validation for any other user id" should {
     "return 200" in {
-      val controller = new Return()
+      val controller = new Return(stubControllerComponents())
       val result = controller.validator("Fubar")(fakeRequest)
       status(result) shouldBe Status.OK
     }
