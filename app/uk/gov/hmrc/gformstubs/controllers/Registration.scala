@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,17 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
+import javax.inject.{ Inject, Singleton }
 import play.api.Logger
 import play.api.libs.json._
 import play.api.mvc._
 import uk.gov.hmrc.gformstubs.model.DesRegistrationRequest
 import uk.gov.hmrc.gformstubs.model._
 import uk.gov.hmrc.gformstubs.generators.DesRegistrationResponseGen
-import uk.gov.hmrc.play.bootstrap.controller.BaseController
-import uk.gov.hmrc.play.http.logging.MdcLoggingExecutionContext._
 
-class Registration extends BaseController {
+@Singleton
+class Registration @Inject()(controllerComponents: ControllerComponents)
+    extends AbstractController(controllerComponents) {
 
   def validator(utr: String) = Action(parse.json[DesRegistrationRequest]) { request =>
     Logger.info(s"Registration, utr: $utr, payload: ${request.body}")

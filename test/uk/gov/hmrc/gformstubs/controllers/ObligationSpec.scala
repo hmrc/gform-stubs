@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class ObligationSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
 
   "registration validation for nino" should {
     "return 200 with two periods" in {
-      val controller = new Obligation()
+      val controller = new Obligation(stubControllerComponents())
       val result = controller.getTaxPeriods("nino", "AA000000A", "AGL")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
@@ -60,7 +60,7 @@ class ObligationSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
 
   "registration validation for other than nino" should {
     "return 400" in {
-      val controller = new Obligation()
+      val controller = new Obligation(stubControllerComponents())
       val result = controller.getTaxPeriods("utr", "", "")(fakeRequest)
       status(result) shouldBe Status.BAD_REQUEST
     }
