@@ -26,9 +26,10 @@ import uk.gov.hmrc.gformstubs.generators.DesRegistrationResponseGen
 import uk.gov.hmrc.gformstubs.JsResultMatcher
 import uk.gov.hmrc.gformstubs.model._
 import play.api.http.Status
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 class RegistrationSpec
-    extends WordSpec with Matchers with GuiceOneAppPerSuite with JsResultMatcher with PropertyChecks {
+    extends WordSpec with Matchers with GuiceOneAppPerSuite with JsResultMatcher with ScalaCheckPropertyChecks {
 
   val fakeRequest: FakeRequest[DesRegistrationRequest] = FakeRequest("GET", "/").withBody(null)
 

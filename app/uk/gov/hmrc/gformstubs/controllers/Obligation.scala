@@ -16,8 +16,9 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
+import org.slf4j.{ Logger, LoggerFactory }
+
 import javax.inject.{ Inject, Singleton }
-import play.api.Logger
 import play.api.mvc._
 
 import scala.concurrent.Future
@@ -26,8 +27,10 @@ import scala.concurrent.Future
 class Obligation @Inject()(controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
+  private val logger: Logger = LoggerFactory.getLogger(getClass)
+
   def getTaxPeriods(idType: String, idNumber: String, regimeType: String) = Action.async { implicit request =>
-    Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
+    logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
     if (idNumber != "1234567891") {
       if (List("nino", "vrn", "mtdbis", "ni", "utr", "safeId", "eeits") contains idType) {
         if (List(

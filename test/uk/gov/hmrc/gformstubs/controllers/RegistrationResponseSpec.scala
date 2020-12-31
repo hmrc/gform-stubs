@@ -18,11 +18,13 @@ package uk.gov.hmrc.gformstubs.controllers
 
 import gigahorse.{ ContentTypes, HttpWrite, MimeTypes }
 import gigahorse.support.okhttp.Gigahorse
+
 import java.nio.charset.Charset
 import org.scalatest.{ Matchers, WordSpec }
-import org.scalatest.prop.PropertyChecks
 import org.scalatest.concurrent.ScalaFutures
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.libs.json._
+
 import scala.concurrent.duration._
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -30,7 +32,7 @@ import uk.gov.hmrc.gformstubs.JsResultMatcher
 import uk.gov.hmrc.gformstubs.model._
 
 class RegistrationResponseSpec
-    extends WordSpec with Matchers with JsResultMatcher with ScalaFutures with PropertyChecks {
+    extends WordSpec with Matchers with JsResultMatcher with ScalaFutures with ScalaCheckPropertyChecks {
 
   override implicit val patienceConfig = PatienceConfig(timeout = 3 seconds, interval = 500 millis)
 
