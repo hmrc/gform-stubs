@@ -16,8 +16,9 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
+import org.slf4j.{ Logger, LoggerFactory }
+
 import javax.inject.{ Inject, Singleton }
-import play.api.Logger
 import play.api.mvc._
 
 import scala.concurrent.Future
@@ -25,9 +26,10 @@ import scala.concurrent.Future
 @Singleton
 class Subscription @Inject()(controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
+  private val logger: Logger = LoggerFactory.getLogger(getClass)
 
   def validator(userId: String) = Action.async { implicit request =>
-    Logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
+    logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
     Future.successful(Ok)
   }
 }
