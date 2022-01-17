@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,39 +26,50 @@ import uk.gov.hmrc.gformstubs.model._
 import uk.gov.hmrc.gformstubs.generators.DesRegistrationResponseGen
 
 @Singleton
-class Registration @Inject()(controllerComponents: ControllerComponents)
+class Registration @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
   private val logger: Logger = LoggerFactory.getLogger(getClass)
 
-  def validator(utr: String) = Action(parse.json[DesRegistrationRequest]) { request =>
-    logger.info(s"Registration, utr: $utr, payload: ${request.body}")
+  def validator(utr: String) =
+    Action(parse.json[DesRegistrationRequest]) { request =>
+      logger.info(s"Registration, utr: $utr, payload: ${request.body}")
 
-    utr match {
-      case "random" =>
-        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
-        Ok(Json.toJson(addPostCode(random, Some("random"))))
-      case "nopostcode" =>
-        val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
-        Ok(Json.toJson(addPostCode(random, None)))
-      case a if a.startsWith("ind") =>
-        Ok(Json.toJson(Registration.desIndividual))
-      case a if a.startsWith("org") =>
-        Ok(Json.toJson(Registration.desOrganisation))
-      case "unauthorized" => Unauthorized
-      case "fail" =>
-        BadRequest(
-          Json.toJson(
-            DesRegistrationResponseError("INVALID_PAYLOAD", "Submission has not passed validation. Invalid payload.")))
-      case otherwise if otherwise.size == 10 =>
-        BadRequest(
-          Json.toJson(
-            DesRegistrationResponseError("NOT_FOUND", "The remote endpoint has indicated that no data can be found")))
-      case otherwise =>
-        BadRequest(Json.toJson(
-          DesRegistrationResponseError("INVALID_UTR", "Submission has not passed validation. Invalid parameter UTR.")))
+      utr match {
+        case "random" =>
+          val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+          Ok(Json.toJson(addPostCode(random, Some("random"))))
+        case "nopostcode" =>
+          val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+          Ok(Json.toJson(addPostCode(random, None)))
+        case a if a.startsWith("ind") =>
+          Ok(Json.toJson(Registration.desIndividual))
+        case a if a.startsWith("org") =>
+          Ok(Json.toJson(Registration.desOrganisation))
+        case "unauthorized" => Unauthorized
+        case "fail" =>
+          BadRequest(
+            Json.toJson(
+              DesRegistrationResponseError("INVALID_PAYLOAD", "Submission has not passed validation. Invalid payload.")
+            )
+          )
+        case otherwise if otherwise.size == 10 =>
+          BadRequest(
+            Json.toJson(
+              DesRegistrationResponseError("NOT_FOUND", "The remote endpoint has indicated that no data can be found")
+            )
+          )
+        case otherwise =>
+          BadRequest(
+            Json.toJson(
+              DesRegistrationResponseError(
+                "INVALID_UTR",
+                "Submission has not passed validation. Invalid parameter UTR."
+              )
+            )
+          )
 
+      }
     }
-  }
 
   private def addPostCode(drr: DesRegistrationResponse, postcode: Option[String]): DesRegistrationResponse =
     drr.copy(address = drr.address match {
@@ -84,7 +95,8 @@ object Registration {
       false,
       organisation,
       address,
-      Some(contactDetails))
+      Some(contactDetails)
+    )
   }
 
   val desIndividual = {

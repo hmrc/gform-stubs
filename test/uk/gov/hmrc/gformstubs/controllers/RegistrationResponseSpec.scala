@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,8 @@ import gigahorse.{ ContentTypes, HttpWrite, MimeTypes }
 import gigahorse.support.okhttp.Gigahorse
 
 import java.nio.charset.Charset
-import org.scalatest.{ Matchers, WordSpec }
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.libs.json._
@@ -32,7 +33,7 @@ import uk.gov.hmrc.gformstubs.JsResultMatcher
 import uk.gov.hmrc.gformstubs.model._
 
 class RegistrationResponseSpec
-    extends WordSpec with Matchers with JsResultMatcher with ScalaFutures with ScalaCheckPropertyChecks {
+    extends AnyWordSpec with Matchers with JsResultMatcher with ScalaFutures with ScalaCheckPropertyChecks {
 
   override implicit val patienceConfig = PatienceConfig(timeout = 3 seconds, interval = 500 millis)
 

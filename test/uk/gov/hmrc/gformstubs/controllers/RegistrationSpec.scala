@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
-import org.scalatest.{ Matchers, WordSpec }
-import org.scalatest.prop.PropertyChecks
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
@@ -29,7 +29,7 @@ import play.api.http.Status
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 class RegistrationSpec
-    extends WordSpec with Matchers with GuiceOneAppPerSuite with JsResultMatcher with ScalaCheckPropertyChecks {
+    extends AnyWordSpec with Matchers with GuiceOneAppPerSuite with JsResultMatcher with ScalaCheckPropertyChecks {
 
   val fakeRequest: FakeRequest[DesRegistrationRequest] = FakeRequest("GET", "/").withBody(null)
 
@@ -169,7 +169,8 @@ class RegistrationSpec
             Some("MUCH PETRIFYING"),
             None,
             "ZZ",
-            None),
+            None
+          ),
           Some(ContactDetails(Some("0123 456789"), None, None, None))
         )
       )
@@ -220,7 +221,8 @@ class RegistrationSpec
       status(result) shouldBe Status.BAD_REQUEST
       contentType(result) shouldBe Some("application/json")
       contentAsJson(result).as[DesRegistrationResponseError] should be(
-        DesRegistrationResponseError("INVALID_PAYLOAD", "Submission has not passed validation. Invalid payload."))
+        DesRegistrationResponseError("INVALID_PAYLOAD", "Submission has not passed validation. Invalid payload.")
+      )
     }
   }
 
