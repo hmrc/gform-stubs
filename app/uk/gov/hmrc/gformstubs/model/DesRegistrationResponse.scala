@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,11 @@ sealed trait Address extends Product with Serializable
 object Address {
 
   implicit val format: OFormat[Address] = new OFormat[Address] {
-    override def writes(address: Address): JsObject = address match {
-      case i: InternationalAddress => InternationalAddress.format.writes(i)
-      case i: UkAddress            => UkAddress.format.writes(i)
-    }
+    override def writes(address: Address): JsObject =
+      address match {
+        case i: InternationalAddress => InternationalAddress.format.writes(i)
+        case i: UkAddress            => UkAddress.format.writes(i)
+      }
 
     override def reads(json: JsValue): JsResult[Address] =
       (json \ "countryCode").asOpt[String] match {
@@ -86,10 +87,11 @@ sealed trait DesEntity
 
 object DesEntity {
   implicit val format: OFormat[DesEntity] = new OFormat[DesEntity] {
-    override def writes(des: DesEntity): JsObject = des match {
-      case o @ Organisation(_, _, _) => Json.obj("organisation" -> Organisation.format.writes(o))
-      case i @ Individual(_, _, _)   => Json.obj("individual"   -> Individual.format.writes(i))
-    }
+    override def writes(des: DesEntity): JsObject =
+      des match {
+        case o @ Organisation(_, _, _) => Json.obj("organisation" -> Organisation.format.writes(o))
+        case i @ Individual(_, _, _)   => Json.obj("individual" -> Individual.format.writes(i))
+      }
 
     override def reads(json: JsValue): JsResult[DesEntity] =
       ((json \ "individual"), (json \ "organisation")) match {
@@ -149,10 +151,10 @@ object DesRegistrationResponse {
       case (JsDefined(_), JsUndefined()) => readDesRegistrationResponse(json, 'individual)
       case (JsUndefined(), JsDefined(_)) => readDesRegistrationResponse(json, 'organisation)
       case _                             => JsError("[DesRegistrationResponse] Not Supported json: " + json)
-  }
+    }
 
-  private val flattenOrgOrInd
-    : Reads[JsObject] = __.json.update((__ \ 'orgOrInd).json.pick) andThen (__ \ 'orgOrInd).json.prune
+  private val flattenOrgOrInd: Reads[JsObject] =
+    __.json.update((__ \ 'orgOrInd).json.pick) andThen (__ \ 'orgOrInd).json.prune
 
   private def writes(desResponse: DesRegistrationResponse): JsObject = {
     val jsObject = basic.writes(desResponse)

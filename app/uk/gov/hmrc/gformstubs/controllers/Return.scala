@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,16 +24,17 @@ import play.api.mvc._
 import scala.concurrent.Future
 
 @Singleton
-class Return @Inject()(controllerComponents: ControllerComponents) extends AbstractController(controllerComponents) {
+class Return @Inject() (controllerComponents: ControllerComponents) extends AbstractController(controllerComponents) {
   private val logger: Logger = LoggerFactory.getLogger(getClass)
 
-  def validator(userId: String) = Action.async { implicit request =>
-    logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
-    if (userId == Return.notFoundUserId) {
-      Future.successful(NotFound)
-    } else
-      Future.successful(Ok)
-  }
+  def validator(userId: String) =
+    Action.async { implicit request =>
+      logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
+      if (userId == Return.notFoundUserId)
+        Future.successful(NotFound)
+      else
+        Future.successful(Ok)
+    }
 
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,19 +32,18 @@ trait DesRegistrationResponseGen {
       orgOrInd             <- DesEntityGen.desEntityGen
       address              <- AddressGen.addressGen
       contactDetails       <- Gen.option(ContactDetailsGen.contactDetailsGen)
-    } yield
-      DesRegistrationResponse(
-        safeId,
-        agentReferenceNumber,
-        sapNumber,
-        isEditable,
-        isAnAgent,
-        isAnASAgent,
-        isAnIndividual,
-        orgOrInd,
-        address,
-        contactDetails
-      )
+    } yield DesRegistrationResponse(
+      safeId,
+      agentReferenceNumber,
+      sapNumber,
+      isEditable,
+      isAnAgent,
+      isAnASAgent,
+      isAnIndividual,
+      orgOrInd,
+      address,
+      contactDetails
+    )
 }
 
 object DesRegistrationResponseGen extends DesRegistrationResponseGen
