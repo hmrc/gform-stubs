@@ -46,19 +46,46 @@ class ObligationSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite 
                         JsObject(
                           Map(
                             "status"                        -> JsString("O"),
-                            "inboundCorrespondenceFromDate" -> JsString("2017-06-01"),
-                            "inboundCorrespondenceToDate"   -> JsString("2017-08-31"),
-                            "inboundCorrespondenceDueDate"  -> JsString("2017-09-30"),
+                            "inboundCorrespondenceFromDate" -> JsString("2022-04-01"),
+                            "inboundCorrespondenceToDate"   -> JsString("2022-04-30"),
+                            "inboundCorrespondenceDueDate"  -> JsString("2022-05-15"),
+                            "periodKey"                     -> JsString("17B1")
+                          )
+                        ),
+                        JsObject(
+                          Map(
+                            "status"                        -> JsString("O"),
+                            "inboundCorrespondenceFromDate" -> JsString("2022-03-01"),
+                            "inboundCorrespondenceToDate"   -> JsString("2022-03-31"),
+                            "inboundCorrespondenceDueDate"  -> JsString("2022-04-15"),
                             "periodKey"                     -> JsString("17B2")
                           )
                         ),
                         JsObject(
                           Map(
                             "status"                        -> JsString("O"),
-                            "inboundCorrespondenceFromDate" -> JsString("2016-08-01"),
-                            "inboundCorrespondenceToDate"   -> JsString("2016-08-31"),
-                            "inboundCorrespondenceDueDate"  -> JsString("2016-09-30"),
-                            "periodKey"                     -> JsString("16AH")
+                            "inboundCorrespondenceFromDate" -> JsString("2021-03-01"),
+                            "inboundCorrespondenceToDate"   -> JsString("2021-03-31"),
+                            "inboundCorrespondenceDueDate"  -> JsString("2021-04-15"),
+                            "periodKey"                     -> JsString("17B3")
+                          )
+                        ),
+                        JsObject(
+                          Map(
+                            "status"                        -> JsString("O"),
+                            "inboundCorrespondenceFromDate" -> JsString("2019-12-01"),
+                            "inboundCorrespondenceToDate"   -> JsString("2019-12-31"),
+                            "inboundCorrespondenceDueDate"  -> JsString("2020-01-15"),
+                            "periodKey"                     -> JsString("17B4")
+                          )
+                        ),
+                        JsObject(
+                          Map(
+                            "status"                        -> JsString("O"),
+                            "inboundCorrespondenceFromDate" -> JsString("2018-04-01"),
+                            "inboundCorrespondenceToDate"   -> JsString("2019-03-31"),
+                            "inboundCorrespondenceDueDate"  -> JsString("2019-04-15"),
+                            "periodKey"                     -> JsString("17B5")
                           )
                         )
                       )
