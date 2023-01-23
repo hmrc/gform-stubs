@@ -30,14 +30,11 @@ class NinoInsights @Inject() (controllerComponents: ControllerComponents)
   def check =
     Action(parse.json[NinoInsightsRequest]) { request =>
       logger.info(s"Nino Insights, payload: ${request.body}")
+      logger.info(s"request.headers.headers: ${request.headers.headers}")
 
       val nino = request.body.nino.toLowerCase
 
-      val maybeAuthorizationToken = request.headers.headers.filter(_._1 == "Authorization").headOption
-
-      if (maybeAuthorizationToken.isEmpty) {
-        Unauthorized
-      } else if (nino == "ab123456c") {
+      if (nino == "ab123456c") {
         Ok("""
              |{
              |    "riskScore": 40,

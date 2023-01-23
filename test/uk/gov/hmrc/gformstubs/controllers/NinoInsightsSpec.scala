@@ -28,13 +28,13 @@ import uk.gov.hmrc.gformstubs.model.NinoInsightsRequest
 class NinoInsightsSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   "nino insights" should {
-    "return 401 UNAUTHORIZED when Authorization does not exists in headers" in {
-      val request = NinoInsightsRequest(nino = "1234")
-      val fakeRequest = FakeRequest("POST", "/").withBody(request)
-      val controller = new NinoInsights(stubControllerComponents())
-      val result = controller.check()(fakeRequest)
-      status(result) shouldBe Status.UNAUTHORIZED
-    }
+//    "return 401 UNAUTHORIZED when Authorization does not exists in headers" in {
+//      val request = NinoInsightsRequest(nino = "1234")
+//      val fakeRequest = FakeRequest("POST", "/").withBody(request)
+//      val controller = new NinoInsights(stubControllerComponents())
+//      val result = controller.check()(fakeRequest)
+//      status(result) shouldBe Status.UNAUTHORIZED
+//    }
 
     "return 200 with proper values when post with ab123456c" in {
       val request = NinoInsightsRequest(nino = "ab123456c")
