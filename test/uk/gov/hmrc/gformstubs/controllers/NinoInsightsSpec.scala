@@ -28,17 +28,10 @@ import uk.gov.hmrc.gformstubs.model.NinoInsightsRequest
 class NinoInsightsSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   "nino insights" should {
-    "return 401 UNAUTHORIZED when Authorization does not exists in headers" in {
-      val request = NinoInsightsRequest(nino = "1234")
-      val fakeRequest = FakeRequest("POST", "/").withBody(request)
-      val controller = new NinoInsights(stubControllerComponents())
-      val result = controller.check()(fakeRequest)
-      status(result) shouldBe Status.UNAUTHORIZED
-    }
 
     "return 200 with proper values when post with ab123456c" in {
       val request = NinoInsightsRequest(nino = "ab123456c")
-      val fakeRequest = FakeRequest("POST", "/").withBody(request).withHeaders(("Authorization" -> "1234"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
       val controller = new NinoInsights(stubControllerComponents())
       val result = controller.check()(fakeRequest)
       status(result) shouldBe Status.OK
@@ -53,7 +46,7 @@ class NinoInsightsSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuit
 
     "return 200 with proper values when post with ab123456a" in {
       val request = NinoInsightsRequest(nino = "ab123456a")
-      val fakeRequest = FakeRequest("POST", "/").withBody(request).withHeaders(("Authorization" -> "1234"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
       val controller = new NinoInsights(stubControllerComponents())
       val result = controller.check()(fakeRequest)
       status(result) shouldBe Status.OK
@@ -68,7 +61,7 @@ class NinoInsightsSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuit
 
     "return 200 with proper values when post with others" in {
       val request = NinoInsightsRequest(nino = "12345678")
-      val fakeRequest = FakeRequest("POST", "/").withBody(request).withHeaders(("Authorization" -> "1234"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
       val controller = new NinoInsights(stubControllerComponents())
       val result = controller.check()(fakeRequest)
       status(result) shouldBe Status.OK

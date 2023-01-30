@@ -18,43 +18,17 @@ package uk.gov.hmrc.gformstubs.controllers
 
 import org.slf4j.{ Logger, LoggerFactory }
 import play.api.mvc.{ AbstractController, ControllerComponents }
-import uk.gov.hmrc.gformstubs.model.NinoInsightsRequest
+import uk.gov.hmrc.gformstubs.model.SdesNotifyRequest
 
 import javax.inject.{ Inject, Singleton }
 
 @Singleton
-class NinoInsights @Inject() (controllerComponents: ControllerComponents)
+class SdesNotification @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
   private val logger: Logger = LoggerFactory.getLogger(getClass)
 
-  def check =
-    Action(parse.json[NinoInsightsRequest]) { request =>
-      logger.info(s"Nino Insights, payload: ${request.body}")
-
-      val nino = request.body.nino.toLowerCase
-
-      if (nino == "ab123456c") {
-        Ok("""
-             |{
-             |    "riskScore": 40,
-             |    "reason": "NINO_NOT_ON_WATCH_LIST"
-             |}
-          """.stripMargin)
-      } else if (nino == "ab123456a") {
-        Ok("""
-             |{
-             |    "riskScore": 100,
-             |    "reason": "NINO_ON_WATCH_LIST"
-             |}
-            """.stripMargin)
-      } else {
-        Ok("""
-             |{
-             |    "riskScore": 50,
-             |    "reason": "NINO_ON_WATCH_LIST"
-             |}
-    """.stripMargin)
-      }
-    }
-
+  def notifySDES = Action(parse.json[SdesNotifyRequest]) { request =>
+    logger.info(s"SDES Notification: ${request.body}")
+    Ok
+  }
 }

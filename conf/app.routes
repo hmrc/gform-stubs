@@ -9,3 +9,5 @@ POST       /cross-regime/return/AGL/eeits/:userId                   uk.gov.hmrc.
 PUT        /cross-regime/subscription/IPT/utr/:userId               uk.gov.hmrc.gformstubs.controllers.Subscription.validator(userId: String)
 
 POST       /check/insights                                          uk.gov.hmrc.gformstubs.controllers.NinoInsights.check
+
+POST       /notification/fileready                                  uk.gov.hmrc.gformstubs.controllers.SdesNotification.notifySDES
