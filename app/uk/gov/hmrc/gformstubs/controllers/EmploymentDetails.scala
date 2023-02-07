@@ -99,7 +99,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
       )
     } else if (nino == "aa444444a") {
       Future.successful(
-        NotFound(
+        Ok(
           "[]"
         )
       )
