@@ -16,96 +16,93 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
-import org.slf4j.{ Logger, LoggerFactory }
+//import org.slf4j.{ Logger, LoggerFactory }
 import play.api.mvc.{ AbstractController, ControllerComponents }
 
+import org.slf4j.{ Logger, LoggerFactory }
 import javax.inject.{ Inject, Singleton }
-
+import scala.concurrent.Future
 
 @Singleton
 class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
-  extends AbstractController(controllerComponents) {
-  private val logger: Logger = LoggerFactory.getLogger(getClass)
+    extends AbstractController(controllerComponents) {
 
-  def getEmploymentDetails(nino: String, taxYear: Int) =
-    Action(parse.json[NinoInsightsRequest]) { request =>
-      logger.info(s"Nino Insights, payload: ${request.body}")
-
-      val ninoLC = request.body.nino.toLowerCase
-
-      if (nino == "aa111111a") {
-        Ok(
-          """
-            |{
-            |  "employerName": "Acme"
-            |  "sequenceNumber": 1234561
-            |  "worksNumber": "ACME01"
-            |  "taxDistrictNumber": 123
-            |  "payeNumber": "AA1111"
-            |  "director": "true"
-            |}
+  //private val logger: Logger = LoggerFactory.getLogger(getClass)
+  def getEmploymentDetails(nino: String, taxYear: Int) = Action.async { implicit request =>
+    //logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
+    if (nino == "aa111111a") {
+      Future.successful(
+        Ok("""
+             |{
+             |  "employerName": "Acme"
+             |  "sequenceNumber": 1234561
+             |  "worksNumber": "ACME01"
+             |  "taxDistrictNumber": 123
+             |  "payeNumber": "AA1111"
+             |  "director": "true"
+             |}
           """.stripMargin)
-      } else if (nino == "aa222222a") {
-        Ok(
-          """
-            |[
-            |{
-            |  "employerName": "Acme"
-            |  "sequenceNumber": 1234561
-            |  "worksNumber": "ACME01"
-            |  "taxDistrictNumber": 123
-            |  "payeNumber": "AA1111"
-            |  "director": "true"
-            |},
-            |{
-            |  "employerName": "Smith Holdings"
-            |  "sequenceNumber": 2345678
-            |  "worksNumber": "SMITH01"
-            |  "taxDistrictNumber": 789
-            |  "payeNumber": "BB22222"
-            |  "director": "false"
-            |}
-            |]
-          """.stripMargin)
-      } else if (nino == "aa333333a") {
-        Ok(
-          """
-            |[
-            |{
-            |  "employerName": "Acme"
-            |  "sequenceNumber": 1234561
-            |  "worksNumber": "ACME01"
-            |  "taxDistrictNumber": 123
-            |  "payeNumber": "AA1111"
-            |  "director": "true"
-            |},
-            |{
-            |  "employerName": "Smith Holdings"
-            |  "sequenceNumber": 2345678
-            |  "worksNumber": "SMITH01"
-            |  "taxDistrictNumber": 789
-            |  "payeNumber": "BB22222"
-            |  "director": "false"
-            |},
-            |{
-            |  "employerName": "Acme"
-            |  "sequenceNumber": 3456789
-            |  "worksNumber": "ACME09"
-            |  "taxDistrictNumber": 123
-            |  "payeNumber": "AA1111"
-            |  "director": "false"
-            |}
-            |]
-          """.stripMargin)
-      } else if (nino == "aa444444a") {
+      )
+    } else if (nino == "aa222222a") {
+      Future.successful(
+        Ok("""
+             |[
+             |{
+             |  "employerName": "Acme"
+             |  "sequenceNumber": 1234561
+             |  "worksNumber": "ACME01"
+             |  "taxDistrictNumber": 123
+             |  "payeNumber": "AA1111"
+             |  "director": "true"
+             |},
+             |{
+             |  "employerName": "Smith Holdings"
+             |  "sequenceNumber": 2345678
+             |  "worksNumber": "SMITH01"
+             |  "taxDistrictNumber": 789
+             |  "payeNumber": "BB22222"
+             |  "director": "false"
+             |}
+             |]
+            """.stripMargin)
+      )
+    } else if (nino == "aa333333a") {
+      Future.successful(
+        Ok("""
+             |[
+             |{
+             |  "employerName": "Acme"
+             |  "sequenceNumber": 1234561
+             |  "worksNumber": "ACME01"
+             |  "taxDistrictNumber": 123
+             |  "payeNumber": "AA1111"
+             |  "director": "true"
+             |},
+             |{
+             |  "employerName": "Smith Holdings"
+             |  "sequenceNumber": 2345678
+             |  "worksNumber": "SMITH01"
+             |  "taxDistrictNumber": 789
+             |  "payeNumber": "BB22222"
+             |  "director": "false"
+             |},
+             |{
+             |  "employerName": "Acme"
+             |  "sequenceNumber": 3456789
+             |  "worksNumber": "ACME09"
+             |  "taxDistrictNumber": 123
+             |  "payeNumber": "AA1111"
+             |  "director": "false"
+             |}
+             |]
+            """.stripMargin)
+      )
+    } else if (nino == "aa444444a") {
+      Future.successful(
         NotFound(
-          """
-            |{
-            |   "code": "NOT_FOUND",
-            |   "reason": "The remote endpoint has indicated that no associated data found"
-            |}
-         """.stripMargin)
-      }
-
+          "[]"
+        )
+      )
     }
+  }
 }
