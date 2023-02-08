@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
-//import org.slf4j.{ Logger, LoggerFactory }
 import play.api.mvc.{ AbstractController, ControllerComponents }
 
 import org.slf4j.{ Logger, LoggerFactory }
@@ -27,9 +26,9 @@ import scala.concurrent.Future
 class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
-  //private val logger: Logger = LoggerFactory.getLogger(getClass)
+
   def getEmploymentDetails(nino: String, taxYear: Int) = Action.async { implicit request =>
-    //logger.info(s"validator, ${request.headers.toSimpleMap.toString()}")
+
     if (nino == "aa111111a") {
       Future.successful(
         Ok("""
