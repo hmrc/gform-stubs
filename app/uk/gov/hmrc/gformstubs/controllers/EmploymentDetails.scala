@@ -38,9 +38,9 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
              |  "employerName": "Acme",
              |  "sequenceNumber": 1234561,
              |  "worksNumber": "ACME01",
-             |  "taxDistrictNumber": 123,
+             |  "taxDistrictNumber": "123",
              |  "payeNumber": "AA1111",
-             |  "director": "true"
+             |  "director": true
              |}
           """.stripMargin).as("application/json")
       )
@@ -52,17 +52,17 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
              |  "employerName": "Acme",
              |  "sequenceNumber": 1234561,
              |  "worksNumber": "ACME01",
-             |  "taxDistrictNumber": 123,
+             |  "taxDistrictNumber": "123",
              |  "payeNumber": "AA1111",
-             |  "director": "true"
+             |  "director": true
              |},
              |{
              |  "employerName": "Smith Holdings",
              |  "sequenceNumber": 2345678,
              |  "worksNumber": "SMITH01",
-             |  "taxDistrictNumber": 789,
+             |  "taxDistrictNumber": "789",
              |  "payeNumber": "BB22222",
-             |  "director": "false"
+             |  "director": false
              |}
              |]
             """.stripMargin).as("application/json")
@@ -75,9 +75,9 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
              |  "employerName": "Acme",
              |  "sequenceNumber": 1234561,
              |  "worksNumber": "ACME01",
-             |  "taxDistrictNumber": 123,
+             |  "taxDistrictNumber": "123",
              |  "payeNumber": "AA1111",
-             |  "director": "true"
+             |  "director": true
              |},
              |{
              |  "employerName": "Smith Holdings",
@@ -85,15 +85,15 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
              |  "worksNumber": "SMITH01",
              |  "taxDistrictNumber": 789,
              |  "payeNumber": "BB22222",
-             |  "director": "false"
+             |  "director": false
              |},
              |{
              |  "employerName": "Acme",
              |  "sequenceNumber": 3456789,
              |  "worksNumber": "ACME09",
-             |  "taxDistrictNumber": 123,
+             |  "taxDistrictNumber": "123",
              |  "payeNumber": "AA1111",
-             |  "director": "false"
+             |  "director": false
              |}
              |]
             """.stripMargin).as("application/json")
