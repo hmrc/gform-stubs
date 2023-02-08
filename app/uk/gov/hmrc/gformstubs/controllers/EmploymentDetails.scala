@@ -29,72 +29,74 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
 
   def getEmploymentDetails(nino: String, taxYear: Int) = Action.async { implicit request =>
 
-    if (nino == "aa111111a") {
+    val ninoLC = nino.toLowerCase
+
+    if (ninoLC == "aa111111a") {
       Future.successful(
         Ok("""
              |{
-             |  "employerName": "Acme"
-             |  "sequenceNumber": 1234561
-             |  "worksNumber": "ACME01"
-             |  "taxDistrictNumber": 123
-             |  "payeNumber": "AA1111"
+             |  "employerName": "Acme",
+             |  "sequenceNumber": 1234561,
+             |  "worksNumber": "ACME01",
+             |  "taxDistrictNumber": 123,
+             |  "payeNumber": "AA1111",
              |  "director": "true"
              |}
-          """.stripMargin)
+          """.stripMargin).as("application/json")
       )
-    } else if (nino == "aa222222a") {
+    } else if (ninoLC == "aa222222a") {
       Future.successful(
         Ok("""
              |[
              |{
-             |  "employerName": "Acme"
-             |  "sequenceNumber": 1234561
-             |  "worksNumber": "ACME01"
-             |  "taxDistrictNumber": 123
-             |  "payeNumber": "AA1111"
+             |  "employerName": "Acme",
+             |  "sequenceNumber": 1234561,
+             |  "worksNumber": "ACME01",
+             |  "taxDistrictNumber": 123,
+             |  "payeNumber": "AA1111",
              |  "director": "true"
              |},
              |{
-             |  "employerName": "Smith Holdings"
-             |  "sequenceNumber": 2345678
-             |  "worksNumber": "SMITH01"
-             |  "taxDistrictNumber": 789
-             |  "payeNumber": "BB22222"
+             |  "employerName": "Smith Holdings",
+             |  "sequenceNumber": 2345678,
+             |  "worksNumber": "SMITH01",
+             |  "taxDistrictNumber": 789,
+             |  "payeNumber": "BB22222",
              |  "director": "false"
              |}
              |]
-            """.stripMargin)
+            """.stripMargin).as("application/json")
       )
-    } else if (nino == "aa333333a") {
+    } else if (ninoLC == "aa333333a") {
       Future.successful(
         Ok("""
              |[
              |{
-             |  "employerName": "Acme"
-             |  "sequenceNumber": 1234561
-             |  "worksNumber": "ACME01"
-             |  "taxDistrictNumber": 123
-             |  "payeNumber": "AA1111"
+             |  "employerName": "Acme",
+             |  "sequenceNumber": 1234561,
+             |  "worksNumber": "ACME01",
+             |  "taxDistrictNumber": 123,
+             |  "payeNumber": "AA1111",
              |  "director": "true"
              |},
              |{
-             |  "employerName": "Smith Holdings"
-             |  "sequenceNumber": 2345678
-             |  "worksNumber": "SMITH01"
-             |  "taxDistrictNumber": 789
-             |  "payeNumber": "BB22222"
+             |  "employerName": "Smith Holdings",
+             |  "sequenceNumber": 2345678,
+             |  "worksNumber": "SMITH01",
+             |  "taxDistrictNumber": 789,
+             |  "payeNumber": "BB22222",
              |  "director": "false"
              |},
              |{
-             |  "employerName": "Acme"
-             |  "sequenceNumber": 3456789
-             |  "worksNumber": "ACME09"
-             |  "taxDistrictNumber": 123
-             |  "payeNumber": "AA1111"
+             |  "employerName": "Acme",
+             |  "sequenceNumber": 3456789,
+             |  "worksNumber": "ACME09",
+             |  "taxDistrictNumber": 123,
+             |  "payeNumber": "AA1111",
              |  "director": "false"
              |}
              |]
-            """.stripMargin)
+            """.stripMargin).as("application/json")
       )
     } else {
       Future.successful(
@@ -103,7 +105,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                    |   "code": "NOT_FOUND",
                    |   "reason": "The remote endpoint has indicated that no associated data found"
                    |}
-           """.stripMargin)
+           """.stripMargin).as("application/json")
       )
     }
   }
