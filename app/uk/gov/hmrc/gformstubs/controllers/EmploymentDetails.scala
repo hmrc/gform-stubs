@@ -97,11 +97,14 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
              |]
             """.stripMargin)
       )
-    } else if (nino == "aa444444a") {
+    } else {
       Future.successful(
-        Ok(
-          "[]"
-        )
+        NotFound("""
+                   |{
+                   |   "code": "NOT_FOUND",
+                   |   "reason": "The remote endpoint has indicated that no associated data found"
+                   |}
+           """.stripMargin)
       )
     }
   }
