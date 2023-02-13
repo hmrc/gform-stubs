@@ -26,77 +26,71 @@ import scala.concurrent.Future
 class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
-
   def getEmploymentDetails(nino: String, taxYear: Int) = Action.async { implicit request =>
+    val ninoUC = nino.toUpperCase
 
-    val ninoLC = nino.toLowerCase
-
-    if (ninoLC == "aa111111a") {
+    if (ninoUC == "AA111111A") {
       Future.successful(
-        Ok("""
-             |{
-             |  "employerName": "Acme",
-             |  "sequenceNumber": 1234561,
-             |  "worksNumber": "ACME01",
-             |  "taxDistrictNumber": "123",
-             |  "payeNumber": "AA1111",
-             |  "director": true
-             |}
-          """.stripMargin).as("application/json")
+        Ok("""|[
+              |  {
+              |    "employerName": "Acme",
+              |    "sequenceNumber": 1234561,
+              |    "worksNumber": "ACME01",
+              |    "taxDistrictNumber": "123",
+              |    "payeNumber": "AA1111",
+              |    "director": true
+              |  }
+              |]""".stripMargin).as("application/json")
       )
-    } else if (ninoLC == "aa222222a") {
+    } else if (ninoUC == "AA222222A") {
       Future.successful(
-        Ok("""
-             |[
-             |{
-             |  "employerName": "Acme",
-             |  "sequenceNumber": 1234561,
-             |  "worksNumber": "ACME01",
-             |  "taxDistrictNumber": "123",
-             |  "payeNumber": "AA1111",
-             |  "director": true
-             |},
-             |{
-             |  "employerName": "Smith Holdings",
-             |  "sequenceNumber": 2345678,
-             |  "worksNumber": "SMITH01",
-             |  "taxDistrictNumber": "789",
-             |  "payeNumber": "BB22222",
-             |  "director": false
-             |}
-             |]
-            """.stripMargin).as("application/json")
+        Ok("""|[
+              |  {
+              |    "employerName": "Acme",
+              |    "sequenceNumber": 1234561,
+              |    "worksNumber": "ACME01",
+              |    "taxDistrictNumber": "123",
+              |    "payeNumber": "AA1111",
+              |    "director": true
+              |  },
+              |  {
+              |    "employerName": "Smith Holdings",
+              |    "sequenceNumber": 2345678,
+              |    "worksNumber": "SMITH01",
+              |    "taxDistrictNumber": "789",
+              |    "payeNumber": "BB22222",
+              |    "director": false
+              |  }
+              |]""".stripMargin).as("application/json")
       )
-    } else if (ninoLC == "aa333333a") {
+    } else if (ninoUC == "AA333333A") {
       Future.successful(
-        Ok("""
-             |[
-             |{
-             |  "employerName": "Acme",
-             |  "sequenceNumber": 1234561,
-             |  "worksNumber": "ACME01",
-             |  "taxDistrictNumber": "123",
-             |  "payeNumber": "AA1111",
-             |  "director": true
-             |},
-             |{
-             |  "employerName": "Smith Holdings",
-             |  "sequenceNumber": 2345678,
-             |  "worksNumber": "SMITH01",
-             |  "taxDistrictNumber": 789,
-             |  "payeNumber": "BB22222",
-             |  "director": false
-             |},
-             |{
-             |  "employerName": "Acme",
-             |  "sequenceNumber": 3456789,
-             |  "worksNumber": "ACME09",
-             |  "taxDistrictNumber": "123",
-             |  "payeNumber": "AA1111",
-             |  "director": false
-             |}
-             |]
-            """.stripMargin).as("application/json")
+        Ok("""|[
+              |  {
+              |    "employerName": "Acme",
+              |    "sequenceNumber": 1234561,
+              |    "worksNumber": "ACME01",
+              |    "taxDistrictNumber": "123",
+              |    "payeNumber": "AA1111",
+              |    "director": true
+              |  },
+              |  {
+              |    "employerName": "Smith Holdings",
+              |    "sequenceNumber": 2345678,
+              |    "worksNumber": "SMITH01",
+              |    "taxDistrictNumber": "789",
+              |    "payeNumber": "BB22222",
+              |    "director": false
+              |  },
+              |  {
+              |    "employerName": "Acme",
+              |    "sequenceNumber": 3456789,
+              |    "worksNumber": "ACME09",
+              |    "taxDistrictNumber": "123",
+              |    "payeNumber": "AA1111",
+              |    "director": false
+              |  }
+              |]""".stripMargin).as("application/json")
       )
     } else {
       Future.successful(
