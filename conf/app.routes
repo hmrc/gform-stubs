@@ -10,6 +10,8 @@ PUT        /cross-regime/subscription/IPT/utr/:userId               uk.gov.hmrc.
 
 POST       /check/insights                                          uk.gov.hmrc.gformstubs.controllers.NinoInsights.check
 
+POST       /bankAccount/check/insights                              uk.gov.hmrc.gformstubs.controllers.BankAccountInsights.check
+
 POST       /notification/fileready                                  uk.gov.hmrc.gformstubs.controllers.SdesNotification.notifySDES
 
 GET        /individuals/:nino/employment/:taxYear                   uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
