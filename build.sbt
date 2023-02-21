@@ -10,7 +10,7 @@ lazy val microservice = Project(appName, file("."))
     SbtAutoBuildPlugin,
     SbtDistributablesPlugin)
   .settings(
-    scalaVersion := "2.12.15",
+    scalaVersion := "2.13.8",
     scalafmtOnCompile := true,
     majorVersion := 1,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test
