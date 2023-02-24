@@ -18,7 +18,6 @@ package uk.gov.hmrc.gformstubs.controllers
 
 import play.api.mvc.{ AbstractController, ControllerComponents }
 
-import org.slf4j.{ Logger, LoggerFactory }
 import javax.inject.{ Inject, Singleton }
 import scala.concurrent.Future
 
@@ -26,7 +25,7 @@ import scala.concurrent.Future
 class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
-  def getEmploymentDetails(nino: String, taxYear: Int) = Action.async { implicit request =>
+  def getEmploymentDetails(nino: String, taxYear: Int) = Action.async { _ =>
     val ninoUC = nino.toUpperCase
 
     if (ninoUC == "AA111111A") {
