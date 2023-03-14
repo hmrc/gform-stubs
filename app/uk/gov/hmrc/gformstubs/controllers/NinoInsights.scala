@@ -51,7 +51,7 @@ class NinoInsights @Inject() (controllerComponents: ControllerComponents)
         Ok("""
              |{
              |    "riskScore": 50,
-             |    "reason": "NINO_ON_WATCH_LIST"
+             |    "reason": "NINO_NOT_ON_WATCH_LIST"
              |}
     """.stripMargin)
       }
