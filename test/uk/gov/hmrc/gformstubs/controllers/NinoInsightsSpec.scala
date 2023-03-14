@@ -69,7 +69,7 @@ class NinoInsightsSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuit
         JsObject(
           Map(
             "riskScore" -> JsNumber(50),
-            "reason"    -> JsString("NINO_ON_WATCH_LIST")
+            "reason"    -> JsString("NINO_NOT_ON_WATCH_LIST")
           )
         )
     }
