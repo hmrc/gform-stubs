@@ -52,7 +52,7 @@ class BankAccountInsights @Inject() (controllerComponents: ControllerComponents)
         Ok("""
              |{
              |    "riskScore": 50,
-             |    "reason": "ACCOUNT_ON_WATCH_LIST"
+             |    "reason": "ACCOUNT_NOT_ON_WATCH_LIST"
              |}
     """.stripMargin)
       }
