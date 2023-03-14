@@ -69,7 +69,7 @@ class BankAccountInsightsSpec extends AnyWordSpec with Matchers with GuiceOneApp
         JsObject(
           Map(
             "riskScore" -> JsNumber(50),
-            "reason"    -> JsString("ACCOUNT_ON_WATCH_LIST")
+            "reason"    -> JsString("ACCOUNT_NOT_ON_WATCH_LIST")
           )
         )
     }
