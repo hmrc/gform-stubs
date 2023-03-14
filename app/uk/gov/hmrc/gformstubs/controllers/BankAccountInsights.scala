@@ -48,6 +48,13 @@ class BankAccountInsights @Inject() (controllerComponents: ControllerComponents)
              |    "reason": "ACCOUNT_ON_WATCH_LIST"
              |}
             """.stripMargin)
+      } else if (sortCode == "207106" && accountNumber == "44311677") {
+        Ok("""
+             |{
+             |    "riskScore": 100,
+             |    "reason": "ACCOUNT_ON_WATCH_LIST"
+             |}
+            """.stripMargin)
       } else {
         Ok("""
              |{
