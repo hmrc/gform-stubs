@@ -1,17 +1,19 @@
 # microservice specific routes
 
-POST       /registration/organisation/utr/:utr                      uk.gov.hmrc.gformstubs.controllers.Registration.validator(utr: String)
+POST       /registration/organisation/utr/:utr                          uk.gov.hmrc.gformstubs.controllers.Registration.validator(utr: String)
 
-GET        /enterprise/obligation-data/:idType/:idNumber/:regimeType     uk.gov.hmrc.gformstubs.controllers.Obligation.getTaxPeriods(idType: String, idNumber: String, regimeType: String)
+GET        /enterprise/obligation-data/:idType/:idNumber/:regimeType    uk.gov.hmrc.gformstubs.controllers.Obligation.getTaxPeriods(idType: String, idNumber: String, regimeType: String)
 
-POST       /cross-regime/return/AGL/eeits/:userId                   uk.gov.hmrc.gformstubs.controllers.Return.validator(userId: String)
+POST       /cross-regime/return/AGL/eeits/:userId                       uk.gov.hmrc.gformstubs.controllers.Return.validator(userId: String)
 
-PUT        /cross-regime/subscription/IPT/utr/:userId               uk.gov.hmrc.gformstubs.controllers.Subscription.validator(userId: String)
+PUT        /cross-regime/subscription/IPT/utr/:userId                   uk.gov.hmrc.gformstubs.controllers.Subscription.validator(userId: String)
 
-POST       /check/insights                                          uk.gov.hmrc.gformstubs.controllers.NinoInsights.check
+POST       /nino/check/insights                                         uk.gov.hmrc.gformstubs.controllers.NinoInsights.check
 
-POST       /bankAccount/check/insights                              uk.gov.hmrc.gformstubs.controllers.BankAccountInsights.check
+POST       /bank-account/check/insights                                 uk.gov.hmrc.gformstubs.controllers.BankAccountInsights.check
 
-POST       /notification/fileready                                  uk.gov.hmrc.gformstubs.controllers.SdesNotification.notifySDES
+POST       /bank-account/verify/business                                uk.gov.hmrc.gformstubs.controllers.BankAccountDetails.businessBankAccountExistence
 
-GET        /individuals/:nino/employment/:taxYear                   uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
+POST       /bank-account/verify/personal                                uk.gov.hmrc.gformstubs.controllers.BankAccountDetails.personalBankAccountExistence
+
+GET        /individuals/:nino/employment/:taxYear                       uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
