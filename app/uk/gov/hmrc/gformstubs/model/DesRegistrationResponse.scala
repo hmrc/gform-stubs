@@ -63,7 +63,7 @@ object UkAddress {
 
   private val basic: OFormat[UkAddress] = Json.format[UkAddress]
 
-  private val addCountryCode: Reads[JsObject] = __.json.update((__ \ 'countryCode).json.put(JsString("GB")))
+  private val addCountryCode: Reads[JsObject] = __.json.update((__ \ Symbol("countryCode")).json.put(JsString("GB")))
 
   private val customWrites: UkAddress => JsObject = ukAddress => {
     val jsObject = basic.writes(ukAddress)
@@ -141,20 +141,22 @@ object DesRegistrationResponse {
   private val basic: OFormat[DesRegistrationResponse] = Json.format[DesRegistrationResponse]
 
   private def pickBranchAndPrune(symbol: Symbol) =
-    __.json.update((__ \ 'orgOrInd).json.copyFrom((__ \ symbol).json.pickBranch)) andThen (__ \ symbol).json.prune
+    __.json.update(
+      (__ \ Symbol("orgOrInd")).json.copyFrom((__ \ symbol).json.pickBranch)
+    ) andThen (__ \ symbol).json.prune
 
   private def readDesRegistrationResponse(json: JsValue, symbol: Symbol) =
     json.transform(pickBranchAndPrune(symbol)).flatMap(basic.reads)
 
   private val customReads: JsValue => JsResult[DesRegistrationResponse] = json =>
     ((json \ "individual"), (json \ "organisation")) match {
-      case (JsDefined(_), JsUndefined()) => readDesRegistrationResponse(json, 'individual)
-      case (JsUndefined(), JsDefined(_)) => readDesRegistrationResponse(json, 'organisation)
+      case (JsDefined(_), JsUndefined()) => readDesRegistrationResponse(json, Symbol("individual"))
+      case (JsUndefined(), JsDefined(_)) => readDesRegistrationResponse(json, Symbol("organisation"))
       case _                             => JsError("[DesRegistrationResponse] Not Supported json: " + json)
     }
 
   private val flattenOrgOrInd: Reads[JsObject] =
-    __.json.update((__ \ 'orgOrInd).json.pick) andThen (__ \ 'orgOrInd).json.prune
+    __.json.update((__ \ Symbol("orgOrInd")).json.pick) andThen (__ \ Symbol("orgOrInd")).json.prune
 
   private def writes(desResponse: DesRegistrationResponse): JsObject = {
     val jsObject = basic.writes(desResponse)

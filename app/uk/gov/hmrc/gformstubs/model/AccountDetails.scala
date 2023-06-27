@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.gformstubs.controllers
+package uk.gov.hmrc.gformstubs.model
 
-import org.slf4j.{ Logger, LoggerFactory }
-import play.api.mvc.{ AbstractController, ControllerComponents }
-import uk.gov.hmrc.gformstubs.model.SdesNotifyRequest
+import play.api.libs.json.{ Json, OFormat }
 
-import javax.inject.{ Inject, Singleton }
+case class AccountDetails(
+  accountExists: String,
+  nonStandardAccountDetailsRequiredForBacs: String,
+  sortCodeBankName: String,
+  nameMatches: String,
+  accountName: String
+)
 
-@Singleton
-class SdesNotification @Inject() (controllerComponents: ControllerComponents)
-    extends AbstractController(controllerComponents) {
-  private val logger: Logger = LoggerFactory.getLogger(getClass)
-
-  def notifySDES = Action(parse.json[SdesNotifyRequest]) { request =>
-    logger.info(s"SDES Notification: ${request.body}")
-    Ok
-  }
+object AccountDetails {
+  implicit val writes: OFormat[AccountDetails] = Json.format[AccountDetails]
 }
