@@ -41,6 +41,19 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
               |  }
               |]""".stripMargin).as("application/json")
       )
+    } else if (ninoUC == "AA000003D") {
+      Future.successful(
+        Ok("""|[
+              |  {
+              |    "employerName": "Jim",
+              |    "sequenceNumber": 1234561,
+              |    "worksNumber": "ACME01",
+              |    "taxDistrictNumber": "123",
+              |    "payeNumber": "AA1111",
+              |    "director": true
+              |  }
+              |]""".stripMargin).as("application/json")
+      )
     } else if (ninoUC == "AA222222A") {
       Future.successful(
         Ok("""|[
