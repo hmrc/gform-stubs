@@ -19,11 +19,16 @@ package uk.gov.hmrc.gformstubs.model
 import play.api.libs.json.{ Json, OFormat }
 
 case class AccountDetails(
+  accountNumberIsWellFormatted: String,
   accountExists: String,
   nonStandardAccountDetailsRequiredForBacs: String,
   sortCodeBankName: String,
   nameMatches: String,
-  accountName: String
+  accountName: String,
+  sortCodeIsPresentOnEISCD: String,
+  sortCodeSupportsDirectDebit: String,
+  sortCodeSupportsDirectCredit: String,
+  iban: String
 )
 
 object AccountDetails {
