@@ -39,11 +39,16 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
       contentAsJson(result) shouldBe
         JsObject(
           Map(
+            "accountNumberIsWellFormatted"             -> JsString("yes"),
             "accountExists"                            -> JsString("yes"),
             "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
             "sortCodeBankName"                         -> JsString("Nationwide"),
             "nameMatches"                              -> JsString("no"),
-            "accountName"                              -> JsString("")
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString(""),
+            "sortCodeSupportsDirectDebit"              -> JsString(""),
+            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "iban"                                     -> JsString("")
           )
         )
     }
@@ -57,11 +62,16 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
       contentAsJson(result) shouldBe
         JsObject(
           Map(
+            "accountNumberIsWellFormatted"             -> JsString("no"),
             "accountExists"                            -> JsString("no"),
             "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
-            "sortCodeBankName"                         -> JsString("unknown"),
-            "nameMatches"                              -> JsString("unknown"),
-            "accountName"                              -> JsString("unknown")
+            "sortCodeBankName"                         -> JsString(""),
+            "nameMatches"                              -> JsString("no"),
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString(""),
+            "sortCodeSupportsDirectDebit"              -> JsString(""),
+            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "iban"                                     -> JsString("")
           )
         )
     }
@@ -78,11 +88,16 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
       contentAsJson(result) shouldBe
         JsObject(
           Map(
+            "accountNumberIsWellFormatted"             -> JsString("yes"),
             "accountExists"                            -> JsString("yes"),
             "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
-            "sortCodeBankName"                         -> JsString("Nationwide"),
+            "sortCodeBankName"                         -> JsString("BARCLAYS BANK UK PLC"),
             "nameMatches"                              -> JsString("yes"),
-            "accountName"                              -> JsString("")
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("yes"),
+            "sortCodeSupportsDirectDebit"              -> JsString("no"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no"),
+            "iban"                                     -> JsString("GB21BARC20670544311611")
           )
         )
     }
@@ -96,11 +111,16 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
       contentAsJson(result) shouldBe
         JsObject(
           Map(
+            "accountNumberIsWellFormatted"             -> JsString("no"),
             "accountExists"                            -> JsString("no"),
             "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
-            "sortCodeBankName"                         -> JsString("unknown"),
-            "nameMatches"                              -> JsString("unknown"),
-            "accountName"                              -> JsString("unknown")
+            "sortCodeBankName"                         -> JsString(""),
+            "nameMatches"                              -> JsString("no"),
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString(""),
+            "sortCodeSupportsDirectDebit"              -> JsString(""),
+            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "iban"                                     -> JsString("")
           )
         )
     }

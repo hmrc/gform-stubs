@@ -28,34 +28,188 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
 
   // pair of (sortCode, accountNumber)
   val businessBankAccountMap: Map[BankAccount, AccountDetails] = Map(
-    BankAccount("609593", "96113600") -> AccountDetails("yes", "yes", "Skipton Building Society", "indeterminate", ""),
-    BankAccount("206705", "86473611") -> AccountDetails("yes", "no", "Nationwide", "yes", ""),
-    BankAccount("206705", "86563611") -> AccountDetails("yes", "no", "Nationwide", "no", ""),
-    BankAccount("206705", "76523611") -> AccountDetails("yes", "no", "Nationwide", "partial", "Acme Limited"),
-    BankAccount("206705", "11115555") -> AccountDetails("no", "indeterminate", "", "indeterminate", ""),
-    BankAccount("206705", "11116666") -> AccountDetails("inapplicable", "indeterminate", "", "indeterminate", ""),
+    BankAccount("609593", "96113600") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "yes",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Skipton Building Society",
+      iban = ""
+    ),
+    BankAccount("206705", "86473611") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "yes",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Nationwide",
+      iban = ""
+    ),
+    BankAccount("206705", "86563611") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "no",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Nationwide",
+      iban = ""
+    ),
+    BankAccount("206705", "76523611") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "partial",
+      accountName = "Acme Limited",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Nationwide",
+      iban = ""
+    ),
+    BankAccount("206705", "11115555") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "no",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    ),
+    BankAccount("206705", "11116666") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "inapplicable",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    ),
     BankAccount("206705", "11117777") -> AccountDetails(
-      "indeterminate",
-      "indeterminate",
-      "Barclays",
-      "indeterminate",
-      ""
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "indeterminate",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Barclays",
+      iban = ""
     )
   )
   // pair of (sortCode, accountNumber)
   val personalBankAccountMap: Map[BankAccount, AccountDetails] = Map(
-    BankAccount("609593", "91661500") -> AccountDetails("yes", "yes", "Skipton Building Society", "indeterminate", ""),
-    BankAccount("206705", "44311611") -> AccountDetails("yes", "no", "Nationwide", "yes", ""),
-    BankAccount("206705", "44344611") -> AccountDetails("yes", "no", "Nationwide", "no", ""),
-    BankAccount("206705", "44355611") -> AccountDetails("yes", "no", "Nationwide", "partial", "John Smith"),
-    BankAccount("206705", "11112222") -> AccountDetails("no", "indeterminate", "", "indeterminate", ""),
-    BankAccount("206705", "11113333") -> AccountDetails("inapplicable", "indeterminate", "", "indeterminate", ""),
+    BankAccount("206705", "44333611") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "no",
+      nameMatches = "no",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = "no",
+      sortCodeSupportsDirectCredit = "no",
+      sortCodeBankName = "BARCLAYS BANK UK PLC",
+      iban = "GB21BARC20670544333611"
+    ),
+    BankAccount("206705", "44311611") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "yes",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = "no",
+      sortCodeSupportsDirectCredit = "no",
+      sortCodeBankName = "BARCLAYS BANK UK PLC",
+      iban = "GB21BARC20670544311611"
+    ),
+    BankAccount("609593", "91661500") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "yes",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Skipton Building Society",
+      iban = ""
+    ),
+    BankAccount("206705", "44344611") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "no",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Nationwide",
+      iban = ""
+    ),
+    BankAccount("206705", "44355611") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "partial",
+      accountName = "John Smith",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Nationwide",
+      iban = ""
+    ),
+    BankAccount("206705", "11112222") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "no",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    ),
+    BankAccount("206705", "11113333") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "inapplicable",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    ),
     BankAccount("206705", "11114444") -> AccountDetails(
-      "indeterminate",
-      "indeterminate",
-      "Barclays",
-      "indeterminate",
-      ""
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "indeterminate",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Barclays",
+      iban = ""
     )
   )
 
@@ -66,7 +220,19 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       case Some(accountDetails) =>
         Ok(Json.toJson(accountDetails))
       case None =>
-        val unknownAccountDetails = AccountDetails("no", "no", "unknown", "unknown", "unknown")
+        val unknownAccountDetails =
+          AccountDetails(
+            accountNumberIsWellFormatted = "no",
+            accountExists = "no",
+            nameMatches = "no",
+            accountName = "",
+            nonStandardAccountDetailsRequiredForBacs = "no",
+            sortCodeIsPresentOnEISCD = "",
+            sortCodeSupportsDirectDebit = "",
+            sortCodeSupportsDirectCredit = "",
+            sortCodeBankName = "",
+            iban = ""
+          )
         Ok(Json.toJson(unknownAccountDetails))
     }
   }
@@ -78,7 +244,18 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       case Some(accountDetails) =>
         Ok(Json.toJson(accountDetails))
       case None =>
-        val unknownAccountDetails = AccountDetails("no", "no", "unknown", "unknown", "unknown")
+        val unknownAccountDetails = AccountDetails(
+          accountNumberIsWellFormatted = "no",
+          accountExists = "no",
+          nameMatches = "no",
+          accountName = "",
+          nonStandardAccountDetailsRequiredForBacs = "no",
+          sortCodeIsPresentOnEISCD = "",
+          sortCodeSupportsDirectDebit = "",
+          sortCodeSupportsDirectCredit = "",
+          sortCodeBankName = "",
+          iban = ""
+        )
         Ok(Json.toJson(unknownAccountDetails))
     }
   }
