@@ -104,6 +104,35 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
               |  }
               |]""".stripMargin).as("application/json")
       )
+    } else if (ninoUC == "AA444444A") {
+      Future.successful(
+        Ok("""|[
+              |  {
+              |    "employerName": "Acme",
+              |    "sequenceNumber": 1234561,
+              |    "worksNumber": "ACME01",
+              |    "taxDistrictNumber": "023",
+              |    "payeNumber": "AA4444",
+              |    "director": true
+              |  },
+              |  {
+              |    "employerName": "Smith Holdings",
+              |    "sequenceNumber": 2345678,
+              |    "worksNumber": "SMITH01",
+              |    "taxDistrictNumber": "009",
+              |    "payeNumber": "BB4444",
+              |    "director": false
+              |  },
+              |  {
+              |    "employerName": "Acme 2",
+              |    "sequenceNumber": 123456,
+              |    "worksNumber": "ACME09",
+              |    "taxDistrictNumber": "07",
+              |    "payeNumber": "AA5555",
+              |    "director": false
+              |  }
+              |]""".stripMargin).as("application/json")
+      )
     } else {
       Future.successful(
         NotFound("""
