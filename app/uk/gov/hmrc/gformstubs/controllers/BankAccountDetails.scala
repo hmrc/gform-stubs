@@ -111,6 +111,18 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       sortCodeSupportsDirectCredit = "",
       sortCodeBankName = "Barclays",
       iban = ""
+    ),
+    BankAccount("207106", "44311677") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "indeterminate",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
     )
   )
   // pair of (sortCode, accountNumber)
@@ -209,6 +221,18 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       sortCodeSupportsDirectDebit = "",
       sortCodeSupportsDirectCredit = "",
       sortCodeBankName = "Barclays",
+      iban = ""
+    ),
+    BankAccount("207106", "44311677") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "indeterminate",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
       iban = ""
     )
   )
