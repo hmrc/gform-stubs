@@ -111,6 +111,18 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       sortCodeSupportsDirectCredit = "",
       sortCodeBankName = "Barclays",
       iban = ""
+    ),
+    BankAccount("207106", "44311677") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "indeterminate",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
     )
   )
   // pair of (sortCode, accountNumber)
@@ -210,7 +222,20 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       sortCodeSupportsDirectCredit = "",
       sortCodeBankName = "Barclays",
       iban = ""
+    ),
+      BankAccount ("207106", "44311677") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "indeterminate",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
     )
+
   )
 
   def businessBankAccountExistence = Action(parse.json[BankAccountRequest]) { request =>
