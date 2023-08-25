@@ -223,7 +223,7 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       sortCodeBankName = "Barclays",
       iban = ""
     ),
-      BankAccount ("207106", "44311677") -> AccountDetails(
+    BankAccount("207106", "44311677") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
       accountExists = "indeterminate",
       nameMatches = "indeterminate",
@@ -235,7 +235,6 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       sortCodeBankName = "",
       iban = ""
     )
-
   )
 
   def businessBankAccountExistence = Action(parse.json[BankAccountRequest]) { request =>
