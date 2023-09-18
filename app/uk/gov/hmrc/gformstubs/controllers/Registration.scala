@@ -25,6 +25,8 @@ import uk.gov.hmrc.gformstubs.model.DesRegistrationRequest
 import uk.gov.hmrc.gformstubs.model._
 import uk.gov.hmrc.gformstubs.generators.DesRegistrationResponseGen
 
+import scala.concurrent.Future
+
 @Singleton
 class Registration @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
@@ -76,6 +78,96 @@ class Registration @Inject() (controllerComponents: ControllerComponents)
       case s: UkAddress            => s.copy(postalCode = postcode)
       case s: InternationalAddress => s.copy(postalCode = postcode)
     })
+
+  def validatorArn(inputArn: String) = Action.async { _ =>
+    val arn = inputArn.toUpperCase
+
+    if (arn == "AARN1234567") {
+      Future.successful(
+        Ok("""|{
+              |  "contactDetails":{
+              |    "phoneNumber":"01332752856"
+              |  },
+              |  "agencyDetails":{
+              |    "agencyName":"Rogers associates",
+              |    "agencyAddress":{
+              |      "addressLine1":"Plaza 2",
+              |      "addressLine2":"Ironmasters Way",
+              |      "addressLine3":"Telford",
+              |      "addressLine4":"Shropshire",
+              |      "postalCode":"TF3 4NT",
+              |      "countryCode":"GB"
+              |    },
+              |    "agencyEmail":"john@rogers.co.uk"
+              |  }
+              |}""".stripMargin).as("application/json")
+      )
+    } else if (arn == "BARN1234567") {
+      Future.successful(
+        Ok("""|{
+              |  "contactDetails":{
+              |    "phoneNumber":"01332752856"
+              |  },
+              |  "agencyDetails":{
+              |    "agencyName":"Rogers associates",
+              |    "agencyAddress":{
+              |      "addressLine1":"Plaza 2",
+              |      "addressLine2":"Telford",
+              |      "postalCode":"TF3 4NT",
+                      "countryCode":"GB"
+              |    },
+              |    "agencyEmail":"john@rogers.co.uk"
+              |  }
+              |}""".stripMargin).as("application/json")
+      )
+    } else if (arn == "AARN7654321") {
+      Future.successful(
+        Ok("""|{
+              |  "contactDetails":{
+              |    "phoneNumber":"01332752856"
+              |  },
+              |  "agencyDetails":{
+              |    "agencyName":"Rogers USA",
+              |    "agencyAddress":{
+              |      "addressLine1":"Plaza 2",
+              |      "addressLine2":"Sunset Boulevard",
+              |      "addressLine3":"Miami",
+              |      "addressLine4":"Florida",
+              |      "postalCode":"750075",
+              |      "countryCode":"US"
+              |    },
+              |    "agencyEmail":"mike@rogers.co.uk"
+              |  }
+              |}""".stripMargin).as("application/json")
+      )
+    } else if (arn == "BARN7654321") {
+      Future.successful(
+        Ok("""|{
+              |  "contactDetails":{
+              |    "phoneNumber":"01332752856"
+              |  },
+              |  "agencyDetails":{
+              |    "agencyName":"Rogers USA",
+              |    "agencyAddress":{
+              |      "addressLine1":"Plaza 2",
+              |      "addressLine2":"Miami",
+              |      "countryCode":"US"
+              |    },
+              |    "agencyEmail":"mike@rogers.co.uk"
+              |  }
+              |}""".stripMargin).as("application/json")
+      )
+    } else {
+      Future.successful(
+        NotFound("""
+                   |{
+                   |   "code": "NOT_FOUND",
+                   |   "reason": "The remote endpoint has indicated that no associated data found"
+                   |}
+           """.stripMargin).as("application/json")
+      )
+    }
+  }
 }
 
 object Registration {
