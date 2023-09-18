@@ -238,14 +238,14 @@ class RegistrationSpec
     }
   }
 
-  "registration validation arn" should {
+  "getAgentRecord" should {
 
     "return 200 with proper values when post with AARN1234567" in {
       val controller = new Registration(stubControllerComponents())
       val fakeRequest = FakeRequest("GET", "/")
 
       val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
-      val result = controller.validatorArn("AARN1234567")(fakeRequest)
+      val result = controller.getAgentRecord("AARN1234567")(fakeRequest)
       status(result) shouldBe Status.OK
       val payload = s"""|{
                         |  "contactDetails":{
@@ -273,7 +273,7 @@ class RegistrationSpec
       val fakeRequest = FakeRequest("GET", "/")
 
       val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
-      val result = controller.validatorArn("BARN1234567")(fakeRequest)
+      val result = controller.getAgentRecord("BARN1234567")(fakeRequest)
       status(result) shouldBe Status.OK
       val payload = s"""|{
                         |  "contactDetails":{
@@ -299,7 +299,7 @@ class RegistrationSpec
       val fakeRequest = FakeRequest("GET", "/")
 
       val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
-      val result = controller.validatorArn("AARN7654321")(fakeRequest)
+      val result = controller.getAgentRecord("AARN7654321")(fakeRequest)
       status(result) shouldBe Status.OK
       val payload = s"""|{
                         | "contactDetails":{
@@ -327,7 +327,7 @@ class RegistrationSpec
       val fakeRequest = FakeRequest("GET", "/")
 
       val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
-      val result = controller.validatorArn("BARN7654321")(fakeRequest)
+      val result = controller.getAgentRecord("BARN7654321")(fakeRequest)
       status(result) shouldBe Status.OK
       val payload = s"""|{
                         | "contactDetails":{

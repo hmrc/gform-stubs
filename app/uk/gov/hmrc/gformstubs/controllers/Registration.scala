@@ -79,7 +79,7 @@ class Registration @Inject() (controllerComponents: ControllerComponents)
       case s: InternationalAddress => s.copy(postalCode = postcode)
     })
 
-  def validatorArn(inputArn: String) = Action.async { _ =>
+  def getAgentRecord(inputArn: String) = Action.async { _ =>
     val arn = inputArn.toUpperCase
 
     if (arn == "AARN1234567") {
