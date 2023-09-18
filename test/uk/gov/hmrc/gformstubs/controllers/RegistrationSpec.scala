@@ -237,4 +237,114 @@ class RegistrationSpec
       )
     }
   }
+
+  "getAgentRecord" should {
+
+    "return 200 with proper values when post with AARN1234567" in {
+      val controller = new Registration(stubControllerComponents())
+      val fakeRequest = FakeRequest("GET", "/")
+
+      val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
+      val result = controller.getAgentRecord("AARN1234567")(fakeRequest)
+      status(result) shouldBe Status.OK
+      val payload = s"""|{
+                        |  "contactDetails":{
+                        |    "phoneNumber":"01332752856"
+                        |  },
+                        |  "agencyDetails":{
+                        |    "agencyName":"Rogers associates",
+                        |    "agencyAddress":{
+                        |      "addressLine1":"Plaza 2",
+                        |      "addressLine2":"Ironmasters Way",
+                        |      "addressLine3":"Telford",
+                        |      "addressLine4":"Shropshire",
+                        |      "postalCode":"TF3 4NT",
+                        |      "countryCode":"GB"
+                        |    },
+                        |    "agencyEmail":"john@rogers.co.uk"
+                        |  }
+                        |} """.stripMargin
+
+      reads(payload) should hasJsSuccess(contentAsJson(result).as[AgentRecordResponse])
+    }
+
+    "return 200 with proper values when post with BARN1234567" in {
+      val controller = new Registration(stubControllerComponents())
+      val fakeRequest = FakeRequest("GET", "/")
+
+      val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
+      val result = controller.getAgentRecord("BARN1234567")(fakeRequest)
+      status(result) shouldBe Status.OK
+      val payload = s"""|{
+                        |  "contactDetails":{
+                        |    "phoneNumber":"01332752856"
+                        |  },
+                        |  "agencyDetails":{
+                        |    "agencyName":"Rogers associates",
+                        |    "agencyAddress":{
+                        |      "addressLine1":"Plaza 2",
+                        |      "addressLine2":"Telford",
+                        |      "postalCode":"TF3 4NT",
+                        |      "countryCode":"GB"
+                        |    },
+                        |    "agencyEmail":"john@rogers.co.uk"
+                        |  }
+                        |}""".stripMargin
+
+      reads(payload) should hasJsSuccess(contentAsJson(result).as[AgentRecordResponse])
+    }
+
+    "return 200 with proper values when post with AARN7654321" in {
+      val controller = new Registration(stubControllerComponents())
+      val fakeRequest = FakeRequest("GET", "/")
+
+      val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
+      val result = controller.getAgentRecord("AARN7654321")(fakeRequest)
+      status(result) shouldBe Status.OK
+      val payload = s"""|{
+                        | "contactDetails":{
+                        |   "phoneNumber":"01332752856"
+                        | },
+                        | "agencyDetails":{
+                        |   "agencyName":"Rogers USA",
+                        |   "agencyAddress":{
+                        |     "addressLine1":"Plaza 2",
+                        |     "addressLine2":"Sunset Boulevard",
+                        |     "addressLine3":"Miami",
+                        |     "addressLine4":"Florida",
+                        |     "postalCode":"750075",
+                        |     "countryCode":"US"
+                        |   },
+                        |   "agencyEmail":"mike@rogers.co.uk"
+                        | }
+                        |}""".stripMargin
+
+      reads(payload) should hasJsSuccess(contentAsJson(result).as[AgentRecordResponse])
+    }
+
+    "return 200 with proper values when post with BARN7654321" in {
+      val controller = new Registration(stubControllerComponents())
+      val fakeRequest = FakeRequest("GET", "/")
+
+      val reads = (payload: String) => implicitly[Reads[AgentRecordResponse]].reads(Json.parse(payload))
+      val result = controller.getAgentRecord("BARN7654321")(fakeRequest)
+      status(result) shouldBe Status.OK
+      val payload = s"""|{
+                        | "contactDetails":{
+                        |   "phoneNumber":"01332752856"
+                        | },
+                        | "agencyDetails":{
+                        |   "agencyName":"Rogers USA",
+                        |   "agencyAddress":{
+                        |     "addressLine1":"Plaza 2",
+                        |     "addressLine2":"Miami",
+                        |     "countryCode":"US"
+                        |   },
+                        |   "agencyEmail":"mike@rogers.co.uk"
+                        | }
+                        |}""".stripMargin
+
+      reads(payload) should hasJsSuccess(contentAsJson(result).as[AgentRecordResponse])
+    }
+  }
 }
