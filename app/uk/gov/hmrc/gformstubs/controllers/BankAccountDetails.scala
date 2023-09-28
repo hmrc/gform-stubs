@@ -47,7 +47,7 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "",
-      sortCodeSupportsDirectDebit = "yes",
+      sortCodeSupportsDirectDebit = "no",
       sortCodeSupportsDirectCredit = "yes",
       sortCodeBankName = "Nationwide",
       iban = ""
@@ -59,7 +59,7 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
+      sortCodeSupportsDirectDebit = "yes",
       sortCodeSupportsDirectCredit = "yes",
       sortCodeBankName = "Nationwide",
       iban = ""
@@ -71,8 +71,8 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "Acme Limited",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "",
-      sortCodeSupportsDirectCredit = "",
+      sortCodeSupportsDirectDebit = "no",
+      sortCodeSupportsDirectCredit = "no",
       sortCodeBankName = "Nationwide",
       iban = ""
     ),
@@ -170,7 +170,7 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
+      sortCodeSupportsDirectDebit = "yes",
       sortCodeSupportsDirectCredit = "no",
       sortCodeBankName = "BARCLAYS BANK UK PLC",
       iban = "GB21BARC20670544311611"
