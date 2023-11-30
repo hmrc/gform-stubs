@@ -16,33 +16,21 @@
 
 package uk.gov.hmrc.gformstubs.generators
 
-import org.scalacheck.Gen
 import uk.gov.hmrc.gformstubs.model.DesRegistrationResponse
 
 trait DesRegistrationResponseGen {
-  def desRegistrationResponseGen: Gen[DesRegistrationResponse] =
-    for {
-      safeId               <- PrimitiveGen.nonEmptyAlphaNumStrGen
-      agentReferenceNumber <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      sapNumber            <- PrimitiveGen.nonEmptyAlphaNumStrGen
-      isEditable           <- PrimitiveGen.booleanGen
-      isAnAgent            <- PrimitiveGen.booleanGen
-      isAnASAgent          <- PrimitiveGen.booleanGen
-      isAnIndividual       <- PrimitiveGen.booleanGen
-      orgOrInd             <- DesEntityGen.desEntityGen
-      address              <- AddressGen.addressGen
-      contactDetails       <- Gen.option(ContactDetailsGen.contactDetailsGen)
-    } yield DesRegistrationResponse(
-      safeId,
-      agentReferenceNumber,
-      sapNumber,
-      isEditable,
-      isAnAgent,
-      isAnASAgent,
-      isAnIndividual,
-      orgOrInd,
-      address,
-      contactDetails
+  def desRegistrationResponseGen: DesRegistrationResponse =
+    DesRegistrationResponse(
+      PrimitiveGen.nonEmptyAlphaNumStrGen,
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      PrimitiveGen.nonEmptyAlphaNumStrGen,
+      PrimitiveGen.booleanGen,
+      PrimitiveGen.booleanGen,
+      PrimitiveGen.booleanGen,
+      PrimitiveGen.booleanGen,
+      DesEntityGen.desEntityGen,
+      AddressGen.addressGen,
+      Some(ContactDetailsGen.contactDetailsGen)
     )
 }
 
