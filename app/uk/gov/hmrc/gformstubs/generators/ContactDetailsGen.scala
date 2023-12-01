@@ -16,17 +16,17 @@
 
 package uk.gov.hmrc.gformstubs.generators
 
-import org.scalacheck.Gen
 import uk.gov.hmrc.gformstubs.model.ContactDetails
 
 trait ContactDetailsGen {
-  def contactDetailsGen: Gen[ContactDetails] =
-    for {
-      primaryPhoneNumber   <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      secondaryPhoneNumber <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      faxNumber            <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      emailAddress         <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-    } yield ContactDetails(primaryPhoneNumber, secondaryPhoneNumber, faxNumber, emailAddress)
+  def contactDetailsGen: ContactDetails = ContactDetails(
+    Some(PrimitiveGen.telephoneNumberGen),
+    Some(PrimitiveGen.telephoneNumberGen),
+    Some(PrimitiveGen.telephoneNumberGen),
+    Some(emailAddressGen)
+  )
+
+  def emailAddressGen: String = PrimitiveGen.nonEmptyAlphaNumStrGen + "@" + PrimitiveGen.nonEmptyAlphaNumStrGen + ".com"
 }
 
 object ContactDetailsGen extends ContactDetailsGen

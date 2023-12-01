@@ -16,25 +16,21 @@
 
 package uk.gov.hmrc.gformstubs.generators
 
-import org.scalacheck.Gen
+import scala.util.Random
 import uk.gov.hmrc.gformstubs.model.{ DesEntity, Individual, Organisation }
 
 trait DesEntityGen {
-  def desEntityGen: Gen[DesEntity] = Gen.oneOf(organisationGen, individualGen)
+  def desEntityGen: DesEntity = Random.shuffle(Seq(organisationGen, individualGen)).head
 
-  def individualGen: Gen[Individual] =
-    for {
-      firstName   <- PrimitiveGen.nonEmptyAlphaNumStrGen
-      lastName    <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      dateOfBirth <- Gen.option(PrimitiveGen.localDateGen)
-    } yield Individual(firstName, lastName, dateOfBirth.map(_.toString))
+  def individualGen: Individual =
+    Individual(
+      PrimitiveGen.nonEmptyAlphaNumStrGen,
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      Some(PrimitiveGen.localDateGen.toString)
+    )
 
-  def organisationGen: Gen[Organisation] =
-    for {
-      organisationName <- PrimitiveGen.nonEmptyAlphaNumStrGen
-      isAGroup         <- PrimitiveGen.booleanGen
-      organisationType <- PrimitiveGen.nonEmptyAlphaNumStrGen
-    } yield Organisation(organisationName, isAGroup, organisationType)
+  def organisationGen: Organisation =
+    Organisation(PrimitiveGen.nonEmptyAlphaNumStrGen, PrimitiveGen.booleanGen, PrimitiveGen.nonEmptyAlphaNumStrGen)
 
 }
 

@@ -38,10 +38,10 @@ class Registration @Inject() (controllerComponents: ControllerComponents)
 
       utr match {
         case "random" =>
-          val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+          val random = DesRegistrationResponseGen.desRegistrationResponseGen
           Ok(Json.toJson(addPostCode(random, Some("random"))))
         case "nopostcode" =>
-          val random = DesRegistrationResponseGen.desRegistrationResponseGen.sample.get
+          val random = DesRegistrationResponseGen.desRegistrationResponseGen
           Ok(Json.toJson(addPostCode(random, None)))
         case a if a.startsWith("ind") =>
           Ok(Json.toJson(Registration.desIndividual))

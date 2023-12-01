@@ -16,31 +16,31 @@
 
 package uk.gov.hmrc.gformstubs.generators
 
-import org.scalacheck.Gen
 import uk.gov.hmrc.gformstubs.model.{ Address, InternationalAddress, UkAddress }
 
+import scala.util.Random
+
 trait AddressGen {
-  def addressGen: Gen[Address] = Gen.oneOf(ukAddressGen, internationalAddressGen)
+  def addressGen: Address = Random.shuffle(Seq(ukAddressGen, internationalAddressGen)).head
 
-  def ukAddressGen: Gen[UkAddress] =
-    for {
-      addressLine1 <- PrimitiveGen.nonEmptyAlphaNumStrGen
-      addressLine2 <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      addressLine3 <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      addressLine4 <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      postalCode   <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-    } yield UkAddress(addressLine1, addressLine2, addressLine3, addressLine4, postalCode)
+  def ukAddressGen: UkAddress =
+    UkAddress(
+      PrimitiveGen.nonEmptyAlphaNumStrGen,
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      None
+    )
 
-  def internationalAddressGen: Gen[InternationalAddress] =
-    for {
-      addressLine1 <- PrimitiveGen.nonEmptyAlphaNumStrGen
-      addressLine2 <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      addressLine3 <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      addressLine4 <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-      countryCode  <- PrimitiveGen.internationalCountryCodeGen
-      postalCode   <- Gen.option(PrimitiveGen.nonEmptyAlphaNumStrGen)
-    } yield InternationalAddress(addressLine1, addressLine2, addressLine3, addressLine4, countryCode, postalCode)
-
+  def internationalAddressGen: InternationalAddress =
+    InternationalAddress(
+      PrimitiveGen.nonEmptyAlphaNumStrGen,
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen),
+      PrimitiveGen.internationalCountryCodeGen,
+      Some(PrimitiveGen.nonEmptyAlphaNumStrGen)
+    )
 }
 
 object AddressGen extends AddressGen
