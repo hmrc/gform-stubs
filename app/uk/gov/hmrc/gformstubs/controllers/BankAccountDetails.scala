@@ -145,7 +145,7 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       sortCodeIsPresentOnEISCD = "no",
       sortCodeSupportsDirectDebit = "",
       sortCodeSupportsDirectCredit = "",
-      sortCodeBankName = "Barclays",
+      sortCodeBankName = "",
       iban = ""
     )
   )
@@ -254,6 +254,42 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "indeterminate",
       sortCodeIsPresentOnEISCD = "",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    ),
+    BankAccount("206705", "11116666") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "inapplicable",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    ),
+    BankAccount("206705", "11118888") -> AccountDetails(
+      accountNumberIsWellFormatted = "no",
+      accountExists = "indeterminate",
+      nameMatches = "",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Barclays",
+      iban = ""
+    ),
+    BankAccount("206704", "11119999") -> AccountDetails(
+      accountNumberIsWellFormatted = "indeterminate",
+      accountExists = "indeterminate",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "indeterminate",
+      sortCodeIsPresentOnEISCD = "no",
       sortCodeSupportsDirectDebit = "",
       sortCodeSupportsDirectCredit = "",
       sortCodeBankName = "",
