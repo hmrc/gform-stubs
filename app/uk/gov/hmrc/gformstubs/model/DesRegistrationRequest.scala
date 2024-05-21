@@ -16,10 +16,10 @@
 
 package uk.gov.hmrc.gformstubs.model
 
-import play.api.libs.json.Json
+import play.api.libs.json.{ Json, OFormat }
 
 case class DesRegistrationRequest(regime: String, requiresNameMatch: Boolean, isAnAgent: Boolean)
 
 object DesRegistrationRequest {
-  implicit val format = Json.format[DesRegistrationRequest]
+  implicit val format: OFormat[DesRegistrationRequest] = Json.format[DesRegistrationRequest]
 }

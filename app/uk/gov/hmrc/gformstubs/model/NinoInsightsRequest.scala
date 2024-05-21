@@ -16,10 +16,10 @@
 
 package uk.gov.hmrc.gformstubs.model
 
-import play.api.libs.json.Json
+import play.api.libs.json.{ Json, OFormat }
 
 case class NinoInsightsRequest(nino: String)
 
 object NinoInsightsRequest {
-  implicit val format = Json.format[NinoInsightsRequest]
+  implicit val format: OFormat[NinoInsightsRequest] = Json.format[NinoInsightsRequest]
 }
