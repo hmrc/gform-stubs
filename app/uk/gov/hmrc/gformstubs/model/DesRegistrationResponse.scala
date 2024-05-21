@@ -70,7 +70,7 @@ object UkAddress {
     jsObject.transform(addCountryCode).getOrElse(jsObject)
   }
 
-  implicit val format = OFormat[UkAddress](basic.reads _, customWrites)
+  implicit val format: OFormat[UkAddress] = OFormat[UkAddress](basic.reads _, customWrites)
 }
 
 case class ContactDetails(
@@ -163,5 +163,5 @@ object DesRegistrationResponse {
     jsObject.transform(flattenOrgOrInd).getOrElse(jsObject)
   }
 
-  implicit val format = OFormat[DesRegistrationResponse](customReads, writes _)
+  implicit val format: OFormat[DesRegistrationResponse] = OFormat[DesRegistrationResponse](customReads, writes _)
 }

@@ -16,10 +16,10 @@
 
 package uk.gov.hmrc.gformstubs.model
 
-import play.api.libs.json.Json
+import play.api.libs.json.{ Json, OFormat }
 
 case class BankAccountInsightsRequest(sortCode: String, accountNumber: String)
 
 object BankAccountInsightsRequest {
-  implicit val format = Json.format[BankAccountInsightsRequest]
+  implicit val format: OFormat[BankAccountInsightsRequest] = Json.format[BankAccountInsightsRequest]
 }
