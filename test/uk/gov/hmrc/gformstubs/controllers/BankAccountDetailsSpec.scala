@@ -126,4 +126,53 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
     }
   }
 
+  "bankAccount validate" should {
+
+    "return 200 with proper values when post with 206705/11112222" in {
+      val request = BankAccountRequest(BankAccount(sortCode = "206705", accountNumber = "11112222"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
+      val controller = new BankAccountDetails(stubControllerComponents())
+      val result = controller.validateBankDetails(fakeRequest)
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe
+        JsObject(
+          Map(
+            "accountNumberIsWellFormatted"             -> JsString("yes"),
+            "accountExists"                            -> JsString("yes"),
+            "nonStandardAccountDetailsRequiredForBacs" -> JsString("yes"),
+            "sortCodeBankName"                         -> JsString("Skipton Building Society"),
+            "nameMatches"                              -> JsString("indeterminate"),
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("yes"),
+            "sortCodeSupportsDirectDebit"              -> JsString(""),
+            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "iban"                                     -> JsString("")
+          )
+        )
+    }
+
+    "return 200 with proper values when post with other values" in {
+      val request = BankAccountRequest(BankAccount(sortCode = "206709", accountNumber = "11117213"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
+      val controller = new BankAccountDetails(stubControllerComponents())
+      val result = controller.validateBankDetails(fakeRequest)
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe
+        JsObject(
+          Map(
+            "accountNumberIsWellFormatted"             -> JsString("no"),
+            "accountExists"                            -> JsString("no"),
+            "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
+            "sortCodeBankName"                         -> JsString(""),
+            "nameMatches"                              -> JsString("no"),
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString(""),
+            "sortCodeSupportsDirectDebit"              -> JsString(""),
+            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "iban"                                     -> JsString("")
+          )
+        )
+    }
+  }
+
 }

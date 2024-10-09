@@ -297,6 +297,69 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
     )
   )
 
+  val verifyBankAccountMap: Map[BankAccount, AccountDetails] = Map(
+    BankAccount("206705", "11112222") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "yes",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Skipton Building Society",
+      iban = ""
+    ),
+    BankAccount("206705", "11113333") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Nationwide",
+      iban = ""
+    ),
+    BankAccount("206705", "11114444") -> AccountDetails(
+      accountNumberIsWellFormatted = "no",
+      accountExists = "no",
+      nameMatches = "no",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "Nationwide",
+      iban = ""
+    ),
+    BankAccount("206709", "11115555") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "yes",
+      nameMatches = "indeterminate",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "no",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    ),
+    BankAccount("206709", "11116666") -> AccountDetails(
+      accountNumberIsWellFormatted = "no",
+      accountExists = "no",
+      nameMatches = "no",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "no",
+      sortCodeSupportsDirectDebit = "",
+      sortCodeSupportsDirectCredit = "",
+      sortCodeBankName = "",
+      iban = ""
+    )
+  )
+
   def businessBankAccountExistence = Action(parse.json[BankAccountRequest]) { request =>
     val account = request.body.account
     val accountDetailsOpt = businessBankAccountMap.get(BankAccount(account.sortCode, account.accountNumber))
@@ -324,6 +387,29 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
   def personalBankAccountExistence = Action(parse.json[BankAccountRequest]) { request =>
     val account = request.body.account
     val accountDetailsOpt = personalBankAccountMap.get(BankAccount(account.sortCode, account.accountNumber))
+    accountDetailsOpt match {
+      case Some(accountDetails) =>
+        Ok(Json.toJson(accountDetails))
+      case None =>
+        val unknownAccountDetails = AccountDetails(
+          accountNumberIsWellFormatted = "no",
+          accountExists = "no",
+          nameMatches = "no",
+          accountName = "",
+          nonStandardAccountDetailsRequiredForBacs = "no",
+          sortCodeIsPresentOnEISCD = "",
+          sortCodeSupportsDirectDebit = "",
+          sortCodeSupportsDirectCredit = "",
+          sortCodeBankName = "",
+          iban = ""
+        )
+        Ok(Json.toJson(unknownAccountDetails))
+    }
+  }
+
+  def validateBankDetails = Action(parse.json[BankAccountRequest]) { request =>
+    val account = request.body.account
+    val accountDetailsOpt = verifyBankAccountMap.get(BankAccount(account.sortCode, account.accountNumber))
     accountDetailsOpt match {
       case Some(accountDetails) =>
         Ok(Json.toJson(accountDetails))
