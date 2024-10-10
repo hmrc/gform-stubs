@@ -21,3 +21,7 @@ POST       /bank-account/verify/personal                                uk.gov.h
 POST       /bank-account/validate/bank-details                          uk.gov.hmrc.gformstubs.controllers.BankAccountDetails.validateBankDetails
 
 GET        /individuals/:nino/employment/:taxYear                       uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
+
+GET        /companies-house-api-proxy/company/:companyNumber            uk.gov.hmrc.gformstubs.controllers.CompanyDetails.getCompanyDetails(companyNumber: String)
+
+GET        /companies-house-api-proxy/company/:companyNumber/officers   uk.gov.hmrc.gformstubs.controllers.CompanyDetails.getCompanyOfficers(companyNumber: String)
