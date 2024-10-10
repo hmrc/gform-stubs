@@ -18,4 +18,6 @@ POST       /bank-account/verify/business                                uk.gov.h
 
 POST       /bank-account/verify/personal                                uk.gov.hmrc.gformstubs.controllers.BankAccountDetails.personalBankAccountExistence
 
+POST       /bank-account/validate/bank-details                          uk.gov.hmrc.gformstubs.controllers.BankAccountDetails.validateBankDetails
+
 GET        /individuals/:nino/employment/:taxYear                       uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
