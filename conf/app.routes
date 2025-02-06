@@ -25,3 +25,7 @@ GET        /individuals/:nino/employment/:taxYear                       uk.gov.h
 GET        /companies-house-api-proxy/company/:companyNumber            uk.gov.hmrc.gformstubs.controllers.CompanyDetails.getCompanyDetails(companyNumber: String)
 
 GET        /companies-house-api-proxy/company/:companyNumber/officers   uk.gov.hmrc.gformstubs.controllers.CompanyDetails.getCompanyOfficers(companyNumber: String)
+
+GET        /ods-vat/v1/vat/trader/:vatRegistrationNumber                uk.gov.hmrc.gformstubs.controllers.VatTrader.getTrader(vatRegistrationNumber: String)
+
+GET        /ods-vat/v1/vat/trader/:vatRegistrationNumber/designatory-details      uk.gov.hmrc.gformstubs.controllers.VatTrader.getDesignatoryDetails(vatRegistrationNumber: String)
