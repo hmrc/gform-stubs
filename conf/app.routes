@@ -25,3 +25,5 @@ GET        /individuals/:nino/employment/:taxYear                       uk.gov.h
 GET        /companies-house-api-proxy/company/:companyNumber            uk.gov.hmrc.gformstubs.controllers.CompanyDetails.getCompanyDetails(companyNumber: String)
 
 GET        /companies-house-api-proxy/company/:companyNumber/officers   uk.gov.hmrc.gformstubs.controllers.CompanyDetails.getCompanyOfficers(companyNumber: String)
+
+GET        /sdes-encryption-public-key/current                          uk.gov.hmrc.gformstubs.controllers.SecureDataExchange.getPublicKey()
