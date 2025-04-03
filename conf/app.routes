@@ -27,3 +27,5 @@ GET        /companies-house-api-proxy/company/:companyNumber            uk.gov.h
 GET        /companies-house-api-proxy/company/:companyNumber/officers   uk.gov.hmrc.gformstubs.controllers.CompanyDetails.getCompanyOfficers(companyNumber: String)
 
 GET        /sdes-encryption-public-key/current                          uk.gov.hmrc.gformstubs.controllers.SecureDataExchange.getPublicKey()
+
+POST       /taxud/vat/parcels/consumer-to-consumer/v1                   uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.postVatParcelsC2C()
