@@ -18,6 +18,8 @@ package uk.gov.hmrc.gformstubs.controllers
 
 import play.api.mvc.{ AbstractController, ControllerComponents }
 
+import java.time.format.DateTimeFormatter
+import java.time.{ ZoneId, ZonedDateTime }
 import javax.inject.{ Inject, Singleton }
 import scala.concurrent.Future
 
@@ -214,4 +216,186 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
       )
     }
   }
+
+  def getCompanyInsolvency(companyNumber: String) = Action.async { _ =>
+    if (companyNumber == "11111111") {
+      Future.successful(
+        Ok(s"""
+              |{
+              |  "etag": "somelongstring",
+              |  "cases": [
+              |    {
+              |      "type": "receiver-manager",
+              |      "dates": [],
+              |      "practitioners": [
+              |        {
+              |          "name": "John Smith",
+              |          "address": {
+              |            "address_line_1": "1 Somewhere St",
+              |            "address_line_2": "Someburb",
+              |            "locality": "Somewheresville",
+              |            "postal_code": "SM1 2WH"
+              |          },
+              |          "appointed_on": "2022-08-05",
+              |          "role": "receiver-manager"
+              |        },
+              |        {
+              |          "name": "Jane Doe",
+              |          "address": {
+              |            "address_line_1": "1 Somewhere St",
+              |            "address_line_2": "Someburb",
+              |            "locality": "Somewheresville",
+              |            "postal_code": "SM1 2WH"
+              |          },
+              |          "appointed_on": "2022-08-05",
+              |          "role": "receiver-manager"
+              |        }
+              |      ],
+              |      "links": {
+              |        "charge": "/company/$companyNumber/charges/somestring"
+              |      },
+              |      "number": "1"
+              |    },
+              |    {
+              |      "type": "receiver-manager",
+              |      "dates": [],
+              |      "practitioners": [
+              |        {
+              |          "name": "John Smith",
+              |          "address": {
+              |            "address_line_1": "1 Somewhere St",
+              |            "address_line_2": "Someburb",
+              |            "locality": "Somewheresville",
+              |            "postal_code": "SM1 2WH"
+              |          },
+              |          "appointed_on": "2022-08-05",
+              |          "role": "receiver-manager"
+              |        },
+              |        {
+              |          "name": "Jane Doe",
+              |          "address": {
+              |            "address_line_1": "1 Somewhere St",
+              |            "address_line_2": "Someburb",
+              |            "locality": "Somewheresville",
+              |            "postal_code": "SM1 2WH"
+              |          },
+              |          "appointed_on": "2022-08-05",
+              |          "role": "receiver-manager"
+              |        }
+              |      ],
+              |      "links": {
+              |        "charge": "/company/$companyNumber/charges/somestring"
+              |      },
+              |      "number": "2"
+              |    },
+              |    {
+              |      "type": "in-administration",
+              |      "dates": [
+              |        {
+              |          "type": "administration-started-on",
+              |          "date": "2022-10-21"
+              |        }
+              |      ],
+              |      "practitioners": [
+              |        {
+              |          "name": "John McSmith",
+              |          "address": {
+              |            "address_line_1": "58 Somewhere Rd",
+              |            "locality": "Somewheresville",
+              |            "region": "Somewhereshire",
+              |            "postal_code": "SM2 1WH"
+              |          },
+              |          "role": "practitioner"
+              |        }
+              |      ],
+              |      "number": "3"
+              |    }
+              |  ],
+              |  "status": [
+              |    "in-administration",
+              |    "receiver-manager"
+              |  ]
+              |}
+              |""".stripMargin).as("application/json")
+      )
+    } else if (companyNumber == "22222222") {
+      val nowDate = ZonedDateTime.now(ZoneId.of("Europe/London"))
+      val startDate = nowDate.minusWeeks(97).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+      val endDate = nowDate.minusWeeks(9).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+      val ceasedToAct = nowDate.minusWeeks(19).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+      Future.successful(
+        Ok(s"""
+              |{
+              |  "etag": "somelongstring",
+              |  "cases": [
+              |    {
+              |      "type": "in-administration",
+              |      "dates": [
+              |        {
+              |          "type": "administration-started-on",
+              |          "date": "$startDate"
+              |        },
+              |        {
+              |          "type": "administration-ended-on",
+              |          "date": "$endDate"
+              |        }
+              |      ],
+              |      "practitioners": [
+              |        {
+              |          "name": "John Smith",
+              |          "address": {
+              |            "address_line_1": "1 Somewhere St",
+              |            "address_line_2": "Someburb",
+              |            "locality": "Somewheresville",
+              |            "postal_code": "SM1 2WH"
+              |          },
+              |          "role": "practitioner"
+              |        },
+              |        {
+              |          "name": "Jane Doe",
+              |          "address": {
+              |            "address_line_1": "1 Somewhere St",
+              |            "address_line_2": "Someburb",
+              |            "locality": "Somewheresville",
+              |            "postal_code": "SM1 2WH"
+              |          },
+              |          "role": "practitioner"
+              |        },
+              |        {
+              |          "name": "James McDoe",
+              |          "address": {
+              |            "address_line_1": "45 Somewhere Avenue",
+              |            "address_line_2": "Someburbia",
+              |            "locality": "Somewheresville",
+              |            "postal_code": "SM5 3WH"
+              |          },
+              |          "ceased_to_act_on": "$ceasedToAct",
+              |          "role": "practitioner"
+              |        }
+              |      ],
+              |      "number": "1"
+              |    }
+              |  ],
+              |  "status": [
+              |    "in-administration",
+              |    "administrative-receiver"
+              |  ]
+              |}
+              |""".stripMargin).as("application/json")
+      )
+    } else {
+      val date = ZonedDateTime.now(ZoneId.of("Europe/London")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+      Future.successful(
+        NotFound(s"""
+                    |{
+                    |  "timestamp": "$date",
+                    |  "status": 404,
+                    |  "error": "Not Found",
+                    |  "path": "/company/$companyNumber/insolvency"
+                    |}
+                    |""".stripMargin).as("application/json")
+      )
+    }
+  }
+
 }
