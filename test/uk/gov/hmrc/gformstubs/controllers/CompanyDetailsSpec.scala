@@ -20,7 +20,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.http.Status
-import play.api.libs.json.{ JsArray, JsBoolean, JsObject, JsString }
+import play.api.libs.json.{ JsArray, JsBoolean, JsObject, JsString, JsValue, Json }
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
@@ -70,50 +70,32 @@ class CompanyDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
       val result = controller.getCompanyOfficers("11111111")(fakeRequest)
       status(result) shouldBe Status.OK
       contentType(result) shouldBe Some("application/json")
-      contentAsJson(result) should be(
-        JsObject(
-          Map(
-            "items" -> JsArray(
-              Seq(
-                JsObject(
-                  Map(
-                    "officer_role" -> JsString("director")
-                  )
-                ),
-                JsObject(
-                  Map(
-                    "officer_role" -> JsString("director")
-                  )
-                ),
-                JsObject(
-                  Map(
-                    "officer_role" -> JsString("director")
-                  )
-                ),
-                JsObject(
-                  Map(
-                    "officer_role" -> JsString("director")
-                  )
-                ),
-                JsObject(
-                  Map(
-                    "officer_role" -> JsString("director")
-                  )
-                ),
-                JsObject(
-                  Map(
-                    "officer_role" -> JsString("secretary")
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
+      val json = contentAsJson(result)
+      (json \ "active_count").as[Int] should be(6)
+      (json \ "items").as[Seq[JsValue]].size should be(6)
+      (json \ "items" \ 1 \ "name").as[String] should be("Elton John")
+      (json \ "items" \ 5 \ "officer_role").as[String] should be("secretary")
     }
     "return not found with details for getCompanyOfficers(invalid CRN)" in {
       val controller = new CompanyDetails(stubControllerComponents())
       val result = controller.getCompanyOfficers("12312312")(fakeRequest)
+      status(result) shouldBe Status.NOT_FOUND
+    }
+    "return 200 with details for getCompanyInsolvency(valid CRN)" in {
+      val controller = new CompanyDetails(stubControllerComponents())
+      val result = controller.getCompanyInsolvency("66666666")(fakeRequest)
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("application/json")
+      val json = contentAsJson(result)
+      (json \ "etag").as[String] should be("somelongstring")
+      (json \ "cases").as[Seq[JsValue]].size should be(3)
+      (json \ "cases" \ 1 \ "type").as[String] should be("receiver-manager")
+      (json \ "cases" \ 1 \ "practitioners").as[Seq[JsValue]].size should be(2)
+      (json \ "cases" \ 1 \ "practitioners" \ 1 \ "name").as[String] should be("Jane Doe")
+    }
+    "return not found with details for getCompanyInsolvency(invalid CRN)" in {
+      val controller = new CompanyDetails(stubControllerComponents())
+      val result = controller.getCompanyInsolvency("12312312")(fakeRequest)
       status(result) shouldBe Status.NOT_FOUND
     }
   }
