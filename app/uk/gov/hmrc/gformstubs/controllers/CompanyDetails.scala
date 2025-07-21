@@ -147,7 +147,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok(s"""{
           "can_file": false,
-          "company_name": "Acme Insolvency 1",
+          "company_name": "Acme Insolvency - Four practitioners",
           "company_number": "$companyNumber",
           "company_status": "insolvency-proceedings",
           "company_status_detail": "",
@@ -170,7 +170,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok(s"""{
           "can_file": false,
-          "company_name": "Acme Insolvency 2",
+          "company_name": "Acme Insolvency - One practitioner",
           "company_number": "$companyNumber",
           "company_status": "insolvency-proceedings",
           "company_status_detail": "",
@@ -193,7 +193,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok(s"""{
           "can_file": false,
-          "company_name": "Acme Insolvency No Practitioners",
+          "company_name": "Acme Insolvency - No Practitioners",
           "company_number": "$companyNumber",
           "company_status": "insolvency-proceedings",
           "company_status_detail": "",
