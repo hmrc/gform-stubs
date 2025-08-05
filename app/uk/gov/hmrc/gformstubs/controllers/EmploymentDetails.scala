@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.gformstubs.controllers
 
-import play.api.mvc.{ AbstractController, ControllerComponents }
+import play.api.mvc.{ AbstractController, Action, AnyContent, ControllerComponents }
 
 import javax.inject.{ Inject, Singleton }
 import scala.concurrent.Future
@@ -25,126 +25,139 @@ import scala.concurrent.Future
 class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
-  def getEmploymentDetails(nino: String, taxYear: Int) = Action.async { _ =>
+  def getEmploymentDetails(nino: String, taxYear: Int): Action[AnyContent] = Action.async { request =>
     val ninoUC = nino.toUpperCase
 
     if (ninoUC == "AA111111A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok("""|{
+              |  "individualsEmploymentDetails": [
+              |    {
+              |      "payeSchemeOperatorName": "Acme",
+              |      "payeSequenceNumber": 1234561,
+              |      "worksNumber": "ACME01",
+              |      "taxDistrictNumber": "123",
+              |      "payeNumber": "AA1111",
+              |      "directorIdentifier": true
+              |    }
+              |  ]
+              |}""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA000003D") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Jim",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok("""|{
+              |  "individualsEmploymentDetails": [
+              |    {
+              |      "payeSchemeOperatorName": "Jim",
+              |      "payeSequenceNumber": 1234561,
+              |      "worksNumber": "ACME01",
+              |      "taxDistrictNumber": "123",
+              |      "payeNumber": "AA1111",
+              |      "directorIdentifier": true
+              |    }
+              |  ]
+              |}""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA555553D") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Lee",
-              |    "sequenceNumber": 1234551,
-              |    "worksNumber": "ACME03",
-              |    "taxDistrictNumber": "013",
-              |    "payeNumber": "AA5454",
-              |    "director": true
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok("""|{
+              |  "individualsEmploymentDetails": [
+              |    {
+              |      "payeSchemeOperatorName": "Lee",
+              |      "payeSequenceNumber": 1234551,
+              |      "worksNumber": "ACME03",
+              |      "taxDistrictNumber": "013",
+              |      "payeNumber": "AA5454",
+              |      "directorIdentifier": true
+              |    }
+              |  ]
+              |}""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA222222A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  },
-              |  {
-              |    "employerName": "Smith Holdings",
-              |    "sequenceNumber": 2345678,
-              |    "worksNumber": "SMITH01",
-              |    "taxDistrictNumber": "789",
-              |    "payeNumber": "BB22222",
-              |    "director": false
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok("""|{
+              |  "individualsEmploymentDetails": [
+              |    {
+              |      "payeSchemeOperatorName": "Acme",
+              |      "payeSequenceNumber": 1234561,
+              |      "worksNumber": "ACME01",
+              |      "taxDistrictNumber": "123",
+              |      "payeNumber": "AA1111",
+              |      "directorIdentifier": true
+              |    },
+              |    {
+              |      "payeSchemeOperatorName": "Smith Holdings",
+              |      "payeSequenceNumber": 2345678,
+              |      "worksNumber": "SMITH01",
+              |      "taxDistrictNumber": "789",
+              |      "payeNumber": "BB22222",
+              |      "directorIdentifier": false
+              |    }
+              |  ]
+              |}""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA333333A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  },
-              |  {
-              |    "employerName": "Smith Holdings",
-              |    "sequenceNumber": 2345678,
-              |    "worksNumber": "SMITH01",
-              |    "taxDistrictNumber": "789",
-              |    "payeNumber": "BB22222",
-              |    "director": false
-              |  },
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 3456789,
-              |    "worksNumber": "ACME09",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": false
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok("""|{
+              |  "individualsEmploymentDetails": [
+              |    {
+              |      "payeSchemeOperatorName": "Acme",
+              |      "payeSequenceNumber": 1234561,
+              |      "worksNumber": "ACME01",
+              |      "taxDistrictNumber": "123",
+              |      "payeNumber": "AA1111",
+              |      "directorIdentifier": true
+              |    },
+              |    {
+              |      "payeSchemeOperatorName": "Smith Holdings",
+              |      "payeSequenceNumber": 2345678,
+              |      "worksNumber": "SMITH01",
+              |      "taxDistrictNumber": "789",
+              |      "payeNumber": "BB22222",
+              |      "directorIdentifier": false
+              |    },
+              |    {
+              |      "payeSchemeOperatorName": "Acme",
+              |      "payeSequenceNumber": 3456789,
+              |      "worksNumber": "ACME09",
+              |      "taxDistrictNumber": "123",
+              |      "payeNumber": "AA1111",
+              |      "directorIdentifier": false
+              |    }
+              |  ]
+              |}
+              |""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA444444A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "023",
-              |    "payeNumber": "AA4444",
-              |    "director": true
-              |  },
-              |  {
-              |    "employerName": "Smith Holdings",
-              |    "sequenceNumber": 2345678,
-              |    "worksNumber": "SMITH01",
-              |    "taxDistrictNumber": "009",
-              |    "payeNumber": "BB4444",
-              |    "director": false
-              |  },
-              |  {
-              |    "employerName": "Acme 2",
-              |    "sequenceNumber": 123456,
-              |    "worksNumber": "ACME09",
-              |    "taxDistrictNumber": "07",
-              |    "payeNumber": "AA5555",
-              |    "director": false
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok("""|{
+              |  "individualsEmploymentDetails": [
+              |    {
+              |      "payeSchemeOperatorName": "Acme",
+              |      "payeSequenceNumber": 1234561,
+              |      "worksNumber": "ACME01",
+              |      "taxDistrictNumber": "023",
+              |      "payeNumber": "AA4444",
+              |      "directorIdentifier": true
+              |    },
+              |    {
+              |      "payeSchemeOperatorName": "Smith Holdings",
+              |      "payeSequenceNumber": 2345678,
+              |      "worksNumber": "SMITH01",
+              |      "taxDistrictNumber": "009",
+              |      "payeNumber": "BB4444",
+              |      "directorIdentifier": false
+              |    },
+              |    {
+              |      "payeSchemeOperatorName": "Acme 2",Add commentMore actions
+              |      "payeSequenceNumber": 123456,
+              |      "worksNumber": "ACME09",
+              |      "taxDistrictNumber": "07",
+              |      "payeNumber": "AA5555",
+              |      "directorIdentifier": false
+              |    }
+              |  ]
+              |}""".stripMargin).as("application/json")
       )
     } else {
       Future.successful(

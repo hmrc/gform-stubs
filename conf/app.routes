@@ -29,3 +29,5 @@ GET        /companies-house-api-proxy/company/:companyNumber/officers   uk.gov.h
 GET        /sdes-encryption-public-key/current                          uk.gov.hmrc.gformstubs.controllers.SecureDataExchange.getPublicKey()
 
 POST       /taxud/vat/parcels/consumer-to-consumer/v1                   uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.postVatParcelsC2C()
+
+GET        /nps/nps-json-service/nps/v1/api/employment/employment-summary/:nino/taxYear/:taxYear     uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
