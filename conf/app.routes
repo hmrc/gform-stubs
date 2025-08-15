@@ -31,3 +31,7 @@ GET        /companies-house-api-proxy/company/:companyNumber/insolvency uk.gov.h
 GET        /sdes-encryption-public-key/current                          uk.gov.hmrc.gformstubs.controllers.SecureDataExchange.getPublicKey()
 
 POST       /taxud/vat/parcels/consumer-to-consumer/v1                   uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.postVatParcelsC2C()
+
+GET       /pega/prweb/api/application/v2/cases/:caseId/actions/:actionId uk.gov.hmrc.gformstubs.controllers.Pega.getCase(caseId: String, actionId: String)
+
+POST      /pega/prweb/api/application/v2/cases/:caseId/stages/next       uk.gov.hmrc.gformstubs.controllers.Pega.updateCase(caseId: String)
