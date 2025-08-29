@@ -41,6 +41,7 @@ class CompanyDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
             "company_name"          -> JsString("Acme Limited"),
             "company_number"        -> JsString("11111111"),
             "company_status"        -> JsString("active"),
+            "date_of_creation"      -> JsString("2020-02-01"),
             "company_status_detail" -> JsString(""),
             "registered_office_address" -> JsObject(
               Map(

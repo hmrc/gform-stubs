@@ -35,6 +35,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "company_name": "Acme Limited",
           "company_number": "$companyNumber",
           "company_status": "active",
+          "date_of_creation": "2020-02-01",
           "company_status_detail": "",
           "registered_office_address": {
             "address_line_1": "1 Main Street",
@@ -58,6 +59,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "company_name": "Acme Partners",
           "company_number": "$companyNumber",
           "company_status": "active",
+          "date_of_creation": "2014-03-12",
           "company_status_detail": "",
           "registered_office_address": {
             "address_line_1": "1 Canary Wharf",
@@ -82,6 +84,8 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "company_number": "$companyNumber",
           "company_status": "dissolved",
           "company_status_detail": "",
+          "date_of_cessation": "2025-08-14",
+          "date_of_creation": "2013-11-20",
           "registered_office_address": {
             "address_line_1": "1 Main Street",
             "address_line_2": "Office 234",
@@ -104,6 +108,8 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "company_name": "Acme Closed",
           "company_number": "$companyNumber",
           "company_status": "closed",
+          "date_of_cessation": "2023-04-14",
+          "date_of_creation": "2012-11-13",
           "company_status_detail": "",
           "registered_office_address": {
             "address_line_1": "1 Main Street",
@@ -127,6 +133,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "company_name": "Acme Removed",
           "company_number": "$companyNumber",
           "company_status": "removed",
+          "date_of_creation": "2002-10-24",
           "company_status_detail": "",
           "registered_office_address": {
             "address_line_1": "1 Main Street",
@@ -149,6 +156,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "can_file": false,
           "company_name": "Acme Insolvency - Four practitioners",
           "company_number": "$companyNumber",
+          "date_of_creation": "2013-11-20",
           "company_status": "insolvency-proceedings",
           "company_status_detail": "",
           "registered_office_address": {
@@ -172,6 +180,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "can_file": false,
           "company_name": "Acme Insolvency - One practitioner",
           "company_number": "$companyNumber",
+          "date_of_creation": "2013-09-20",
           "company_status": "insolvency-proceedings",
           "company_status_detail": "",
           "registered_office_address": {
@@ -195,6 +204,7 @@ class CompanyDetails @Inject() (controllerComponents: ControllerComponents)
           "can_file": false,
           "company_name": "Acme Insolvency - No Practitioners",
           "company_number": "$companyNumber",
+          "date_of_creation": "2017-05-11",
           "company_status": "insolvency-proceedings",
           "company_status_detail": "",
           "registered_office_address": {
