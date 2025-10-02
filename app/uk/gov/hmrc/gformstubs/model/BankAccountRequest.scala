@@ -24,6 +24,12 @@ object BankAccountRequest {
   implicit val format: OFormat[BankAccountRequest] = Json.format[BankAccountRequest]
 }
 
+case class NiRefundBankAccountRequest(refundClaimBankDetails: BankAccount)
+
+object NiRefundBankAccountRequest {
+  implicit val format: OFormat[NiRefundBankAccountRequest] = Json.format[NiRefundBankAccountRequest]
+}
+
 case class BankAccount(sortCode: String, accountNumber: String)
 
 object BankAccount {
