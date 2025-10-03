@@ -35,3 +35,7 @@ POST       /taxud/vat/parcels/consumer-to-consumer/v1                   uk.gov.h
 GET       /pega/prweb/api/application/v2/cases/:caseId/actions/:actionId uk.gov.hmrc.gformstubs.controllers.Pega.getCase(caseId: String, actionId: String)
 
 POST      /pega/prweb/api/application/v2/cases/:caseId/stages/next       uk.gov.hmrc.gformstubs.controllers.Pega.updateCase(caseId: String)
+
+GET       /ni/person/:nino/national-insurance/claim/refund/:refundClaimReference              uk.gov.hmrc.gformstubs.controllers.NiRefundClaim.validateNiClaimReference(nino: String, refundClaimReference: String)
+
+POST      /ni/person/:nino/national-insurance/claim/refund/:refundClaimReference/bank-details uk.gov.hmrc.gformstubs.controllers.NiRefundClaim.updateBankDetails(nino: String, refundClaimReference: String)
