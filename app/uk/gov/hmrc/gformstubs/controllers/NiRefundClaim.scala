@@ -32,7 +32,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         Ok("""|{
               |  "RefundDetails": {
               |    "refundType": "Excess",
-              |    "taxYear": "2025-04-06",
+              |    "taxYear": 2025,
               |    "class2ContributionWeeks": 0,
               |    "class3ContributionWeeks": 0
               |  }
@@ -44,7 +44,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         Ok("""|{
               |  "RefundDetails": {
               |    "refundType": "Excess",
-              |    "taxYear": "2025-04-06",
+              |    "taxYear": 2025,
               |    "class2ContributionWeeks": 0,
               |    "class3ContributionWeeks": 0,
               |    "weeksOfCredits": 10
@@ -57,7 +57,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         Ok("""|{
               |  "RefundDetails": {
               |    "refundType": "Excess",
-              |    "taxYear": "2025-04-06",
+              |    "taxYear": 2025,
               |    "class2ContributionWeeks": 10,
               |    "class3ContributionWeeks": 20,
               |    "weeksOfCredits": 30
@@ -70,7 +70,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         Ok("""|{
               |  "RefundDetails": {
               |    "refundType": "Excess",
-              |    "taxYear": "2025-04-06",
+              |    "taxYear": 2025,
               |    "class2ContributionWeeks": 11,
               |    "class3ContributionWeeks": 21
               |  }
@@ -82,7 +82,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         Ok("""|{
               |  "RefundDetails": {
               |    "refundType": "Erroneous",
-              |    "taxYear": "2025-04-06",
+              |    "taxYear": 2025,
               |    "class2ContributionWeeks": 12,
               |    "class3ContributionWeeks": 22
               |  }
