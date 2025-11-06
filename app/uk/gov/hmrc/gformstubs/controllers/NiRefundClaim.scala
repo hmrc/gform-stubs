@@ -106,10 +106,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         if (refundClaimReference == "11111111" && validateBankDetails(request.body)) {
           Future.successful(
             Ok(s"""|{
-                   |  "personOptimisticLockResponse": {
-                   |    "nationalInsuranceNumber": "$nino",
-                   |    "currentOptimisticLock": 86,
-                   |    "updatedOptimisticLock": 87
+                   |  "message": "Details Updated"
                    |  }
                    |}""".stripMargin)
               .as("application/json")
@@ -117,10 +114,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         } else if (refundClaimReference == "22222222") {
           Future.successful(
             Ok(s"""|{
-                   |  "personOptimisticLockResponse": {
-                   |    "nationalInsuranceNumber": "$nino",
-                   |    "currentOptimisticLock": 88,
-                   |    "updatedOptimisticLock": 89
+                   |  "message": "Details Updated"
                    |  }
                    |}""".stripMargin)
               .as("application/json")
@@ -128,10 +122,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         } else if (refundClaimReference == "33333333") {
           Future.successful(
             Ok(s"""|{
-                   |  "personOptimisticLockResponse": {
-                   |    "nationalInsuranceNumber": "$nino",
-                   |    "currentOptimisticLock": 90,
-                   |    "updatedOptimisticLock": 91
+                   |  "message": "Details Updated"
                    |  }
                    |}""".stripMargin)
               .as("application/json")
@@ -139,24 +130,14 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         } else if (refundClaimReference == "44444444") {
           Future.successful(
             Ok(s"""|{
-                   |  "personOptimisticLockResponse": {
-                   |    "nationalInsuranceNumber": "$nino",
-                   |    "currentOptimisticLock": 92,
-                   |    "updatedOptimisticLock": 93
+                   |  "message": "Details Updated"
                    |  }
                    |}""".stripMargin)
               .as("application/json")
           )
         } else if (refundClaimReference == "55555555") {
           Future.successful(
-            Ok(s"""|{
-                   |  "personOptimisticLockResponse": {
-                   |    "nationalInsuranceNumber": "$nino",
-                   |    "currentOptimisticLock": 94,
-                   |    "updatedOptimisticLock": 95
-                   |  }
-                   |}""".stripMargin)
-              .as("application/json")
+            NotFound(s"Resource not found for Nino: $nino and Claim Reference: $refundClaimReference")
           )
         } else {
           Future.successful(
