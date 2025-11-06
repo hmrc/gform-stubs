@@ -30,121 +30,504 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
 
     if (ninoUC == "AA111111A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "identifier": "$ninoUC",
+               |  "individualsEmploymentDetails": [
+               |    {
+               |      "payeSchemeOperatorName": "Acme",
+               |      "payeNumber": "123/AA1111",
+               |      "taxDistrictNumber": "123",
+               |      "employmentSequenceNumber": 1234561,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": true,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    }
+               |  ],
+               |  "moreDataCallbackURL": "/employment/employee/$ninoUC/employment-summary/tax-year/$taxYear?employmentStatus=1"
+               |}
+               |""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA000003D") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Jim",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "identifier": "$ninoUC",
+               |  "individualsEmploymentDetails": [
+               |    {
+               |      "payeSchemeOperatorName": "Jim",
+               |      "payeNumber": "123/AA1111",
+               |      "taxDistrictNumber": "123",
+               |      "employmentSequenceNumber": 1234561,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": true,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    }
+               |  ],
+               |  "moreDataCallbackURL": "/employment/employee/$ninoUC/employment-summary/tax-year/$taxYear?employmentStatus=1"
+               |}
+               |""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA555553D") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Lee",
-              |    "sequenceNumber": 1234551,
-              |    "worksNumber": "ACME03",
-              |    "taxDistrictNumber": "013",
-              |    "payeNumber": "AA5454",
-              |    "director": true
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "identifier": "$ninoUC",
+               |  "individualsEmploymentDetails": [
+               |    {
+               |      "payeSchemeOperatorName": "Lee",
+               |      "payeNumber": "013/AA5454",
+               |      "taxDistrictNumber": "013",
+               |      "employmentSequenceNumber": 1234551,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME03",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": true,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    }
+               |  ],
+               |  "moreDataCallbackURL": "/employment/employee/$ninoUC/employment-summary/tax-year/$taxYear?employmentStatus=1"
+               |}
+               |""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA222222A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  },
-              |  {
-              |    "employerName": "Smith Holdings",
-              |    "sequenceNumber": 2345678,
-              |    "worksNumber": "SMITH01",
-              |    "taxDistrictNumber": "789",
-              |    "payeNumber": "BB22222",
-              |    "director": false
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "identifier": "$ninoUC",
+               |  "individualsEmploymentDetails": [
+               |    {
+               |      "payeSchemeOperatorName": "Acme",
+               |      "payeNumber": "123/AA1111",
+               |      "taxDistrictNumber": "123",
+               |      "employmentSequenceNumber": 1234561,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": true,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    },
+               |    {
+               |      "payeSchemeOperatorName": "Smith Holdings",
+               |      "payeNumber": "789/BB22222",
+               |      "taxDistrictNumber": "789",
+               |      "employmentSequenceNumber": 2345678,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "SMITH01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": false,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    }
+               |  ],
+               |  "moreDataCallbackURL": "/employment/employee/$ninoUC/employment-summary/tax-year/$taxYear?employmentStatus=1"
+               |}
+               |""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA333333A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": true
-              |  },
-              |  {
-              |    "employerName": "Smith Holdings",
-              |    "sequenceNumber": 2345678,
-              |    "worksNumber": "SMITH01",
-              |    "taxDistrictNumber": "789",
-              |    "payeNumber": "BB22222",
-              |    "director": false
-              |  },
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 3456789,
-              |    "worksNumber": "ACME09",
-              |    "taxDistrictNumber": "123",
-              |    "payeNumber": "AA1111",
-              |    "director": false
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "identifier": "$ninoUC",
+               |  "individualsEmploymentDetails": [
+               |    {
+               |      "payeSchemeOperatorName": "Acme",
+               |      "payeNumber": "123/AA1111",
+               |      "taxDistrictNumber": "123",
+               |      "employmentSequenceNumber": 1234561,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": true,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    },
+               |    {
+               |      "payeSchemeOperatorName": "Smith Holdings",
+               |      "payeNumber": "789/BB22222",
+               |      "taxDistrictNumber": "789",
+               |      "employmentSequenceNumber": 2345678,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "SMITH01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": false,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    },
+               |    {
+               |      "payeSchemeOperatorName": "Acme",
+               |      "payeNumber": "123/AA1111",
+               |      "taxDistrictNumber": "123",
+               |      "employmentSequenceNumber": 2345678,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 3456789,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME09",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": false,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    }
+               |  ],
+               |  "moreDataCallbackURL": "/employment/employee/$ninoUC/employment-summary/tax-year/$taxYear?employmentStatus=1"
+               |}
+               |""".stripMargin).as("application/json")
       )
     } else if (ninoUC == "AA444444A") {
       Future.successful(
-        Ok("""|[
-              |  {
-              |    "employerName": "Acme",
-              |    "sequenceNumber": 1234561,
-              |    "worksNumber": "ACME01",
-              |    "taxDistrictNumber": "023",
-              |    "payeNumber": "AA4444",
-              |    "director": true
-              |  },
-              |  {
-              |    "employerName": "Smith Holdings",
-              |    "sequenceNumber": 2345678,
-              |    "worksNumber": "SMITH01",
-              |    "taxDistrictNumber": "009",
-              |    "payeNumber": "BB4444",
-              |    "director": false
-              |  },
-              |  {
-              |    "employerName": "Acme 2",
-              |    "sequenceNumber": 123456,
-              |    "worksNumber": "ACME09",
-              |    "taxDistrictNumber": "07",
-              |    "payeNumber": "AA5555",
-              |    "director": false
-              |  }
-              |]""".stripMargin).as("application/json")
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "identifier": "$ninoUC",
+               |  "individualsEmploymentDetails": [
+               |    {
+               |      "payeSchemeOperatorName": "Acme",
+               |      "payeNumber": "023/AA4444",
+               |      "taxDistrictNumber": "023",
+               |      "employmentSequenceNumber": 1234561,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": true,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    },
+               |    {
+               |      "payeSchemeOperatorName": "Smith Holdings",
+               |      "payeNumber": "009/BB4444",
+               |      "taxDistrictNumber": "009",
+               |      "employmentSequenceNumber": 2345678,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 235,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "SMITH01",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": false,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    },
+               |    {
+               |      "payeSchemeOperatorName": "Acme 2",
+               |      "payeNumber": "07/AA5555",
+               |      "taxDistrictNumber": "07",
+               |      "employmentSequenceNumber": 123456,
+               |      "payeSchemeType": "Matched Employer",
+               |      "employerNumber": 12345678,
+               |      "payeSequenceNumber": 3456789,
+               |      "employmentRecordType": "PRIMARY",
+               |      "employmentStatus": "Ceased",
+               |      "jobTitle": "IT Consultant",
+               |      "worksNumber": "ACME09",
+               |      "assignedTaxCode": "1257L",
+               |      "taxCodeOperation": "Cumulative",
+               |      "jobSeekersAllowance": true,
+               |      "activeOccupationalPension": true,
+               |      "directorIdentifier": false,
+               |      "employerManualCorrespondence": true,
+               |      "p161Identifier": true,
+               |      "ongoingStudentLoan": true,
+               |      "previousEmploymentSeqNumber": 235,
+               |      "previousEmploymentStatus": "Ceased",
+               |      "creationMediaType": "BACS",
+               |      "employmentRecordSourceType": "ECC",
+               |      "startDateSource": "ECC",
+               |      "startDate": "2000-01-02",
+               |      "cessationMediaType": "BACS",
+               |      "empCessationRecordSourceType": "ECC",
+               |      "endDateSource": "ECC",
+               |      "endDate": "2023-06-27",
+               |      "tisField": "00",
+               |      "startingTaxCode": "1257L",
+               |      "startTaxCodeOperation": "Cumulative",
+               |      "modifiedScheme": true,
+               |      "p46ExpatPresentCircumstance": "A",
+               |      "permanentOverrideType": "0T",
+               |      "payeDirection": true,
+               |      "offPayrollWorker": true
+               |    }
+               |  ],
+               |  "moreDataCallbackURL": "/employment/employee/$ninoUC/employment-summary/tax-year/$taxYear?employmentStatus=1"
+               |}
+               |""".stripMargin).as("application/json")
       )
     } else {
       Future.successful(
