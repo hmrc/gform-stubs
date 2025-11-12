@@ -36,6 +36,6 @@ POST      /pega/prweb/api/application/v2/cases/:caseId/stages/next       uk.gov.
 
 GET       /ni/person/:nino/national-insurance/claim/refund/:refundClaimReference  uk.gov.hmrc.gformstubs.controllers.NiRefundClaim.validateNiClaimReference(nino: String, refundClaimReference: String)
 
-PUT      /ni/contributions/:nino/claim/refund/:refundClaimReference/bank-details  uk.gov.hmrc.gformstubs.controllers.NiRefundClaim.updateBankDetails(nino: String, refundClaimReference: String)
+PUT       /ni/contributions/:nino/claim/refund/:refundClaimReference/bank-details  uk.gov.hmrc.gformstubs.controllers.NiRefundClaim.updateBankDetails(nino: String, refundClaimReference: String)
 
-GET       /ni/employment/employee/:nino/employment-summary/tax-year/:taxYear      uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
+GET       /paye/employment/employee/:nino/tax-year/:taxYear/employment-details    uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
