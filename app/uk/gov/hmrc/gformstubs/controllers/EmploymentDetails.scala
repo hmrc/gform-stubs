@@ -37,7 +37,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |  "individualsEmploymentDetails": [
                |    {
                |      "payeSchemeOperatorName": "Acme",
-               |      "payeNumber": "123/AA1111",
+               |      "employerReference": "123/AA1111",
                |      "employmentSequenceNumber": 1234561,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -86,7 +86,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |  "individualsEmploymentDetails": [
                |    {
                |      "payeSchemeOperatorName": "Jim",
-               |      "payeNumber": "123/AA1111",
+               |      "employerReference": "123/AA1111",
                |      "employmentSequenceNumber": 1234561,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -135,7 +135,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |  "individualsEmploymentDetails": [
                |    {
                |      "payeSchemeOperatorName": "Lee",
-               |      "payeNumber": "013/AA5454",
+               |      "employerReference": "013/AA5454",
                |      "employmentSequenceNumber": 1234551,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -184,7 +184,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |  "individualsEmploymentDetails": [
                |    {
                |      "payeSchemeOperatorName": "Acme",
-               |      "payeNumber": "123/AA1111",
+               |      "employerReference": "123/AA1111",
                |      "employmentSequenceNumber": 1234561,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -222,7 +222,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |    },
                |    {
                |      "payeSchemeOperatorName": "Smith Holdings",
-               |      "payeNumber": "789/BB22222",
+               |      "employerReference": "789/BB22222",
                |      "employmentSequenceNumber": 2345678,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -271,7 +271,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |  "individualsEmploymentDetails": [
                |    {
                |      "payeSchemeOperatorName": "Acme",
-               |      "payeNumber": "123/AA1111",
+               |      "employerReference": "123/AA1111",
                |      "employmentSequenceNumber": 1234561,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -309,7 +309,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |    },
                |    {
                |      "payeSchemeOperatorName": "Smith Holdings",
-               |      "payeNumber": "789/BB22222",
+               |      "employerReference": "789/BB22222",
                |      "employmentSequenceNumber": 2345678,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -347,7 +347,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |    },
                |    {
                |      "payeSchemeOperatorName": "Acme",
-               |      "payeNumber": "123/AA1111",
+               |      "employerReference": "123/AA1111",
                |      "employmentSequenceNumber": 2345678,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -396,7 +396,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |  "individualsEmploymentDetails": [
                |    {
                |      "payeSchemeOperatorName": "Acme",
-               |      "payeNumber": "023/AA4444",
+               |      "employerReference": "023/AA4444",
                |      "employmentSequenceNumber": 1234561,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -434,7 +434,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |    },
                |    {
                |      "payeSchemeOperatorName": "Smith Holdings",
-               |      "payeNumber": "009/BB4444",
+               |      "employerReference": "009/BB4444",
                |      "employmentSequenceNumber": 2345678,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
@@ -472,7 +472,7 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |    },
                |    {
                |      "payeSchemeOperatorName": "Acme 2",
-               |      "payeNumber": "07/AA5555",
+               |      "employerReference": "07/AA5555",
                |      "employmentSequenceNumber": 123456,
                |      "payeSchemeType": "Matched Employer",
                |      "employerNumber": 12345678,
