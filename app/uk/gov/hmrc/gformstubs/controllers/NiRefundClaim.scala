@@ -107,7 +107,6 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
-                   |  }
                    |}""".stripMargin)
               .as("application/json")
           )
@@ -115,7 +114,6 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
-                   |  }
                    |}""".stripMargin)
               .as("application/json")
           )
@@ -123,7 +121,6 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
-                   |  }
                    |}""".stripMargin)
               .as("application/json")
           )
@@ -131,7 +128,6 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
-                   |  }
                    |}""".stripMargin)
               .as("application/json")
           )
