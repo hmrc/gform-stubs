@@ -512,6 +512,86 @@ class EmploymentDetails @Inject() (controllerComponents: ControllerComponents)
                |}
                |""".stripMargin).as("application/json")
       )
+    } else if (ninoUC == "AA101010A") {
+      // No employments
+      Future.successful(
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "nationalInsuranceNumber": "$ninoUC",
+               |  "individualsEmploymentDetails": []
+               |}
+               |""".stripMargin).as("application/json")
+      )
+    } else if (ninoUC == "AA202020A") {
+      // Empty response
+      Future.successful(
+        Ok(s"""|
+               |{}
+               |""".stripMargin).as("application/json")
+      )
+    } else if (ninoUC == "AA303030A") {
+      // Missing employment details
+      Future.successful(
+        Ok(s"""|
+               |{
+               |  "taxYear": $taxYear,
+               |  "nationalInsuranceNumber": "$ninoUC",
+               |  "individualsEmploymentDetails": [
+               |    {
+               |      "payeSchemeOperatorName": "Acme",
+               |      "employerReference": "023/AA4444",
+               |      "employmentSequenceNumber": 1234561
+               |    }
+               |  ]
+               |}
+               |""".stripMargin).as("application/json")
+      )
+    } else if (ninoUC == "AA500500A") {
+      Future.successful(
+        InternalServerError("""
+                              |{
+                              |   "code": "INTERNAL_SERVER_ERROR",
+                              |   "reason": "The remote endpoint has indicated an internal server error"
+                              |}
+           """.stripMargin).as("application/json")
+      )
+    } else if (ninoUC == "AA400400A") {
+      Future.successful(
+        BadRequest("""
+                     |{
+                     |   "code": "BAD_REQUEST",
+                     |   "reason": "The remote endpoint has indicated a bad request"
+                     |}
+           """.stripMargin).as("application/json")
+      )
+    } else if (ninoUC == "AA403403A") {
+      Future.successful(
+        Forbidden("""
+                    |{
+                    |   "code": "FORBIDDEN",
+                    |   "reason": "The remote endpoint has indicated forbidden"
+                    |}
+           """.stripMargin).as("application/json")
+      )
+    } else if (ninoUC == "AA422422A") {
+      Future.successful(
+        UnprocessableEntity("""
+                              |{
+                              |   "code": "UNPROCESSABLE_ENTITY",
+                              |   "reason": "The remote endpoint has indicated Unprocessable Entity"
+                              |}
+           """.stripMargin).as("application/json")
+      )
+    } else if (ninoUC == "AA503503A") {
+      Future.successful(
+        ServiceUnavailable("""
+                             |{
+                             |   "code": "SERVICE_UNAVAILABLE",
+                             |   "reason": "The remote endpoint has indicated Service unavailable"
+                             |}
+           """.stripMargin).as("application/json")
+      )
     } else {
       Future.successful(
         NotFound("""
