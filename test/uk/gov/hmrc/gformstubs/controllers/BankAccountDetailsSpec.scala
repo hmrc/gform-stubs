@@ -68,9 +68,9 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
             "sortCodeBankName"                         -> JsString(""),
             "nameMatches"                              -> JsString("no"),
             "accountName"                              -> JsString(""),
-            "sortCodeIsPresentOnEISCD"                 -> JsString(""),
-            "sortCodeSupportsDirectDebit"              -> JsString(""),
-            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("no"),
+            "sortCodeSupportsDirectDebit"              -> JsString("no"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no"),
             "iban"                                     -> JsString("")
           )
         )
@@ -117,9 +117,9 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
             "sortCodeBankName"                         -> JsString(""),
             "nameMatches"                              -> JsString("no"),
             "accountName"                              -> JsString(""),
-            "sortCodeIsPresentOnEISCD"                 -> JsString(""),
-            "sortCodeSupportsDirectDebit"              -> JsString(""),
-            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("no"),
+            "sortCodeSupportsDirectDebit"              -> JsString("no"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no"),
             "iban"                                     -> JsString("")
           )
         )
@@ -144,8 +144,8 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
             "nameMatches"                              -> JsString("indeterminate"),
             "accountName"                              -> JsString(""),
             "sortCodeIsPresentOnEISCD"                 -> JsString("yes"),
-            "sortCodeSupportsDirectDebit"              -> JsString(""),
-            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "sortCodeSupportsDirectDebit"              -> JsString("no"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no"),
             "iban"                                     -> JsString("")
           )
         )
@@ -166,9 +166,9 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
             "sortCodeBankName"                         -> JsString(""),
             "nameMatches"                              -> JsString("no"),
             "accountName"                              -> JsString(""),
-            "sortCodeIsPresentOnEISCD"                 -> JsString(""),
-            "sortCodeSupportsDirectDebit"              -> JsString(""),
-            "sortCodeSupportsDirectCredit"             -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("no"),
+            "sortCodeSupportsDirectDebit"              -> JsString("no"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no"),
             "iban"                                     -> JsString("")
           )
         )
