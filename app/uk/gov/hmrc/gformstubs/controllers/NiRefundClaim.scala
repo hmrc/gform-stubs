@@ -27,7 +27,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
   def validateNiClaimReference(nino: String, refundClaimReference: String) = Action.async { _ =>
-    if (refundClaimReference == "11111111") {
+    if (refundClaimReference == "1111111111") {
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
@@ -39,7 +39,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
               |}""".stripMargin)
           .as("application/json")
       )
-    } else if (refundClaimReference == "22222222") {
+    } else if (refundClaimReference == "2222222222") {
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
@@ -52,7 +52,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
               |}""".stripMargin)
           .as("application/json")
       )
-    } else if (refundClaimReference == "33333333") {
+    } else if (refundClaimReference == "3333333333") {
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
@@ -65,7 +65,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
               |}""".stripMargin)
           .as("application/json")
       )
-    } else if (refundClaimReference == "44444444") {
+    } else if (refundClaimReference == "4444444444") {
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
@@ -77,7 +77,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
               |}""".stripMargin)
           .as("application/json")
       )
-    } else if (refundClaimReference == "55555555") {
+    } else if (refundClaimReference == "5555555555") {
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
@@ -103,35 +103,35 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
           NotFound("Bank account details not found")
         )
       } else {
-        if (refundClaimReference == "11111111" && validateBankDetails(request.body)) {
+        if (refundClaimReference == "1111111111" && validateBankDetails(request.body)) {
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
                    |}""".stripMargin)
               .as("application/json")
           )
-        } else if (refundClaimReference == "22222222") {
+        } else if (refundClaimReference == "2222222222") {
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
                    |}""".stripMargin)
               .as("application/json")
           )
-        } else if (refundClaimReference == "33333333") {
+        } else if (refundClaimReference == "3333333333") {
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
                    |}""".stripMargin)
               .as("application/json")
           )
-        } else if (refundClaimReference == "44444444") {
+        } else if (refundClaimReference == "4444444444") {
           Future.successful(
             Ok(s"""|{
                    |  "message": "Details Updated"
                    |}""".stripMargin)
               .as("application/json")
           )
-        } else if (refundClaimReference == "55555555") {
+        } else if (refundClaimReference == "5555555555") {
           Future.successful(
             NotFound(s"Resource not found for Nino: $nino and Claim Reference: $refundClaimReference")
           )
