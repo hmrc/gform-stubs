@@ -19,6 +19,8 @@ package uk.gov.hmrc.gformstubs.controllers
 import play.api.mvc.{ AbstractController, ControllerComponents }
 import uk.gov.hmrc.gformstubs.model.NiRefundBankAccountRequest
 
+import java.time.LocalDate
+import java.time.Month.APRIL
 import javax.inject.{ Inject, Singleton }
 import scala.concurrent.Future
 
@@ -27,56 +29,59 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
   def validateNiClaimReference(nino: String, refundClaimReference: String) = Action.async { _ =>
+    val now = LocalDate.now()
+    val thisTaxYearThreshold = LocalDate.of(now.getYear, APRIL, 6)
+    val mostRecentCompletedTaxYear = if (now.isBefore(thisTaxYearThreshold)) now.getYear - 2 else now.getYear - 1
     if (refundClaimReference == "1111111111") {
       Future.successful(
-        Ok("""|{
-              |  "RefundDetails": {
-              |    "refundType": "EXCESS",
-              |    "taxYear": 2025,
-              |    "class2ContributionWeeks": 0,
-              |    "class3ContributionWeeks": 0,
-              |    "weeksOfCredits": 0
-              |  }
-              |}""".stripMargin)
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": $mostRecentCompletedTaxYear,
+               |    "class2ContributionWeeks": 0,
+               |    "class3ContributionWeeks": 0,
+               |    "weeksOfCredits": 0
+               |  }
+               |}""".stripMargin)
           .as("application/json")
       )
     } else if (refundClaimReference == "2222222222") {
       Future.successful(
-        Ok("""|{
-              |  "RefundDetails": {
-              |    "refundType": "EXCESS",
-              |    "taxYear": 2025,
-              |    "class2ContributionWeeks": 0,
-              |    "class3ContributionWeeks": 0,
-              |    "weeksOfCredits": 10
-              |  }
-              |}""".stripMargin)
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": $mostRecentCompletedTaxYear,
+               |    "class2ContributionWeeks": 0,
+               |    "class3ContributionWeeks": 0,
+               |    "weeksOfCredits": 10
+               |  }
+               |}""".stripMargin)
           .as("application/json")
       )
     } else if (refundClaimReference == "3333333333") {
       Future.successful(
-        Ok("""|{
-              |  "RefundDetails": {
-              |    "refundType": "EXCESS",
-              |    "taxYear": 2025,
-              |    "class2ContributionWeeks": 10,
-              |    "class3ContributionWeeks": 20,
-              |    "weeksOfCredits": 30
-              |  }
-              |}""".stripMargin)
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": ${mostRecentCompletedTaxYear - 1},
+               |    "class2ContributionWeeks": 10,
+               |    "class3ContributionWeeks": 20,
+               |    "weeksOfCredits": 30
+               |  }
+               |}""".stripMargin)
           .as("application/json")
       )
     } else if (refundClaimReference == "4444444444") {
       Future.successful(
-        Ok("""|{
-              |  "RefundDetails": {
-              |    "refundType": "EXCESS",
-              |    "taxYear": 2025,
-              |    "class2ContributionWeeks": 11,
-              |    "class3ContributionWeeks": 21,
-              |    "weeksOfCredits": 0
-              |  }
-              |}""".stripMargin)
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": ${mostRecentCompletedTaxYear - 1},
+               |    "class2ContributionWeeks": 11,
+               |    "class3ContributionWeeks": 21,
+               |    "weeksOfCredits": 0
+               |  }
+               |}""".stripMargin)
           .as("application/json")
       )
     } else if (refundClaimReference == "5555555555") {
@@ -86,6 +91,61 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
               |    "refundType": "ERRONEOUS"
               |  }
               |}""".stripMargin)
+          .as("application/json")
+      )
+    } else if (refundClaimReference == "6666666666") {
+      Future.successful(
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": ${mostRecentCompletedTaxYear - 2},
+               |    "class2ContributionWeeks": 10,
+               |    "class3ContributionWeeks": 0,
+               |    "weeksOfCredits": 10
+               |  }
+               |}""".stripMargin)
+          .as("application/json")
+      )
+
+    } else if (refundClaimReference == "7777777777") {
+      Future.successful(
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": ${mostRecentCompletedTaxYear - 2},
+               |    "class2ContributionWeeks": 0,
+               |    "class3ContributionWeeks": 10,
+               |    "weeksOfCredits": 10
+               |  }
+               |}""".stripMargin)
+          .as("application/json")
+      )
+
+    } else if (refundClaimReference == "8888888888") {
+      Future.successful(
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": ${mostRecentCompletedTaxYear - 3},
+               |    "class2ContributionWeeks": 10,
+               |    "class3ContributionWeeks": 0,
+               |    "weeksOfCredits": 0
+               |  }
+               |}""".stripMargin)
+          .as("application/json")
+      )
+
+    } else if (refundClaimReference == "9999999999") {
+      Future.successful(
+        Ok(s"""|{
+               |  "RefundDetails": {
+               |    "refundType": "EXCESS",
+               |    "taxYear": ${mostRecentCompletedTaxYear - 3},
+               |    "class2ContributionWeeks": 0,
+               |    "class3ContributionWeeks": 10,
+               |    "weeksOfCredits": 0
+               |  }
+               |}""".stripMargin)
           .as("application/json")
       )
     } else {
