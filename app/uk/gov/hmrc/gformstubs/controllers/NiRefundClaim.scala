@@ -31,10 +31,11 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
-              |    "refundType": "Excess",
+              |    "refundType": "EXCESS",
               |    "taxYear": 2025,
               |    "class2ContributionWeeks": 0,
-              |    "class3ContributionWeeks": 0
+              |    "class3ContributionWeeks": 0,
+              |    "weeksOfCredits": 0
               |  }
               |}""".stripMargin)
           .as("application/json")
@@ -43,7 +44,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
-              |    "refundType": "Excess",
+              |    "refundType": "EXCESS",
               |    "taxYear": 2025,
               |    "class2ContributionWeeks": 0,
               |    "class3ContributionWeeks": 0,
@@ -56,7 +57,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
-              |    "refundType": "Excess",
+              |    "refundType": "EXCESS",
               |    "taxYear": 2025,
               |    "class2ContributionWeeks": 10,
               |    "class3ContributionWeeks": 20,
@@ -69,10 +70,11 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
-              |    "refundType": "Excess",
+              |    "refundType": "EXCESS",
               |    "taxYear": 2025,
               |    "class2ContributionWeeks": 11,
-              |    "class3ContributionWeeks": 21
+              |    "class3ContributionWeeks": 21,
+              |    "weeksOfCredits": 0
               |  }
               |}""".stripMargin)
           .as("application/json")
@@ -81,10 +83,7 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
       Future.successful(
         Ok("""|{
               |  "RefundDetails": {
-              |    "refundType": "Erroneous",
-              |    "taxYear": 2025,
-              |    "class2ContributionWeeks": 12,
-              |    "class3ContributionWeeks": 22
+              |    "refundType": "ERRONEOUS"
               |  }
               |}""".stripMargin)
           .as("application/json")
