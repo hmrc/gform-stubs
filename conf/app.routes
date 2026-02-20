@@ -39,3 +39,5 @@ GET       /ni/person/:nino/national-insurance/claim/refund/:refundClaimReference
 PUT       /ni/contributions/:nino/claim/refund/:refundClaimReference/bank-details  uk.gov.hmrc.gformstubs.controllers.NiRefundClaim.updateBankDetails(nino: String, refundClaimReference: String)
 
 GET       /paye/employment/employee/:nino/tax-year/:taxYear/employment-details    uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
+
+GET       /api/CFSSuite/v1/CaseDetails/:caseId                           uk.gov.hmrc.gformstubs.controllers.CaseflowGetDetails.getCaseDetails(caseId: String)
