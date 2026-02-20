@@ -25,19 +25,26 @@ class CaseflowGetDetails @Inject() (cc: ControllerComponents) extends AbstractCo
   //https://admin.tax.service.gov.uk/integration-hub/apis/details/61cffebd-1f98-4424-b048-f974e77a64f1
   def getCaseDetails(caseId: String): Action[AnyContent] = Action { _ =>
     val response = caseId.toUpperCase match {
-      case "CFS-10404" => Ok("""{
-                               |  "caseStatus": "Open",
-                               |  "oudnStatus": "oudn Exists",
-                               |  "resolvedTimestamp": "20260117T201550.325 GMT",
+      case "CFS-10404"  => Ok("""{
                                |  "pyHTTPResponseCode": 1
-                               |}""".stripMargin) //"pyHTTPResponseCode": 1 - means that case id does not exist
-      case "CFS-10200" => Ok("""{
+                               |}""".stripMargin)
+      case "CFS-104042" => Ok("""{
+                                |  "pyHTTPResponseCode": 1
+                                |}""".stripMargin)
+      case "CFS-104043" => Ok("""{
+                                |  "pyHTTPResponseCode": 1
+                                |}""".stripMargin)
+      case "CFS-10200"  => Ok("""{
                                |  "caseStatus": "Open",
                                |  "oudnStatus": "oudn Exists",
-                               |  "resolvedTimestamp": "20260117T201550.325 GMT",
-                               |  "pyHTTPResponseCode": 200
+                               |  "resolvedTimestamp": "20260117T201550.325 GMT"
                                |}""".stripMargin)
-      case "CFS-10400" => BadRequest("""{
+      case "CFS-10999"  => Ok("""{
+                               |  "caseStatus": "Unknown",
+                               |  "oudnStatus": "oudn Exists",
+                               |  "resolvedTimestamp": "20260117T201550.325 GMT"
+                               |}""".stripMargin)
+      case "CFS-10400"  => BadRequest("""{
                                        |  "origin": "HIP",
                                        |  "response": [
                                        |    {
@@ -46,7 +53,7 @@ class CaseflowGetDetails @Inject() (cc: ControllerComponents) extends AbstractCo
                                        |    }
                                        |  ]
                                        |}""".stripMargin)
-      case "CFS-10500" => InternalServerError("""{
+      case "CFS-10500"  => InternalServerError("""{
                                                 |  "origin": "HIP",
                                                 |  "response": [
                                                 |    {
@@ -55,7 +62,7 @@ class CaseflowGetDetails @Inject() (cc: ControllerComponents) extends AbstractCo
                                                 |    }
                                                 |  ]
                                                 |}""".stripMargin)
-      case "CFS-10503" => ServiceUnavailable("""{
+      case "CFS-10503"  => ServiceUnavailable("""{
                                                |  "origin": "HIP",
                                                |  "response": [
                                                |    {
@@ -64,11 +71,10 @@ class CaseflowGetDetails @Inject() (cc: ControllerComponents) extends AbstractCo
                                                |    }
                                                |  ]
                                                |}""".stripMargin)
-      case _           => Ok("""{
+      case _            => Ok("""{
                      |  "caseStatus": "Open",
                      |  "oudnStatus": "oudn Exists",
-                     |  "resolvedTimestamp": "20260117T201550.325 GMT",
-                     |  "pyHTTPResponseCode": 200
+                     |  "resolvedTimestamp": "20260117T201550.325 GMT"
                      |}""".stripMargin)
     }
 
