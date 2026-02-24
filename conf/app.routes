@@ -40,4 +40,4 @@ PUT       /ni/contributions/:nino/claim/refund/:refundClaimReference/bank-detail
 
 GET       /paye/employment/employee/:nino/tax-year/:taxYear/employment-details    uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
 
-GET       /api/CFSSuite/v1/CaseDetails/:caseId                           uk.gov.hmrc.gformstubs.controllers.CaseflowGetDetails.getCaseDetails(caseId: String)
+GET       /compliance/civil-investigation-and-avoidance/api/CFSSuite/v1/CaseDetails/:caseId                           uk.gov.hmrc.gformstubs.controllers.CaseflowGetDetails.getCaseDetails(caseId: String)
