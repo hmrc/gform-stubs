@@ -34,6 +34,7 @@ class CaseflowGetDetails @Inject() (cc: ControllerComponents) extends AbstractCo
       case "CFS-104043" => Ok("""{
                                 |  "pyHTTPResponseCode": 1
                                 |}""".stripMargin)
+      case "CFS-404"    => NotFound("") //Wrong API URL used scenario
       case "CFS-10200"  => Ok("""{
                                |  "caseStatus": "Open",
                                |  "oudnStatus": "oudn Exists",
