@@ -72,7 +72,11 @@ class CaseflowGetDetails @Inject() (cc: ControllerComponents) extends AbstractCo
                                                |    }
                                                |  ]
                                                |}""".stripMargin)
-      case _            => Ok("""{
+      case x if !x.startsWith("CFS-") =>
+        BadRequest(
+          """{"origin":"HIP","response":{"failures":[{"type":"path.caseId","reason":"The request parameter path.caseId failed validation."}]}}"""
+        )
+      case _ => Ok("""{
                      |  "caseStatus": "Open",
                      |  "oudnStatus": "oudn Exists",
                      |  "resolvedTimestamp": "20260117T201550.325 GMT"
