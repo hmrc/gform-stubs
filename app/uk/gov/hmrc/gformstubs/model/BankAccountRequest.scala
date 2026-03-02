@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.gformstubs.model
 
-import play.api.libs.json.{ Json, OFormat }
+import play.api.libs.json.{ Json, OFormat, OWrites, Reads, __ }
 
 case class BankAccountRequest(account: BankAccount)
 
@@ -27,7 +27,16 @@ object BankAccountRequest {
 case class NiRefundBankAccountRequest(refundClaimBankDetails: BankAccount)
 
 object NiRefundBankAccountRequest {
-  implicit val format: OFormat[NiRefundBankAccountRequest] = Json.format[NiRefundBankAccountRequest]
+  private val upperCaseKey: String = "RefundClaimBankDetails"
+
+  implicit val reads: Reads[NiRefundBankAccountRequest] =
+    (__ \ upperCaseKey).read[BankAccount].map(NiRefundBankAccountRequest.apply)
+
+  implicit val writes: OWrites[NiRefundBankAccountRequest] = OWrites { req =>
+    Json.obj(upperCaseKey -> Json.toJson(req.refundClaimBankDetails))
+  }
+
+  implicit val format: OFormat[NiRefundBankAccountRequest] = OFormat(reads, writes)
 }
 
 case class BankAccount(sortCode: String, accountNumber: String)

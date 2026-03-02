@@ -20,7 +20,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.http.Status
-import play.api.libs.json.{ JsArray, JsBoolean, JsObject, JsString, JsValue, Json }
+import play.api.libs.json.{ JsBoolean, JsObject, JsString, JsValue }
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
