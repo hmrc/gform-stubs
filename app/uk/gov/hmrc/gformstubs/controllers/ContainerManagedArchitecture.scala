@@ -27,7 +27,7 @@ import scala.concurrent.Future
 class ContainerManagedArchitecture @Inject() (controllerComponents: ControllerComponents)
     extends AbstractController(controllerComponents) {
 
-  def postVatParcelsC2C() = Action.async { implicit request =>
+  def postVatParcelsC2C() = Action.async { _ =>
     val instant: String =
       ZonedDateTime.ofInstant(Instant.now(), ZoneOffset.UTC).truncatedTo(ChronoUnit.SECONDS).toString
 
