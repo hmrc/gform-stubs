@@ -163,33 +163,13 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
         )
       } else {
         if (refundClaimReference == "1111111111" && validateBankDetails(request.body)) {
-          Future.successful(
-            Ok(s"""|{
-                   |  "message": "Details Updated"
-                   |}""".stripMargin)
-              .as("application/json")
-          )
+          Future.successful(NoContent)
         } else if (refundClaimReference == "2222222222") {
-          Future.successful(
-            Ok(s"""|{
-                   |  "message": "Details Updated"
-                   |}""".stripMargin)
-              .as("application/json")
-          )
+          Future.successful(NoContent)
         } else if (refundClaimReference == "3333333333") {
-          Future.successful(
-            Ok(s"""|{
-                   |  "message": "Details Updated"
-                   |}""".stripMargin)
-              .as("application/json")
-          )
+          Future.successful(NoContent)
         } else if (refundClaimReference == "4444444444") {
-          Future.successful(
-            Ok(s"""|{
-                   |  "message": "Details Updated"
-                   |}""".stripMargin)
-              .as("application/json")
-          )
+          Future.successful(NoContent)
         } else if (refundClaimReference == "5555555555") {
           Future.successful(
             NotFound(s"Resource not found for Nino: $nino and Claim Reference: $refundClaimReference")
