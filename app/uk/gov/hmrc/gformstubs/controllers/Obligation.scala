@@ -64,37 +64,37 @@ class Obligation @Inject() (controllerComponents: ControllerComponents)
                    |            "obligationDetails": [
                    |                {
                    |                    "status": "O",
-                   |                    "inboundCorrespondenceFromDate": "2022-04-01",
-                   |                    "inboundCorrespondenceToDate": "2022-04-30",
-                   |                    "inboundCorrespondenceDueDate": "2022-05-15",
+                   |                    "inboundCorrespondenceFromDate": "2026-04-01",
+                   |                    "inboundCorrespondenceToDate": "2026-04-30",
+                   |                    "inboundCorrespondenceDueDate": "2026-05-15",
                    |                    "periodKey": "17B1"
                    |                },
                    |                {
                    |                    "status": "O",
-                   |                    "inboundCorrespondenceFromDate": "2022-03-01",
-                   |                    "inboundCorrespondenceToDate": "2022-03-31",
-                   |                    "inboundCorrespondenceDueDate": "2022-04-15",
+                   |                    "inboundCorrespondenceFromDate": "2026-03-01",
+                   |                    "inboundCorrespondenceToDate": "2026-03-31",
+                   |                    "inboundCorrespondenceDueDate": "2026-04-15",
                    |                    "periodKey": "17B2"
                    |                },
                    |                {
                    |                    "status": "O",
-                   |                    "inboundCorrespondenceFromDate": "2021-03-01",
-                   |                    "inboundCorrespondenceToDate": "2021-03-31",
-                   |                    "inboundCorrespondenceDueDate": "2021-04-15",
+                   |                    "inboundCorrespondenceFromDate": "2025-03-01",
+                   |                    "inboundCorrespondenceToDate": "2025-03-31",
+                   |                    "inboundCorrespondenceDueDate": "2025-04-15",
                    |                    "periodKey": "17B3"
                    |                },
                    |                {
                    |                    "status": "O",
-                   |                    "inboundCorrespondenceFromDate": "2019-12-01",
-                   |                    "inboundCorrespondenceToDate": "2019-12-31",
-                   |                    "inboundCorrespondenceDueDate": "2020-01-15",
+                   |                    "inboundCorrespondenceFromDate": "2024-12-01",
+                   |                    "inboundCorrespondenceToDate": "2024-12-31",
+                   |                    "inboundCorrespondenceDueDate": "2024-01-15",
                    |                    "periodKey": "17B4"
                    |                },
                    |                {
                    |                    "status": "O",
-                   |                    "inboundCorrespondenceFromDate": "2018-04-01",
-                   |                    "inboundCorrespondenceToDate": "2019-03-31",
-                   |                    "inboundCorrespondenceDueDate": "2019-04-15",
+                   |                    "inboundCorrespondenceFromDate": "2023-04-01",
+                   |                    "inboundCorrespondenceToDate": "2023-03-31",
+                   |                    "inboundCorrespondenceDueDate": "2023-04-15",
                    |                    "periodKey": "17B5"
                    |                }
                    |            ]
