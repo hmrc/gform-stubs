@@ -64,7 +64,7 @@ class Obligation @Inject() (controllerComponents: ControllerComponents)
                    |            "obligationDetails": [
                    |                {
                    |                    "status": "O",
-                   |                    "inboundCorrespondenceFromDate": "202604-01",
+                   |                    "inboundCorrespondenceFromDate": "2026-04-01",
                    |                    "inboundCorrespondenceToDate": "2026-04-30",
                    |                    "inboundCorrespondenceDueDate": "2026-05-15",
                    |                    "periodKey": "17B1"
