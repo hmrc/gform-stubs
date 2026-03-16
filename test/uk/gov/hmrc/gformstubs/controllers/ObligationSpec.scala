@@ -46,18 +46,18 @@ class ObligationSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite 
                         JsObject(
                           Map(
                             "status"                        -> JsString("O"),
-                            "inboundCorrespondenceFromDate" -> JsString("2022-04-01"),
-                            "inboundCorrespondenceToDate"   -> JsString("2022-04-30"),
-                            "inboundCorrespondenceDueDate"  -> JsString("2022-05-15"),
+                            "inboundCorrespondenceFromDate" -> JsString("2026-04-01"),
+                            "inboundCorrespondenceToDate"   -> JsString("2026-04-30"),
+                            "inboundCorrespondenceDueDate"  -> JsString("2026-05-15"),
                             "periodKey"                     -> JsString("17B1")
                           )
                         ),
                         JsObject(
                           Map(
                             "status"                        -> JsString("O"),
-                            "inboundCorrespondenceFromDate" -> JsString("2022-03-01"),
-                            "inboundCorrespondenceToDate"   -> JsString("2022-03-31"),
-                            "inboundCorrespondenceDueDate"  -> JsString("2022-04-15"),
+                            "inboundCorrespondenceFromDate" -> JsString("2026-03-01"),
+                            "inboundCorrespondenceToDate"   -> JsString("2026-03-31"),
+                            "inboundCorrespondenceDueDate"  -> JsString("2026-04-15"),
                             "periodKey"                     -> JsString("17B2")
                           )
                         ),
