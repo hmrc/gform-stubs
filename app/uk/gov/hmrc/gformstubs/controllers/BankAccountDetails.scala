@@ -35,10 +35,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "yes",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Skipton Building Society",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Skipton Building Society"),
+      iban = None
     ),
     BankAccount("206705", "86473611") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -47,10 +47,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "yes",
-      sortCodeBankName = "Nationwide",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("yes"),
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
     ),
     BankAccount("206705", "86563611") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -59,10 +59,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "yes",
-      sortCodeSupportsDirectCredit = "yes",
-      sortCodeBankName = "Nationwide",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("yes"),
+      sortCodeSupportsDirectCredit = Some("yes"),
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
     ),
     BankAccount("206705", "76523611") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -71,10 +71,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "Acme Limited",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Nationwide",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
     ),
     BankAccount("206705", "11115555") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -83,10 +83,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "11116666") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -95,10 +95,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "11117777") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -107,10 +107,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Barclays",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Barclays"),
+      iban = None
     ),
     BankAccount("207106", "44311677") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -119,10 +119,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "11118888") -> AccountDetails(
       accountNumberIsWellFormatted = "no",
@@ -131,10 +131,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Barclays",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Barclays"),
+      iban = None
     ),
     BankAccount("206704", "11119999") -> AccountDetails(
       accountNumberIsWellFormatted = "indeterminate",
@@ -143,10 +143,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "44444444") -> AccountDetails(
       accountNumberIsWellFormatted = "new",
@@ -155,10 +155,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "different",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     )
   )
   // pair of (sortCode, accountNumber)
@@ -170,10 +170,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "BARCLAYS BANK UK PLC",
-      iban = "GB21BARC20670544333611"
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("BARCLAYS BANK UK PLC"),
+      iban = Some("GB21BARC20670544333611")
     ),
     BankAccount("206705", "44311611") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -182,10 +182,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "yes",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "BARCLAYS BANK UK PLC",
-      iban = "GB21BARC20670544311611"
+      sortCodeSupportsDirectDebit = Some("yes"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("BARCLAYS BANK UK PLC"),
+      iban = Some("GB21BARC20670544311611")
     ),
     BankAccount("609593", "91661500") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -194,10 +194,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "yes",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "yes",
-      sortCodeSupportsDirectCredit = "yes",
-      sortCodeBankName = "Skipton Building Society",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("yes"),
+      sortCodeSupportsDirectCredit = Some("yes"),
+      sortCodeBankName = Some("Skipton Building Society"),
+      iban = None
     ),
     BankAccount("206705", "44344611") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -206,10 +206,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "yes",
-      sortCodeBankName = "Nationwide",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("yes"),
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
     ),
     BankAccount("206705", "44355611") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -218,10 +218,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "John Smith",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "yes",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Nationwide",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("yes"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
     ),
     BankAccount("206705", "11112222") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -230,10 +230,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "11113333") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -242,10 +242,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "11114444") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -254,10 +254,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Barclays",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Barclays"),
+      iban = None
     ),
     BankAccount("207106", "44311677") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -266,10 +266,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "11116666") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -278,10 +278,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "11118888") -> AccountDetails(
       accountNumberIsWellFormatted = "no",
@@ -290,10 +290,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Barclays",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Barclays"),
+      iban = None
     ),
     BankAccount("206704", "11119999") -> AccountDetails(
       accountNumberIsWellFormatted = "indeterminate",
@@ -302,10 +302,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "inapplicable",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "44444444") -> AccountDetails(
       accountNumberIsWellFormatted = "new",
@@ -314,10 +314,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "different",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     )
   )
 
@@ -329,10 +329,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "yes",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Skipton Building Society",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Skipton Building Society"),
+      iban = None
     ),
     BankAccount("206705", "11113333") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -341,10 +341,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Nationwide",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
     ),
     BankAccount("206705", "11114444") -> AccountDetails(
       accountNumberIsWellFormatted = "no",
@@ -353,10 +353,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "Nationwide",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
     ),
     BankAccount("206709", "11115555") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
@@ -365,10 +365,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206709", "11116666") -> AccountDetails(
       accountNumberIsWellFormatted = "no",
@@ -377,10 +377,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = None,
+      sortCodeSupportsDirectCredit = None,
+      sortCodeBankName = None,
+      iban = None
     ),
     BankAccount("206705", "44444444") -> AccountDetails(
       accountNumberIsWellFormatted = "new",
@@ -389,10 +389,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
       accountName = "",
       nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "no",
-      sortCodeSupportsDirectDebit = "no",
-      sortCodeSupportsDirectCredit = "no",
-      sortCodeBankName = "",
-      iban = ""
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = None,
+      iban = None
     )
   )
 
@@ -411,10 +411,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
             accountName = "",
             nonStandardAccountDetailsRequiredForBacs = "no",
             sortCodeIsPresentOnEISCD = "no",
-            sortCodeSupportsDirectDebit = "no",
-            sortCodeSupportsDirectCredit = "no",
-            sortCodeBankName = "",
-            iban = ""
+            sortCodeSupportsDirectDebit = None,
+            sortCodeSupportsDirectCredit = None,
+            sortCodeBankName = None,
+            iban = None
           )
         Ok(Json.toJson(unknownAccountDetails))
     }
@@ -434,10 +434,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
           accountName = "",
           nonStandardAccountDetailsRequiredForBacs = "no",
           sortCodeIsPresentOnEISCD = "no",
-          sortCodeSupportsDirectDebit = "no",
-          sortCodeSupportsDirectCredit = "no",
-          sortCodeBankName = "",
-          iban = ""
+          sortCodeSupportsDirectDebit = None,
+          sortCodeSupportsDirectCredit = None,
+          sortCodeBankName = None,
+          iban = None
         )
         Ok(Json.toJson(unknownAccountDetails))
     }
@@ -457,10 +457,10 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
           accountName = "",
           nonStandardAccountDetailsRequiredForBacs = "no",
           sortCodeIsPresentOnEISCD = "no",
-          sortCodeSupportsDirectDebit = "no",
-          sortCodeSupportsDirectCredit = "no",
-          sortCodeBankName = "",
-          iban = ""
+          sortCodeSupportsDirectDebit = None,
+          sortCodeSupportsDirectCredit = None,
+          sortCodeBankName = None,
+          iban = None
         )
         Ok(Json.toJson(unknownAccountDetails))
     }

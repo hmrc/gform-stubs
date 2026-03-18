@@ -22,13 +22,13 @@ case class AccountDetails(
   accountNumberIsWellFormatted: String,
   accountExists: String,
   nonStandardAccountDetailsRequiredForBacs: String,
-  sortCodeBankName: String,
+  sortCodeBankName: Option[String],
   nameMatches: String,
   accountName: String,
   sortCodeIsPresentOnEISCD: String,
-  sortCodeSupportsDirectDebit: String,
-  sortCodeSupportsDirectCredit: String,
-  iban: String
+  sortCodeSupportsDirectDebit: Option[String],
+  sortCodeSupportsDirectCredit: Option[String],
+  iban: Option[String]
 )
 
 object AccountDetails {
