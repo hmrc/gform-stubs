@@ -40,6 +40,8 @@ POST      /ni/contributions/:nino/claim/refund/:refundClaimReference/issue-refun
 
 GET       /paye/employment/employee/:nino/tax-year/:taxYear/employment-details    uk.gov.hmrc.gformstubs.controllers.EmploymentDetails.getEmploymentDetails(nino: String, taxYear: Int)
 
+GET       /etmp/RESTAdapter/generic/agent/subscription/:arn                    uk.gov.hmrc.gformstubs.controllers.AgentSubscription.getAgentSubscription(arn: String)
+
 GET       /compliance/civil-investigation-and-avoidance/api/CFSSuite/v1/CaseDetails/:caseId                           uk.gov.hmrc.gformstubs.controllers.CaseflowGetDetails.getCaseDetails(caseId: String)
 
 POST      /fta/fta01/v1                                                  uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.indiaFTARegister()
