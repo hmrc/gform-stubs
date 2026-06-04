@@ -45,3 +45,7 @@ GET       /etmp/RESTAdapter/generic/agent/subscription/:arn                    u
 GET       /compliance/civil-investigation-and-avoidance/api/CFSSuite/v1/CaseDetails/:caseId                           uk.gov.hmrc.gformstubs.controllers.CaseflowGetDetails.getCaseDetails(caseId: String)
 
 POST      /fta/fta01/v1                                                  uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.indiaFTARegister()
+
+GET       /fta/manageemails/v1                                           uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.indiaFTAGetManageEmails(eori: String)
+
+POST      /fta/manageemails/v1                                           uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.indiaFTAPostManageEmails(eori: String)
