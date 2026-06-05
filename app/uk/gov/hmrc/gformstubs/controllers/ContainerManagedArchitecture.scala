@@ -147,6 +147,25 @@ class ContainerManagedArchitecture @Inject() (controllerComponents: ControllerCo
           |"secondaryEmails": ["test1", "test2"]
           |}""".stripMargin
       )
+    } else if (eori.contains("101010")) {
+      respJson(
+        200,
+        """{
+          |"primaryEmail": "primary@domain.com",
+          |"secondaryEmails": [
+          |"secondary-1@domain.com",
+          |"secondary-2@domain.com",
+          |"secondary-3@domain.com",
+          |"secondary-4@domain.com",
+          |"secondary-5@domain.com",
+          |"secondary-6@domain.com",
+          |"secondary-7@domain.com",
+          |"secondary-8@domain.com",
+          |"secondary-9@domain.com",
+          |"secondary-10@domain.com"
+          |]
+          |}""".stripMargin
+      )
     } else {
       respJson(
         200,
