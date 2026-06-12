@@ -150,7 +150,7 @@ class ContainerManagedArchitecture @Inject() (controllerComponents: ControllerCo
         200,
         """{
           |"primaryEmail": "primary@domain.com",
-          |"secondaryEmails": ["test1", "test2"]
+          |"secondaryEmails": ["test1@somewhere.com", "test2@elsewhere.co.uk"]
           |}""".stripMargin
       )
     } else if (eori.contains("101010")) {
