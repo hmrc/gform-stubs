@@ -33,7 +33,8 @@ case class IndiaFTARegistration(
   RegistrationType: String,
   ConfirmationEmailAddress: String,
   PrimaryFTAEmail: String,
-  FTAEmails: FTAEmails
+  FTAEmails: Option[FTAEmails],
+  ReasonForCancellation: Option[String]
 )
 
 object IndiaFTARegistration {
