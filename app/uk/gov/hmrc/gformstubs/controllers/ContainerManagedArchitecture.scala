@@ -179,8 +179,8 @@ class ContainerManagedArchitecture @Inject() (controllerComponents: ControllerCo
           |"primaryEmail": "primary@domain.com",
           |"secondaryEmails": [
           |"secondary-1@domain.com",
-          |"secondary-2@domain.com ",
-          |"secondary-3@domain.com "
+          |"secondary-2@domain.com",
+          |"secondary-3@domain.com"
           |]
           |}""".stripMargin
       )
