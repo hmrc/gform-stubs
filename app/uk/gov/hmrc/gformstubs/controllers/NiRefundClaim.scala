@@ -148,6 +148,26 @@ class NiRefundClaim @Inject() (controllerComponents: ControllerComponents)
                |}""".stripMargin)
           .as("application/json")
       )
+    } else if (refundClaimReference == "123456789A") {
+      Future.successful(
+        BadRequest(s"""
+                      |{
+                      |  "origin": "HIP",
+                      |  "response": {
+                      |    "failures": [
+                      |      {
+                      |        "type": "path.refundClaimReference",
+                      |        "reason": "The request parameter path.refundClaimReference failed validation."
+                      |      },
+                      |      {
+                      |        "type": "path.refundClaimReference",
+                      |        "reason": "The request parameter path.refundClaimReference failed validation."
+                      |      }
+                      |    ]
+                      |  }
+                      |}""".stripMargin)
+          .as("application/json")
+      )
     } else {
       Future.successful(
         NotFound(s"Resource not found for Nino: $nino and Claim Reference: $refundClaimReference")
