@@ -273,14 +273,26 @@ class BankAccountDetails @Inject() (controllerComponents: ControllerComponents)
     ),
     BankAccount("206705", "11116666") -> AccountDetails(
       accountNumberIsWellFormatted = "yes",
-      accountExists = "inapplicable",
+      accountExists = "no",
       nameMatches = "indeterminate",
       accountName = "",
-      nonStandardAccountDetailsRequiredForBacs = "inapplicable",
+      nonStandardAccountDetailsRequiredForBacs = "no",
       sortCodeIsPresentOnEISCD = "yes",
       sortCodeSupportsDirectDebit = Some("no"),
       sortCodeSupportsDirectCredit = Some("no"),
-      sortCodeBankName = None,
+      sortCodeBankName = Some("Nationwide"),
+      iban = None
+    ),
+    BankAccount("206705", "11116665") -> AccountDetails(
+      accountNumberIsWellFormatted = "yes",
+      accountExists = "no",
+      nameMatches = "no",
+      accountName = "",
+      nonStandardAccountDetailsRequiredForBacs = "no",
+      sortCodeIsPresentOnEISCD = "yes",
+      sortCodeSupportsDirectDebit = Some("no"),
+      sortCodeSupportsDirectCredit = Some("no"),
+      sortCodeBankName = Some("Nationwide"),
       iban = None
     ),
     BankAccount("206705", "11118888") -> AccountDetails(

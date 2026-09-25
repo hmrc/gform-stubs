@@ -115,6 +115,50 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
           )
         )
     }
+
+    "return accountExists no and a bank name for 206705/11116666 so ITST-45 stays off the bank-name page" in {
+      val request = BankAccountRequest(BankAccount(sortCode = "206705", accountNumber = "11116666"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
+      val controller = new BankAccountDetails(stubControllerComponents())
+      val result = controller.personalBankAccountExistence(fakeRequest)
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe
+        JsObject(
+          Map(
+            "accountNumberIsWellFormatted"             -> JsString("yes"),
+            "accountExists"                            -> JsString("no"),
+            "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
+            "sortCodeBankName"                         -> JsString("Nationwide"),
+            "nameMatches"                              -> JsString("indeterminate"),
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("yes"),
+            "sortCodeSupportsDirectDebit"              -> JsString("no"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no")
+          )
+        )
+    }
+
+    "return a name mismatch for 206705/11116665 so ITST-45 journey 4 can take a third strike" in {
+      val request = BankAccountRequest(BankAccount(sortCode = "206705", accountNumber = "11116665"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
+      val controller = new BankAccountDetails(stubControllerComponents())
+      val result = controller.personalBankAccountExistence(fakeRequest)
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe
+        JsObject(
+          Map(
+            "accountNumberIsWellFormatted"             -> JsString("yes"),
+            "accountExists"                            -> JsString("no"),
+            "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
+            "sortCodeBankName"                         -> JsString("Nationwide"),
+            "nameMatches"                              -> JsString("no"),
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("yes"),
+            "sortCodeSupportsDirectDebit"              -> JsString("no"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no")
+          )
+        )
+    }
   }
 
   "bankAccount validate" should {
