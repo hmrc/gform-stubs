@@ -119,6 +119,29 @@ class BankAccountDetailsSpec extends AnyWordSpec with Matchers with GuiceOneAppP
 
   "bankAccount validate" should {
 
+    "return 200 with well formatted yes for 206705/44311611 so ITST-45 validate-then-verify can run" in {
+      val request = BankAccountRequest(BankAccount(sortCode = "206705", accountNumber = "44311611"))
+      val fakeRequest = FakeRequest("POST", "/").withBody(request)
+      val controller = new BankAccountDetails(stubControllerComponents())
+      val result = controller.validateBankDetails(fakeRequest)
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe
+        JsObject(
+          Map(
+            "accountNumberIsWellFormatted"             -> JsString("yes"),
+            "accountExists"                            -> JsString("yes"),
+            "nonStandardAccountDetailsRequiredForBacs" -> JsString("no"),
+            "sortCodeBankName"                         -> JsString("BARCLAYS BANK UK PLC"),
+            "nameMatches"                              -> JsString("indeterminate"),
+            "accountName"                              -> JsString(""),
+            "sortCodeIsPresentOnEISCD"                 -> JsString("yes"),
+            "sortCodeSupportsDirectDebit"              -> JsString("yes"),
+            "sortCodeSupportsDirectCredit"             -> JsString("no"),
+            "iban"                                     -> JsString("GB21BARC20670544311611")
+          )
+        )
+    }
+
     "return 200 with proper values when post with 206705/11112222" in {
       val request = BankAccountRequest(BankAccount(sortCode = "206705", accountNumber = "11112222"))
       val fakeRequest = FakeRequest("POST", "/").withBody(request)
