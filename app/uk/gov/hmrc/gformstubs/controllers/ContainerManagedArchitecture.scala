@@ -247,4 +247,81 @@ class ContainerManagedArchitecture @Inject() (controllerComponents: ControllerCo
       Ok("")
     }
   }
+
+  def verifyPodStatus(podReference: String): Action[AnyContent] = Action { implicit request =>
+    val timestamp: String = Instant.now().toString
+    val correlationId = request.headers.get("X-Correlation-Id").fold("e9339322-7840-4099-a543-ae771bf02271")(identity)
+
+    if (podReference == "POD123456789000") {
+      respJson(
+        200,
+        s"""|{
+            |  "matchFound": false,
+            |  "matchNotFoundReason": "No authorisation was found with an authorisation reference number matching supplied Pod Reference $podReference"
+            |}
+            |""".stripMargin
+      )
+    } else if (podReference == "POD123456789001") {
+      respJson(
+        200,
+        s"""|{
+            |  "matchFound": true,
+            |  "exporterCompanyName": "Acme Limited",
+            |  "podReference": "$podReference",
+            |  "currentRegistrationStatus": "NOT_VALID",
+            |  "registrationValidityPeriods": []
+            |}""".stripMargin
+      )
+    } else if (podReference == "POD123456789002") {
+      respJson(
+        200,
+        s"""|{
+            |  "matchFound": true,
+            |  "exporterCompanyName": "Acme Incorporated",
+            |  "podReference": "$podReference",
+            |  "currentRegistrationStatus": "VALID",
+            |  "registrationValidityPeriods": [
+            |    {"status": "VALID", "validFrom": "2026-08-01", "validTo": null}
+            |  ]
+            |}""".stripMargin
+      )
+    } else if (!podReference.matches("POD\\d{12}")) {
+      respJson(
+        500,
+        s"""
+           |{
+           |  "errorDetail": {
+           |    "errorCode": "500",
+           |    "errorMessage": "HTTP operation failed invoking http://pds:80/pds/fta/verifystatus/$podReference/v1 with statusCode: 400",
+           |    "source": "Backend",
+           |    "sourceFaultDetail": {
+           |      "businessFailure": {
+           |        "podReference": "$podReference",
+           |        "failureCode": "2",
+           |        "validationMessage": "Supplied Pod Reference value does not conform to the Pod Reference format 'PODnnnnnnnnnnnn'"
+           |      }
+           |    },
+           |    "timestamp": "$timestamp",
+           |    "correlationId": "$correlationId"
+           |  }
+           |}
+           |""".stripMargin
+      )
+    } else {
+      respJson(
+        200,
+        s"""|{
+            |  "matchFound": true,
+            |  "exporterCompanyName": "Acme Partners & Co",
+            |  "podReference": "$podReference",
+            |  "currentRegistrationStatus": "VALID",
+            |  "registrationValidityPeriods": [
+            |    {"status": "VALID", "validFrom": "2026-01-01", "validTo": "2026-04-24"},
+            |    {"status": "NOT_VALID", "validFrom": "2026-06-01", "validTo": "2026-08-31"},
+            |    {"status": "VALID", "validFrom": "2026-09-01", "validTo": null}
+            |  ]
+            |}""".stripMargin
+      )
+    }
+  }
 }
