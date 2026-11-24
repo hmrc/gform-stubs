@@ -51,3 +51,4 @@ GET       /fta/manageemails/v1                                           uk.gov.
 POST      /fta/manageemails/v1                                           uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.indiaFTAPostManageEmails(eori: String)
 
 GET       /fta/maintainPodAuthorisationDetails/:podReference/v1          uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.podAuthorisationDetails(podReference: String)
+GET       /fta/verifystatus/:podReference/v1                             uk.gov.hmrc.gformstubs.controllers.ContainerManagedArchitecture.verifyPodStatus(podReference: String)
