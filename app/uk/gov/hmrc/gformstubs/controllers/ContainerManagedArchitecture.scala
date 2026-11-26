@@ -248,6 +248,119 @@ class ContainerManagedArchitecture @Inject() (controllerComponents: ControllerCo
     }
   }
 
+  // FTAPOD2 (GCC FTA Lookup) - GET maintainPodAuthorisationDetails
+  def podAuthorisationDetails(podReference: String): Action[AnyContent] = Action { _ =>
+    val timestamp: String = Instant.now().toString
+    val sourcePDSFaultDetails = s"uri=/pds/fta/maintainPodAuthorisationDetails/$podReference/v1"
+
+    def businessFailure(failureCode: String, validationMessage: String) =
+      respJson(
+        400,
+        s"""|{
+            |  "businessFailure": {
+            |    "podReference": "$podReference",
+            |    "failureCode": "$failureCode",
+            |    "validationMessage": "$validationMessage"
+            |  }
+            |}""".stripMargin
+      )
+
+    def errorDetail(errorCode: Int, errorMessage: String) =
+      respJson(
+        errorCode,
+        s"""|{
+            |  "errorDetail": {
+            |    "timestamp": "$timestamp",
+            |    "errorCode": $errorCode,
+            |    "errorMessage": "$errorMessage",
+            |    "sourcePDSFaultDetails": "$sourcePDSFaultDetails"
+            |  }
+            |}""".stripMargin
+      )
+
+    // Failure codes have not been decided yet by PDS, "2" is the value used in the spec examples
+    if (!podReference.matches("^POD[0-9]{12}$")) {
+      businessFailure("2", "Invalid pod authorisation pattern provided")
+    } else if (podReference == "POD123456789000") {
+      businessFailure("2", "No matching authorisation found using the supplied Pod Reference")
+    } else if (podReference == "POD123456789001") {
+      businessFailure("2", "Decision not current")
+    } else if (podReference == "POD123456789002") {
+      respJson(
+        200,
+        """|{
+           |  "generalDecisionDetails": { "emailConsent": false },
+           |  "exporterDetails": {
+           |    "eori": "GB123456789000",
+           |    "fullName": "Acme Limited",
+           |    "ukAddress": {
+           |      "streetAndNumber": "1 High Street",
+           |      "city": "Leeds"
+           |    }
+           |  },
+           |  "yourDetails": {
+           |    "fullName": "Jane Smith",
+           |    "addressLine1": "2 Low Street",
+           |    "addressLine2": "Headingley",
+           |    "postCode": "LS6 1AA",
+           |    "city": "Leeds",
+           |    "country": "GB",
+           |    "emailAddress": "jane.smith@example.com"
+           |  },
+           |  "podFtaDetails": {
+           |    "exporterActivity": "Production",
+           |    "version": 3,
+           |    "lastPodAuthModifiedDate": "2026-11-01T10:15:30.123456789Z",
+           |    "goodsItems": [
+           |      { "hs4Code": "2202", "goodsDescription": "Soft Drinks" }
+           |    ]
+           |  }
+           |}""".stripMargin
+      )
+    } else if (podReference == "POD123456789003") {
+      errorDetail(404, "Not Found")
+    } else if (podReference == "POD123456789004") {
+      errorDetail(500, "An internal error has occurred")
+    } else {
+      respJson(
+        200,
+        """|{
+           |  "generalDecisionDetails": { "emailConsent": true },
+           |  "exporterDetails": {
+           |    "eori": "GB523456789586000",
+           |    "fullName": "Andrew Flintoff",
+           |    "ukAddress": {
+           |      "name": "Rose Cottage",
+           |      "streetAndNumber": "10 Downing Street",
+           |      "postCode": "SW1A 2AA",
+           |      "city": "London",
+           |      "countryCode": "GB"
+           |    }
+           |  },
+           |  "yourDetails": {
+           |    "fullName": "Freddie Flintoff",
+           |    "addressLine1": "111 Old Trafford Street",
+           |    "addressLine2": "Old Trafford",
+           |    "postCode": "MN12 7LD",
+           |    "city": "Manchester",
+           |    "country": "GB",
+           |    "telephoneNumber": "0161 528467",
+           |    "emailAddress": "andrew@gmail.com"
+           |  },
+           |  "podFtaDetails": {
+           |    "exporterActivity": "Trading",
+           |    "version": 1,
+           |    "lastPodAuthModifiedDate": "2026-10-05T22:28:58.303182443Z",
+           |    "goodsItems": [
+           |      { "hs4Code": "1900", "goodsDescription": "Soft Drinks" },
+           |      { "hs4Code": "1905", "goodsDescription": "Biscuits" }
+           |    ]
+           |  }
+           |}""".stripMargin
+      )
+    }
+  }
+
   def verifyPodStatus(podReference: String): Action[AnyContent] = Action { implicit request =>
     val timestamp: String = Instant.now().toString
     val correlationId = request.headers.get("X-Correlation-Id").fold("e9339322-7840-4099-a543-ae771bf02271")(identity)
